@@ -1,0 +1,75 @@
+<!-- 
+    Visualforce page used to generate the passenger list pdf for TDs (TOPS app)  -->
+
+<!-- 
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+    11 May 2018 Calvin Goodenough Modified to make into suppliers list
+-->
+<apex:page controller="TOPS_SuppliersListPDFController" renderAs="PDF"  cache="true" language="{!languageParam}"
+            applyBodyTag="false" sidebar="false" showHeader="false" applyHtmlTag="false" >
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <style>
+        @page {
+          size: letter landscape !important;
+          margin: 5.0mm !important;
+        }      
+        .pHeader {
+        background: rgb({!colourCodeVal}) !important;
+        color: white !important;
+       } 
+       .pRowEven { 
+         background: #C3C3C3 !important;
+       }       
+       .pRowOdd {
+         background: white !important;
+       }       
+       body{
+         font-size: {!fontSize } !important;
+       }
+       td {
+         font-family: calibri !important;
+       }
+      </style>
+  </head>
+  
+  <body>
+    <apex:pageBlock >
+        <table width="100%" style="border-bottom: 2px solid;">
+          <td>
+            {!tourRecord.Instance_Code__c} - {!tourRecord.Product_Name__c}
+          </td>
+        </table>
+        
+        <apex:pageBlockTable value="{!supplierList}" var="supplier" 
+           headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%"  style="{!IF(!(blankSupplier.size>0),'border-top: 2px solid','')}">
+              <apex:column style="font-family:Calibri;"  headerValue="Day" value="{!supplier.Day_Number__c}" width="2%" />
+              <apex:column headerValue="Date" value="{!supplier.Service_Start_Date__c}" width="6%"/>
+              <apex:column headerValue="Time" value="{!supplier.Depart_Time__c}" width="3%"/>
+              <apex:column style="text-align: center;" headerValue="Days" value="{!supplier.Duration__c}" width="2%"/>
+              <apex:column headerValue="Component" value="{!supplier.Component_Type__c}"  width="10%"/>
+              <apex:column headerValue="Purpose" value="{!supplier.Supply_Purpose__c}" width="10%"/>
+              <apex:column headerValue="Supplier" value="{!supplier.Supplier__r.Name}" width="10%"/>
+              <apex:column headerValue="Address" value="{!supplier.Supplier_Address__c}" width="20%"/>
+              <apex:column headerValue="Phone Number" value="{!supplier.Supplier_Phone_Number__c}" width="10%"/>
+              <apex:column value="{!supplier.Supplier__r.Fax}" width="10%"/>
+              <apex:column value="{!supplier.Supplier__r.Email__c}" width="10%"/>
+        </apex:pageBlockTable>
+        
+    </apex:pageBlock>
+      <apex:variable var="i" value="{!1}"/>
+    <table width="100%">
+    <apex:repeat value="{!footerlogoList}" var="footerlogo">
+      <td style="{!IF(OR(footerlogoList.size <= i), 'text-align:right;', IF(i == 1, 'text-align:left;', 'text-align: center;'))}">
+        <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+        <apex:image url="{!URLFOR($Resource.BrandImages,
+        footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+        <!-- End changes -->
+        <apex:variable var="i" value="{!i+1}"/>
+      </td>
+    </apex:repeat>
+    </table>
+  </body>
+  </html>
+</apex:page>

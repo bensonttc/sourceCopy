@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Insight (UK, EUR, IRE)</name>
+    <queueMembers>
+        <roles>
+            <role>Head_of_Reservations_UK</role>
+            <role>Insight_Uniworld_UK_EUR_IRE_Reservations</role>
+            <role>Insight_UK_Reservations</role>
+            <role>Reservations_UK</role>
+            <role>Trafalgar_Insight_Uniworld_UK_EUR_IRELAND_Reservations</role>
+            <role>Trafalgar_Insight_UK_EUR_IRELAND_Reservations</role>
+            <role>Trafalgar_Insight_AAT_KINGS_UK_EUR_IRELAND_Reservations</role>
+            <role>Trafalgar_Insight_Uniworld_UK_EUR_IRE_Reservations_Team_Manager</role>
+        </roles>
+        <users>
+            <user>katharina.konig@travcorpuk.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>true</allowInternalUserLogin>
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <changePasswordTemplate>myTrafalgarApp/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <communityRoles/>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailSenderAddress>salesforceteam@travcorpuk.com</emailSenderAddress>
+    <emailSenderName>Questionnaire Community</emailSenderName>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>false</enableDirectMessages>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableGuestFileAccess>false</enableGuestFileAccess>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>true</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <enableTalkingAboutStats>false</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>true</enableTopicAssignmentRules>
+    <enableTopicSuggestions>false</enableTopicSuggestions>
+    <enableUpDownVote>false</enableUpDownVote>
+    <forgotPasswordTemplate>myTrafalgarApp/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>true</gatherCustomerSentimentData>
+    <navigationLinkSet>
+        <navigationMenuItem>
+            <label>UW CTQ Dashboards</label>
+            <position>1</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/uniworld-dashboards</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>UBU CTQ Dashboards</label>
+            <position>2</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/ubu-questionnaire-dashboards</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>TTC CTQ Dashboards</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/ttc-questionnaire-dashboard</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>All Reports</label>
+            <position>4</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>Report</target>
+            <type>SalesforceObject</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>All Dashboards</label>
+            <position>5</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>Dashboard</target>
+            <type>SalesforceObject</type>
+        </navigationMenuItem>
+    </navigationLinkSet>
+    <networkMemberGroups>
+        <permissionSet>Online_CTQ_Email</permissionSet>
+        <profile>Admin</profile>
+        <profile>CTQ UW%26 UBU Community User</profile>
+        <profile>CTQ TTC Ops Community User</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Designer</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>Designer</homePageOverrideSetting>
+        <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>Questionnaire_Community_C</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>Questionnaire_Community</site>
+    <status>Live</status>
+    <tabs>
+        <customTab>Questionnaire__c</customTab>
+        <customTab>Tour_Instance__c</customTab>
+        <defaultTab>01r20000000hOsg</defaultTab>
+    </tabs>
+    <urlPathPrefix>ctq</urlPathPrefix>
+    <welcomeTemplate>myTrafalgarApp/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

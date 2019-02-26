@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Used to allow Ops staff to login as community users and check NPS scores.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>TTC Login as community user</label>
+    <license>Salesforce</license>
+</PermissionSet>

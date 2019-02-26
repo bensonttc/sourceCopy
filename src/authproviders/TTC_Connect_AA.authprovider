@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://sso-aatkings.travcorpservices.com/openid/connect/auth</authorizeUrl>
+    <consumerKey>MTS_PROD_AA</consumerKey>
+    <consumerSecret>PaMvxYY8jU8sS5Zx0vLeHIsZvNe8dgtaBPLK6cKG+IJQdOLkQOeC8zocNTk7ULIPyz+E71Wl9JoMNKvEuh8aBOlpsHCRenKTD50d0ivq0q0=</consumerSecret>
+    <defaultScopes>openid email profile</defaultScopes>
+    <executionUser>miranda@ttc.cloudperspective.co.uk.mmulapi</executionUser>
+    <friendlyName>TTC Connect AA</friendlyName>
+    <iconUrl>http://wiki.openid.net/f/openid-logo-wordmark.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <registrationHandler>TQSsoRegistrationHandler</registrationHandler>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://sso-aatkings.travcorpservices.com/openid/connect/token</tokenUrl>
+    <userInfoUrl>https://sso-aatkings.travcorpservices.com/openid/connect/userinfo</userInfoUrl>
+</AuthProvider>

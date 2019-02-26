@@ -1,0 +1,152 @@
+<!--
+    //20th June 2017    Maksud Ali Origianl (Story # S-487869)
+-->
+
+<apex:page controller="TOPS_PersonalMenusPDFController" renderAs="PDF" applyHtmlTag="false" StandardStyleSheets="false" showHeader="false" sidebar="false" applyBodyTag="false">
+
+  <head>
+    <style>
+      @page {
+        margin: /*7mm*/ 5mm 7mm /*5mm*/;
+        size: A4; /* A4 width and height */
+      }
+      
+      // Code commented and changes done by Ravi Jain for case 00194182
+      /*body{
+        font-size: {!fontSize};
+      }*/   
+        
+     // Start - Ravi Jain - 00194182 - May 31,2017 - font size will be 15px for all the items except the title which has variable font size 
+      body{
+        font-size: 15px;
+      }
+      
+      .menu{
+        font-size: {!fontSize};
+      }
+      // Code changes end here
+
+      td {
+        font-family: calibri !important;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      .menuCls {
+        text-decoration: underline;
+      }
+
+      .desCls {
+        height: 40px;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table width="100%">
+      <apex:variable var="counter" value="{!1}"/>
+      <apex:repeat value="{!listOfKeys}" var="num">
+        <tr class="{!IF(AND(MOD(num, 2) == 1 , num != 1), 'page-break', '')}">
+          <apex:repeat value="{!passengerOptionalmap[num]}" var="passOpt">
+
+            <td width="50%" style="vertical-align:top; {!IF(MOD(counter, 2) != 0, 'padding-right:38px;', '')} width:10.5cm; height:13.5cm;">
+              <table width="100%">
+
+                <tr>
+                  <!--Code commented and changes done by Ravi Jain for case 00194182-->
+                  <!--<th style="background:rgb({!colourCodeVal});color:white; border-top: 1.5cm solid #FFF;">Your Menu : {!supplierName}
+                 </th>-->
+                  <!-- Start - Ravi Jain - 00194182 - May 31,2017 - variable font size for title-->
+                  <th style="background:rgb({!colourCodeVal});color:white; border-top: 1.5cm solid #FFF;" class = "menu">Your Menu : {!supplierName}
+                  </th>
+                  <!--Code changes end here-->
+                  
+                </tr>
+                <tr>
+                  <td><b>Guest:</b> {!if(passOpt.Passenger__r.Preferred_Name__c != null, passOpt.Passenger__r.Preferred_Name__c, passOpt.Passenger__r.First_Name__c)} {!passOpt.Passenger__r.Family_Name__c}</td>
+                </tr>
+
+                <tr>
+                  <td class="menuCls">Starter</td>
+                </tr>
+
+                <tr>
+                  <td class="desCls">
+                    {!passOpt.Selected_Starter__c}
+                  </td>
+                </tr>
+
+                <tr style="display:{!IF(ISBLANK(passOpt.Selected_Soup__c), 'none;', '')}">
+                  <td class="menuCls">Soup</td>
+                </tr>
+                <tr>
+                  <td class="desCls" style="display:{!IF(ISBLANK(passOpt.Selected_Soup__c), 'none;', '')}">
+                    {!passOpt.Selected_Soup__c}
+                  </td>
+                </tr>
+
+                <tr style="display:{!IF(ISBLANK(passOpt.Selected_Soup__c), '', 'none;')}">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr style="display:{!IF(ISBLANK(passOpt.Selected_Soup__c), '', 'none;')}">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+
+                <tr>
+                  <td class="menuCls">Main Course</td>
+                </tr>
+
+                <tr>
+                  <td class="desCls">
+                    {!passOpt.Selected_Main__c}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="menuCls">Dessert</td>
+                </tr>
+
+                <tr>
+                  <td class="desCls">
+                    {!passOpt.Selected_Dessert__c}
+                  </td>
+                </tr>
+
+                <tr>
+                   <!-- Changes start, Done by Maksud Ali for Story : S-487869 (replace Dietary_Requirements__c to Menu_Notes__c field) -->
+                  <td style="text-align:center;"><apex:outputText value="{!if(passOpt.Menu_Notes__c != '', 'Menu Notes:', '<br/>')}" escape="false"/>{!passOpt.Menu_Notes__c}</td>
+                  <!-- End changes -->
+                </tr>
+
+                <tr>
+                  <td style="text-align: center;" valign="middle">
+                    <apex:repeat value="{!footerlogoList}" var="footerlogo">
+                      <apex:image url="{!URLFOR($Resource.BrandImages,
+                  footerlogo)}" width="{!IF(footerLogo == 'Trafalgar.png', '50%', '40%')}" height="auto" />&nbsp;&nbsp;
+                    </apex:repeat>
+                  <br/>
+                  <span style="font-size: 16px">{!hashTag}</span>
+                  </td>
+
+                </tr>
+
+                <tr>
+                  <td style="border-top: 1px solid;height:15px;"></td>
+                </tr>
+
+              </table>
+
+            </td>
+            <apex:variable var="counter" value="{!counter + 1}"/>
+          </apex:repeat>
+
+        </tr>
+      </apex:repeat>
+
+    </table>
+
+  </body>
+</apex:page>

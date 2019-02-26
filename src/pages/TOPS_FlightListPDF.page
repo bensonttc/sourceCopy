@@ -1,0 +1,78 @@
+<!-- 
+// Apex Page Name: TOPS_FlightListPDF
+// For Apex Controller Class: TOPS_FlightListPDFController
+// Description: This visualforce page used to generate PDF of flight passengers.
+-->
+<!--
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+-->
+<apex:page cache="true" language="{!theLanguage}" applyBodyTag="false" controller="TOPS_FlightListPDFController" renderAs="pdf"
+sidebar="false" showHeader="false" title="Flight Passengers List">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+      .pHeader {
+        background: rgb({!theColourCode}) !important;
+        color: white;
+      }
+      .pRowEven {
+        background: #C3C3C3 !important;
+      }
+      .pRowOdd {
+        background: white !important;
+      }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding-left: 3px;
+      }
+      body {
+        font-size: {!theFontSize};
+      }
+      td {
+        font-family: calibri !important;
+      }
+    </style>
+  </head>
+  <body>
+    <apex:pageBlock >
+      <table width="100%" class="pHeader" style="font-weight: bold;">
+        <tr>
+          <td>{!$Label.Guest_departure_travel_arrangements}</td>
+          <td>{!theInstanceCode}</td>
+        </tr>
+      </table>
+      <apex:pageBlockTable value="{!theFlightPassengersList}" var="theFlightPassenger" headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%" style="{!IF(!(vacantFlightSeats.size > 0), 'border-top: 2px solid;', '')}">
+        <apex:column headerValue="Name:" value="{!theFlightPassenger.First_Name__c} {!theFlightPassenger.Family_Name__c}" width="20%"/>
+        <apex:column headerValue="" width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column headerValue="{!$Label.Date}" width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column headerValue="{!$Label.Time}" width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column headerValue="Flight" width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column headerValue="{!$Label.Terminal}" width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column headerValue="{!$Label.Destination}" width="10%">&nbsp;&nbsp;</apex:column>
+      </apex:pageBlockTable>
+      <apex:datatable value="{!vacantFlightSeats}" var="theVacantFlightSeat" rowClasses="{!vacantFlightSeatsCSS}" width="100%" style="{!IF(vacantFlightSeats.size > 0, 'border-bottom: 2px solid;', '')}">
+        <apex:column width="20%">&nbsp;&nbsp;</apex:column>
+        <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+        <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+      </apex:datatable>
+    </apex:pageBlock>
+    <apex:variable var="i" value="{!1}"/>
+    <table width="100%" style="border:none;">
+      <apex:repeat value="{!theFooterlogoList}" var="footerlogo">
+        <td style="width:200px; border:none;">
+          <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+          <apex:image url="{!URLFOR($Resource.BrandImages,footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+          <apex:variable var="i" value="{!i+1}"/>
+          <!-- End changes -->
+        </td>
+      </apex:repeat>
+    </table>
+  </body>
+</apex:page>

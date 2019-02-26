@@ -1,0 +1,98 @@
+<apex:page showHeader="false" standardStylesheets="false" contentType="text/cache-manifest" controller="mobilecaddy1.StartPageCacheCtrl001_mc">CACHE MANIFEST
+
+NETWORK:
+*
+
+CACHE:
+
+#SECTION 1A MOBILECADDY CACHED PAGES
+
+#The page below is a dummy page to cause the cache to fail and check the behaviour and logging uncomment to test
+#/pagetofailcache
+
+
+#SECTION 1B MOBILECADDY CACHED JS
+
+{!vfremotepath}
+/static/111213/js/perf/stub.js
+{!URLFOR($Resource.cordovaSF3v1)}
+{!URLFOR($Resource.MC_Resource_v0_1_4, 'jquery.min.js')}
+{!URLFOR($Resource.MC_Resource_v0_1_4, 'mobilecaddy-utils.min.js')}
+{!URLFOR($Resource.MC_Resource_v0_1_4, 'promise-1.0.0.min.js')}
+{!URLFOR($Resource.MC_Resource_v0_1_4, 'underscore-min.js')}
+
+
+#SECTION 1C MOBILECADDY CACHED CSS
+
+
+#SECTION 1D MOBILECADDY CACHED IMAGES
+
+
+#SECTION 2A MOBILE APPLICATION CACHED PAGES / JS / ASSETS
+
+{!URLFOR($Resource.TOPS001_007, 'www/css/app.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/fonts/ionicons.EOT')}
+{!URLFOR($Resource.TOPS001_007, 'www/fonts/ionicons.SVG')}
+{!URLFOR($Resource.TOPS001_007, 'www/fonts/ionicons.TTF')}
+{!URLFOR($Resource.TOPS001_007, 'www/fonts/ionicons.WOFF')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/icon-anniversary.SVG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/icon-disability.SVG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide1.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide3.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide2.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide4.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide5.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide6.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide7.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide8.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/imgs/Slide9.PNG')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/angular-datepicker.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/classic.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/classic.date.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/classic.time.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/default.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/default.date.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/default.time.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/angular-datepicker/themes/rtl.css')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/js/angular-ios9-uiwebview.patch.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/js/ionic.bundle.min.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/lib/js/ng-cordova.min.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/feedback.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/guest.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/guests.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/mcSyncSpinner.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/home.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/meal.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/menu.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/myprofile.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/optionalBook.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/optionalDetail.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/optionalMngmt.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/outbox.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/roomBooking.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/sendEmail.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/settings.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/settingsDeploy.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/settingsDevMTI.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/settingsDevMTIDetail.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/settingsDevTools.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/settingsTesting.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/supplierDetails.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/suppliers.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/trips.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/tutorial.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/unavailability.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/unavailabilityEdit.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/js/app.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/templates/trip.html')}
+{!URLFOR($Resource.TOPS001_007, 'www/js/controllers.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/js/directives.js')}
+{!URLFOR($Resource.TOPS001_007, 'www/js/services.js')}
+
+
+
+#sessionid to force reload cache everytime the app is online:{!GETSESSIONID()}
+
+#This is done as a work around to a limitation of JS Remoting that causes remoting actions to fail on subsequent app login.
+
+</apex:page>

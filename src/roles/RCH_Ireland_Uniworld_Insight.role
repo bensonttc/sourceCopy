@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>RCH Ireland Uniworld Insight</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>RCH Ireland Uniworld Insight</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>RCH_Ireland_Ashford_Castle_and_The_Lodge_at_Ashford_Castle_Head_of_Sales</parentRole>
+</Role>

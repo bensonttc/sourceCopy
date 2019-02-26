@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Insight (CAN)</name>
+    <queueMembers>
+        <roles>
+            <role>Contiki_CAN_Insight_CAN_Trafalgar_CAN_Reservations</role>
+            <role>Head_of_Reservations_CAN</role>
+            <role>Insight_CAN</role>
+            <role>Insight_CAN_Reservations</role>
+            <role>Insight_CAN_Reservations_Team_Manager</role>
+            <role>Trafalgar_CAN_Contiki_CAN_Insight_CAN_Reservations</role>
+            <role>Trafalgar_CAN_Insight_CAN_Reservations</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

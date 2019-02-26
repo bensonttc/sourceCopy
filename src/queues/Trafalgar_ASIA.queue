@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Trafalgar (ASIA)</name>
+    <queueMembers>
+        <roles>
+            <role>Head_of_Reservations_Asia</role>
+            <role>Insight_ASIA_Uniworld_SGP_Sales_Manager</role>
+            <role>Insight_ASIA_Uniworld_SGP_Senior_Sales_Manager</role>
+            <role>Reservations_Agent_Asia</role>
+            <role>Reservations_Agent_2_ASIA</role>
+            <role>Reservations_Team_Manager_Asia</role>
+            <role>Trafalgar_ASIA_MD_Head_of_Sales</role>
+            <role>Trafalgar_ASIA_Junior_Sales_Manager</role>
+            <role>Trafalgar_ASIA_Marketing</role>
+        </roles>
+        <users>
+            <user>darshan.maheshwari@ttc.com</user>
+            <user>dolly.paul@trafalgartours.com</user>
+            <user>rohan.kulkarni@trafalgartours.com</user>
+            <user>sanjay.temkar@trafalgartours.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

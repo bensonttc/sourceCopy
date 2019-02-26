@@ -1,0 +1,5 @@
+<apex:page StandardController="Account">
+    <div align="center" style="font-size:16pt;background-color:{!IF(Account.Inactive__c==False,'#007ac9','Red')};border:5px solid {!IF(Account.Inactive__c==False,'#007ac9','Red')};">
+        <h1 style="font-size:16pt;color:white">{!IF(Account.Inactive__c==False,Account.RecordType.Name,"Closed - " & Account.RecordType.Name)}</h1>
+    </div>
+</apex:page>

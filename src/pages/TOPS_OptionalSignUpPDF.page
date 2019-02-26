@@ -1,0 +1,254 @@
+<!--
+// 15 Feb 2017    Maksud Ali Modified (Story# S-461773) - Please see the story description for more details.
+// APril 2018     Calvin Goodenough : Cloned to deal with cases and AAT Kings config
+-->
+<apex:page controller="TOPS_OptionalSignUpPDFController" showHeader="false" renderAs="pdf" StandardStyleSheets="false" applyHtmlTag="false" applyBodyTag="false">
+  <head>
+    <style>
+     @page { size : letter;
+        margin-left: 2mm;
+        margin-right: 8mm;
+        margin-top: 2mm;
+        margin-bottom: 0mm;
+      }
+      body {
+        font-size: {!fontSize};
+      }
+      .valignCls {
+        vertical-align: top;
+      }
+      /* Changes start, Done by Maksud for story : S-461773 */
+      .borderCls { }
+      table.borderCls{
+          border-collapse: collapse;
+      }
+      table.borderCls,th.borderCls,td.borderCls{
+          border: 1.5px solid;
+      }
+      /*End chagnes */
+    </style>
+  </head>
+  <body>
+    <apex:pageBlock >
+      <table width="100%">
+        <tr>
+          <th width="25%" style="text-align: center;font-size: 25px;">
+            <div style="position:relative; margin-bottom:65px;">
+              <b>{!tourSeriesName}</b>
+            </div>
+          </th>
+          <th width="75%">
+            <table width="100%">
+              <tr>
+                <td colspan="2">
+                  <span class="valignCls">{!$Label.Name_of_Guest_Paying}:&nbsp;</span>
+                  <input type="text" style="border:solid 2px gray;width:215px;height:40px;" class="valignCls" /> &nbsp;
+                  <span class="valignCls">{!$Label.No_of_Adults}: &nbsp;</span>
+                  <!-- Changes start, Done by Maksud for story : S-461773 -->
+                  <input type="text" style="border:solid 2px gray;width:60px;height:30px; float:right;"/></td>
+                  <!-- End changes -->
+              </tr>
+              <tr>
+                <td colspan="2"><span class="valignCls">{!$label.Paying_for_Guests}:&nbsp; </span>
+                  <!-- Changes start, Done by Maksud for story : S-461773 -->
+                  <input type="text" style="border:solid 2px gray;width:415px;height:30px; float:right;"/></td>
+                  <!-- End changes -->
+              </tr>
+              <tr>
+                <td width="50%">{!$Label.Departure_Ref}:&nbsp; {!theDepartureReference}
+                </td>               
+                <td style="{!kidsDisplay}" width="50%" rowspan="2">
+                  <table width="100%">
+                    <tr>
+                      <td width="85%">{!numberOfKids}:<br/>{!theDiscountLabel}</td>
+                      <td width="15%">
+                        <div style="padding:0px; margin:0px; width:60px; height:30px; position:relative; left:3px;">
+                          <input type="text" style="border:solid 2px gray; width:60px; height:30px; float:right;"/>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>               
+              </tr>              
+              <tr>
+                <td>
+                    <apex:outputText value="{!$Label.Trip_Start_Date}:">&nbsp;
+                        <apex:param value="{!tourBrand}"/>
+                    </apex:outputText>
+                  <apex:outputText value="{0, date, d MMMM yyyy}">
+                      <apex:param value="{!tourRecord.Start_Date__c}"/>
+                  </apex:outputText>
+                </td>
+              </tr>              
+              <tr>
+                <td colspan="2">
+                  <apex:outputText rendered="{!if(or(showCHF,showGBP),true,false)}">
+                    {!$Label.Rates_applied_exchange}
+                  </apex:outputText>  
+                  <apex:outputText rendered="{!showCHF}">
+                    1 € = {!tourRecord.EUR_CHF__c} CHF 
+                  </apex:outputText>
+                  <apex:outputText rendered="{!showGBP}">
+                    1 € = {!tourRecord.EUR_GBP__c} GBP
+                  </apex:outputText>                 
+                </td>
+              </tr>              
+            </table>
+          </th>
+        </tr>
+      </table>
+      <!--Changes start, Done by Maksud for story : S-461773 -->
+      <apex:variable value="{!1}" var="count" />
+      <apex:pageblocktable value="{!tourOptionalList}" var="tOpt" styleClass="borderCls">
+        <apex:column width="3%" styleClass="borderCls" style="text-align:center;">
+          {!count}
+          <apex:variable var="count" value="{!count+1}"/>
+        </apex:column>
+        <apex:column value="{!tOpt.Location__c}" headerValue="{!$Label.City}" styleClass="borderCls" width="10%" style="padding-left:2px;"/>
+        <apex:column width="43%" headerValue="{!$Label.Optional_Experience_Name}" styleClass="borderCls" style="padding-left:2px;">
+          <b>{!tOpt.Name}</b><br/>
+          {!tOpt.Short_Description__c}
+        </apex:column>
+        <apex:column HeaderValue="{!$Label.Day}" rendered="{!isDayColumn}" width="8%" style="padding-left:4px;">
+ <!--         <apex:outputText value="{0, date, dd'/'MM}">
+              <apex:param value="{!tOpt.Tour_Optional_Date__c}" />             
+              </apex:outputText>
+ -->             
+              <apex:outputText value="{0, date, dd'/'MM}" rendered="{!userLocale != 'en_US'}">
+                <apex:param value="{!tOpt.Tour_Optional_Date__c}"/>
+              </apex:outputText>
+            
+             <apex:outputText value="{0, date, MM'/'dd}" rendered="{!userLocale == 'en_US'}">
+                <apex:param value="{!tOpt.Tour_Optional_Date__c}"/>
+            </apex:outputText>
+
+        </apex:column>
+        <apex:column value="{!tOpt.Time__c}" width="5%" rendered="{!isTimeColumn}" headerValue="{!$Label.Time}"/>
+        <apex:column value="{!tOpt.Adult_Price__c}" headerValue="{!adultPrice}" rendered="{!isAdultPriceColumn}" styleClass="borderCls" width="5%" style="text-align:center;"/>
+        <apex:column value="{!tOpt.Child_Price__c}" headerValue="{!childPrice}" rendered="{!isChildPriceColumn}" styleClass="borderCls" width="5%" style="text-align:center;"/>
+        <apex:column width="4%" headerValue="{!$Label.Adults}" rendered="{!isAdultsColumn}" styleClass="borderCls"/>
+        <apex:column width="4%" headerValue="{!$Label.Kids}" rendered="{!isKidsColumn}" styleClass="borderCls"/>
+      </apex:pageblocktable>
+      <apex:datatable value="{!singleList}" var="tOpt" width="100%" styleClass="borderCls">
+        <!-- <apex:column width="3%"></apex:column>
+        <apex:column width="10%"></apex:column> -->
+        <apex:column width="56%" style="border:1.5px solid; text-align:left;" colspan="3">
+          <span style="font-size:12px">
+              {!theAverageLabel}
+          </span>
+        </apex:column>
+        <apex:column rendered="{!isDayColumn}" width="8%"></apex:column>
+        <apex:column rendered="{!isTimeColumn}" width="5%"></apex:column>
+        <apex:column rendered="{!isAdultPriceColumn}" width="5%" style="border:1.5px solid; text-align:center;">{!totalAdultPrice}</apex:column>
+        <apex:column rendered="{!isChildPriceColumn}" width="5%" style="border:1.5px solid; text-align:center;">{!totalChildPrice}</apex:column>
+        <apex:column width="4%" rendered="{!isAdultsColumn}"> </apex:column>
+        <apex:column width="4%" rendered="{!isKidsColumn}"> </apex:column>
+      </apex:datatable>
+      <!-- End chanes -->
+      <br/>
+
+      <table  align="Center" width="50%" cellpadding="0" cellspacing="0" style="{!showHand}">
+        <tr>
+          <td width="50%" height="20px">
+            {!$Label.Cross_here_all}
+          </td>
+          <td width="30%">
+            <apex:image value="{!$Resource.pointerHand}"/>
+          </td>
+          <td width="20%" style="border:2px solid; height:20px;"></td>
+        </tr>
+      </table>
+      <!--Changes start, Done by Maksud for story : S-461773 --> 
+      <table align="Center" width="95%" cellpadding="0" cellspacing="0" style="font-weight:bold;font-size:13px;">
+   <!--     <tr>
+          <td height="28px">&nbsp;</td>
+        </tr> -->
+        <tr>
+            <td height="35px" width="170">{!$label.Please_mark_as_appropriate} </td>
+            <td width="260px">{!$label.PAYING_BY_CREDIT_OR_DEBIT_CARD}</td>
+            <td>
+                <div style="width:25px;height:25px;border:2px solid black">&nbsp;</div>
+            </td>
+            <td width="15">&nbsp;</td>
+            <td style="{!showCash}" height="35px" >{!$label.PAYING_BY_CASH} </td>
+            <td><div style="width:25px;height:25px;border:2px solid black;{!showCash}">&nbsp;</div></td>
+        </tr>
+        <tr>
+            <td colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+            <td height="35px">&nbsp;</td>
+            <td height="35px" >{!$label.USING_OPTIONAL_VOUCHER}</td>
+            <td>
+                <div style="width:25px;height:25px;border:2px solid black">&nbsp;</div>
+            </td>
+            <td width="15">&nbsp;</td>
+            <td height="35px" align="left" width="120px">{!$label.VOUCHER_VALUE}</td>
+            <td >_____________</td>
+        </tr>
+      </table>
+      <!--End Changes. -->
+      <br/>
+
+      <table align="Center" width="70%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="80%" height="35px">{!$label.Your_total}<br/>
+          </td>
+          <td width="20%" style="border:2px solid">
+          </td>
+        </tr>
+      </table>
+
+      <table style="{!onlyAATNZ}" align="Center" width="70%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="80%" height="35px">Total owing to be paid direct to supplier by cash or credit card<br/>
+          </td>
+        </tr>
+      </table>
+
+      <table style="{!theDisplay}" align="Center" border="1" width="70%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="35px" width="80%">{!totalPaid}<br/>{!chargeTD}
+          </td>
+          <td width="20%">
+          </td>
+        </tr>
+
+        <tr>
+          <td style="{!showCash}" height="35px">{!$Label.Total_paid_by_cash}<br/>
+          </td>
+          <td>
+          </td>
+        </tr>
+
+        <tr>
+          <td height="35px">{!$Label.Total_paid_by_voucher_AAA_etc}<br/>
+          </td>
+          <td>
+          </td>
+        </tr>
+
+        <tr>
+          <td height="35px">{!$Label.Total_received}<br/>
+          </td>
+          <td style="border:2px solid">
+          </td>
+        </tr>
+      </table>
+      <table align="Center" width="70%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="70%" height="48px">{!signatureLabel}<br/>
+          </td>
+          <td width="30%" style="border-bottom-style: dotted;">
+          </td>
+        </tr>
+        <tr>
+          <td height="48px">{!$Label.Guest_signature}<br/>
+          </td>
+          <td style="border-bottom-style: dotted;">
+          </td>
+        </tr>
+      </table>
+    </apex:pageblock>
+  </body>
+</apex:page>

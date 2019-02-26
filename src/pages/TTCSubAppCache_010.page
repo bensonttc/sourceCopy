@@ -1,0 +1,72 @@
+<apex:page showHeader="false" standardStylesheets="false" contentType="text/cache-manifest" controller="mobilecaddy1.StartPageCacheCtrl001_mc">CACHE MANIFEST
+
+NETWORK:
+*
+
+CACHE:
+
+#SECTION 1A MOBILECADDY CACHED PAGES
+
+#The page below is a dummy page to cause the cache to fail and check the behaviour and logging uncomment to test
+#/pagetofailcache
+
+
+#SECTION 1B MOBILECADDY CACHED JS
+
+{!vfremotepath}
+/static/111213/js/perf/stub.js
+{!URLFOR($Resource.mobilecaddy1__MC_Resource_008, 'jquery.min.js')}
+{!URLFOR($Resource.mobilecaddy1__cordovaSF3v1)}
+{!URLFOR($Resource.mobilecaddy1__MC_Resource_008, 'mobilecaddy-utils.min.js')}
+{!URLFOR($Resource.mobilecaddy1__MC_Resource_008, 'promise-1.0.0.min.js')}
+{!URLFOR($Resource.mobilecaddy1__MC_Resource_008, 'underscore-min.js')}
+
+
+#SECTION 1C MOBILECADDY CACHED CSS
+
+
+#SECTION 1D MOBILECADDY CACHED IMAGES
+
+
+#SECTION 2A MOBILE APPLICATION CACHED PAGES / JS / ASSETS
+
+{!URLFOR($Resource.TTCSubApp_010, 'www/css/app.css')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/fonts/ionicons.eot')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/fonts/ionicons.ttf')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/fonts/ionicons.svg')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/fonts/ttc.woff')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/fonts/ionicons.woff')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/img/food.jpg')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/img/jungle.jpg')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/img/logo.png')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/img/safari.jpg')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/img/spa.jpg')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/img/underwater.jpg')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/js/app.js')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/js/controllers.js')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/js/services.js')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/lib/js/angular-ios9-uiwebview.patch.js')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/lib/js/ionic.bundle.min.js')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/lib/js/ng-cordova.min.js')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/guestSelection.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/projectDetail.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/projectIndex.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/projectTimeExpList.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/projectTimeExpNew.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/settings.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/settingsDeploy.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/settingsDevMTI.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/settingsDevMTIDetail.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/settingsDevTools.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/settingsTesting.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/tripIndex.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/tabsMain.html')}
+{!URLFOR($Resource.TTCSubApp_010, 'www/templates/tripSelection.html')}
+
+
+
+#sessionid to force reload cache everytime the app is online:{!GETSESSIONID()}
+
+#This is done as a work around to a limitation of JS Remoting that causes remoting actions to fail on subsequent app login.
+
+</apex:page>

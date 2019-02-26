@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://sso-luxurygold.travcorpservices.com/openid/connect/auth</authorizeUrl>
+    <consumerKey>MTS_PROD_LG</consumerKey>
+    <consumerSecret>8n6TsxqmYoQft7KJtdiyB9OWfT1EXznM018iBuPCrK4ceMl9XGlibuiU4TtHZhTBu1xKwpl9y4UvgtF+MUFr665M8cy360dccEEY92ILatc=</consumerSecret>
+    <defaultScopes>openid email profile</defaultScopes>
+    <executionUser>miranda@ttc.cloudperspective.co.uk.mmulapi</executionUser>
+    <friendlyName>TTC Connect LG</friendlyName>
+    <iconUrl>http://wiki.openid.net/f/openid-logo-wordmark.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <registrationHandler>TQSsoRegistrationHandler</registrationHandler>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://sso-luxurygold.travcorpservices.com/openid/connect/token</tokenUrl>
+    <userInfoUrl>https://sso-luxurygold.travcorpservices.com/openid/connect/userinfo</userInfoUrl>
+</AuthProvider>

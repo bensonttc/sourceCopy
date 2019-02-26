@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>U by Uniworld (CAN)</name>
+    <queueMembers>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>Uniworld_USA_Reservations_Team_Manager</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+        <roles>
+            <role>Head_of_Region_USA</role>
+            <role>Head_of_Reservations_USA</role>
+        </roles>
+        <users>
+            <user>emily.rolon@uniworld.com</user>
+            <user>sara.sierra@uniworld.com</user>
+            <user>zaira.melara@uniworld.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Campaign Layout</layout>
+        <sections>
+            <label><!-- Budgets &amp; Costs --></label>
+            <section>Budgets &amp; Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Hosts --></label>
+            <section>Hosts</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FAM Attendee Campaign</layout>
+        <sections>
+            <label><!-- Budgets &amp; Costs --></label>
+            <section>Budgets &amp; Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TTalk Custom</layout>
+        <sections>
+            <label><!-- Budgets &amp; Costs --></label>
+            <section>Budgets &amp; Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Hosts --></label>
+            <section>Hosts</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TTalk T1</layout>
+        <sections>
+            <label><!-- Budgets &amp; Costs --></label>
+            <section>Budgets &amp; Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Hosts --></label>
+            <section>Hosts</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TTalk T2</layout>
+        <sections>
+            <label><!-- Budgets &amp; Costs --></label>
+            <section>Budgets &amp; Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Hosts --></label>
+            <section>Hosts</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TTalk T3</layout>
+        <sections>
+            <label><!-- Budgets &amp; Costs --></label>
+            <section>Budgets &amp; Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Hosts --></label>
+            <section>Hosts</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

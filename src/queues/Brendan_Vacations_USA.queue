@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>Brendan Vacations (USA)</name>
+    <queueMembers>
+        <roles>
+            <role>Brendan_Vacations_USA_Groups_Specialist</role>
+            <role>Brendan_Vacations_USA_Reservations</role>
+            <role>Contiki_USA_Insight_USA_Brendan_USA_Trafalgar_USA_ResTeam_Manager</role>
+        </roles>
+        <users>
+            <user>anthony.nuzman@trafalgartours.com</user>
+            <user>ben.heiselt@trafalgartours.com</user>
+            <user>carly.perreault@trafalgartours.com</user>
+            <user>claudio.marin@trafalgartours.com</user>
+            <user>kate.carnahan@trafalgartours.com</user>
+            <user>katherine.allen@travcorpusa.com</user>
+            <user>molly.marini@trafalgartours.com</user>
+            <user>monica.romo@trafalgartours.com</user>
+            <user>mvalbuena@brendanvacations.com</user>
+            <user>oscar.villasenor@trafalgartours.com</user>
+            <user>victoria.smith@trafalgartours.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

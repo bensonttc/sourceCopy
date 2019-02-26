@@ -1,0 +1,1647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>myVariable_waitStartTimeAssignment</name>
+        <label>myVariable_waitStartTimeAssignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>myVariable_waitStartTimeVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>myDecision</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision3</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_pmetdec</targetReference>
+            </connector>
+            <label>Quality Control - Guest Support</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_4</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_pmetdec</targetReference>
+            </connector>
+            <label>Quality Control - Guest Relations</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_1_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>100</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_1_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_1_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_4_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>400</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_4_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_4_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_4_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_4_pmetrule</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <description>This process would create case records for the right Operations Queue from either Guest Relations or Guest Support cases</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY() </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_3249596784</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_5_myRule_4_A1_4975563554</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.DeveloperName = &quot;Guest_Support&quot;,
+INCLUDES([Case].Guest_Support_Category__c, &quot;Quality Control&quot;)
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.DeveloperName} = &quot;Guest_Support&quot;,
+INCLUDES({!myVariable_current.Guest_Support_Category__c}, &quot;Quality Control&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.DeveloperName = &quot;Guest_Support&quot;,
+INCLUDES([Case].Guest_Support_Category__c, &quot;Quality Control&quot;)
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_old.RecordType.DeveloperName} = &quot;Guest_Support&quot;,
+INCLUDES({!myVariable_old.Guest_Support_Category__c}, &quot;Quality Control&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.DeveloperName = &quot;Guest_Relations&quot;,
+OR(
+ISPICKVAL([Case].Primary_Nature__c , &quot;Bed Bugs&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Duplicate Dept&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Hotel&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Hotel Change&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Itinerary&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Meals&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Optional Exp&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Personal Items&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Pre/Post Accm&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Purchases&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Bed Bugs&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Duplicate Dept&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Hotel&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Hotel Change&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Itinerary&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Meals&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Optional Exp&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Personal Items&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Pre/Post Accm&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Purchases&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Bed Bugs&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Duplicate Dept&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Hotel&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Hotel Change&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Itinerary&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Meals&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Optional Exp&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Personal Items&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Pre/Post Accm&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Purchases&quot;)
+),
+AND(
+NOT(ISBLANK([Case].Tour_Instance__c)), 
+OR(
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVSGBO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;LGBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;LGSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;BVGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSSGBO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTSGBO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTVATB&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTVATE&quot;)
+)
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_4</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_current.RecordType.DeveloperName} = &quot;Guest_Relations&quot;,
+OR(
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Bed Bugs&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Duplicate Dept&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Hotel&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Hotel Change&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Itinerary&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Meals&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Optional Exp&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Personal Items&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Pre/Post Accm&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature__c} , &quot;Purchases&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Bed Bugs&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Duplicate Dept&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Hotel&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Hotel Change&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Itinerary&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Meals&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Optional Exp&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Personal Items&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Pre/Post Accm&quot;),
+ISPICKVAL({!myVariable_current.Primary_Nature_2__c} , &quot;Purchases&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Bed Bugs&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Duplicate Dept&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Hotel&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Hotel Change&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Itinerary&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Meals&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Optional Exp&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Personal Items&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Pre/Post Accm&quot;),
+ISPICKVAL({!myVariable_current.Tertiary_Nature__c} , &quot;Purchases&quot;)
+),
+AND(
+NOT(ISBLANK({!myVariable_current.Tour_Instance__c})), 
+OR(
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVBOPO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVGBIO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVSGBO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVSGEO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;LGBOPO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;LGSGEO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;BVGBIO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSBOPO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSGBIO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSSGEO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSSGBO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTBOPO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTGBIO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTSGBO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTSGEO&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTVATB&quot;,
+{!myVariable_current.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTVATE&quot;)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+[Case].RecordType.DeveloperName = &quot;Guest_Relations&quot;,
+OR(
+ISPICKVAL([Case].Primary_Nature__c , &quot;Bed Bugs&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Duplicate Dept&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Hotel&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Hotel Change&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Itinerary&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Meals&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Optional Exp&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Personal Items&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Pre/Post Accm&quot;),
+ISPICKVAL([Case].Primary_Nature__c , &quot;Purchases&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Bed Bugs&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Duplicate Dept&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Hotel&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Hotel Change&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Itinerary&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Meals&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Optional Exp&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Personal Items&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Pre/Post Accm&quot;),
+ISPICKVAL([Case].Primary_Nature_2__c , &quot;Purchases&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Bed Bugs&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Duplicate Dept&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Hotel&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Hotel Change&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Itinerary&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Meals&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Optional Exp&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Personal Items&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Pre/Post Accm&quot;),
+ISPICKVAL([Case].Tertiary_Nature__c , &quot;Purchases&quot;)
+),
+AND(
+NOT(ISBLANK([Case].Tour_Instance__c)), 
+OR(
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVSGBO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;IVSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;LGBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;LGSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;BVGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;CSSGBO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTBOPO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTGBIO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTSGBO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTSGEO&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTVATB&quot;,
+[Case].Tour_Instance__c.Operating_Company_Code__c =&quot;TTVATE&quot;)
+)
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_4_pmetrule</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+{!myVariable_old.RecordType.DeveloperName} = &quot;Guest_Relations&quot;,
+OR(
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Bed Bugs&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Duplicate Dept&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Hotel&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Hotel Change&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Itinerary&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Meals&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Optional Exp&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Personal Items&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Pre/Post Accm&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature__c} , &quot;Purchases&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Bed Bugs&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Duplicate Dept&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Hotel&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Hotel Change&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Itinerary&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Meals&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Optional Exp&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Personal Items&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Pre/Post Accm&quot;),
+ISPICKVAL({!myVariable_old.Primary_Nature_2__c} , &quot;Purchases&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Bed Bugs&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Duplicate Dept&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Hotel&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Hotel Change&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Itinerary&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Meals&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Optional Exp&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Personal Items&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Pre/Post Accm&quot;),
+ISPICKVAL({!myVariable_old.Tertiary_Nature__c} , &quot;Purchases&quot;)
+),
+AND(
+NOT(ISBLANK({!myVariable_old.Tour_Instance__c})), 
+OR(
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVBOPO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVGBIO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVSGBO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;IVSGEO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;LGBOPO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;LGSGEO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;BVGBIO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSBOPO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSGBIO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSSGEO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;CSSGBO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTBOPO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTGBIO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTSGBO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTSGEO&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTVATB&quot;,
+{!myVariable_old.Tour_Instance__r.Operating_Company_Code__c} =&quot;TTVATE&quot;)
+)
+)</expression>
+    </formulas>
+    <interviewLabel>Create_Ops_cases_from_Guest_Support_or_Relations_ones-10_InterviewLabel</interviewLabel>
+    <label>Create Ops cases from Guest Support or Relations ones</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Case</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordCreates>
+        <name>myRule_1_A1</name>
+        <label>Create GS Quality Control child case</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Booking Component</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Booking_Component__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Booking_Component__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking_Component__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Booking Passenger</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Booking_Passenger__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Booking_Passenger__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking_Passenger__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Booking</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Booking__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Booking__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Business Unit (Text)</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Business_Unit_Text__c</field>
+            <value>
+                <elementReference>myVariable_current.Business_Unit_Text__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Business Unit</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Business_Unit__c</field>
+            <value>
+                <elementReference>myVariable_current.Business_Unit__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Date Opened</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Date_Opened__c</field>
+            <value>
+                <elementReference>formula_2_myRule_1_A1_3249596784</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Hotel Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Hotel_Name__c</field>
+            <value>
+                <elementReference>myVariable_current.Hotel_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Case Origin</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Origin</field>
+            <value>
+                <stringValue>Guest Support</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Owner ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Group;User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideLabel</name>
+                <value>
+                    <stringValue>UK_EUR_Ops_Quality_Control</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Queue</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OwnerId</field>
+            <value>
+                <stringValue>00G26000002gc5rEAA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Parent Case ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Case</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ParentId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Record Type ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>RecordType</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>012260000005Ktt</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Source Case - Description</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Source_Case_Description__c</field>
+            <value>
+                <elementReference>myVariable_current.Description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Location</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Start_Location__c</field>
+            <value>
+                <elementReference>myVariable_current.Start_Location__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Subject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Subject</field>
+            <value>
+                <elementReference>myVariable_current.Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Hotel</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Supplier__c</field>
+            <value>
+                <elementReference>myVariable_current.Supplier__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Tour Product</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Tour_Product__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Tour_Product__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking_Component__r.Product__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_4_A1</name>
+        <label>Create GR Quality Control child case</label>
+        <locationX>400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Booking Component</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Booking_Component__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Booking_Component__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking_Component__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Booking Passenger</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Booking_Passenger__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Booking_Passenger__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking_Passenger__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Booking</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Booking__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Booking__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Business Unit (Text)</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Business_Unit_Text__c</field>
+            <value>
+                <elementReference>myVariable_current.Business_Unit_Text__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Business Unit</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Business_Unit__c</field>
+            <value>
+                <elementReference>myVariable_current.Business_Unit__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Date Opened</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Date_Opened__c</field>
+            <value>
+                <elementReference>formula_5_myRule_4_A1_4975563554</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Hotel Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Hotel_Name__c</field>
+            <value>
+                <elementReference>myVariable_current.Hotel_Name__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Case Origin</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Origin</field>
+            <value>
+                <stringValue>Guest Relations</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Owner ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Group;User</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideLabel</name>
+                <value>
+                    <stringValue>UK_EUR_Ops_Quality_Control</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Queue</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OwnerId</field>
+            <value>
+                <stringValue>00G26000002gc5rEAA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Parent Case ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Case</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ParentId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Record Type ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>RecordType</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>012260000005Ktt</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Source Case - Description</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Source_Case_Description__c</field>
+            <value>
+                <elementReference>myVariable_current.Description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Subject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Subject</field>
+            <value>
+                <elementReference>myVariable_current.Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Supplier</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Supplier__c</field>
+            <value>
+                <elementReference>myVariable_current.Supplier__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Tour Product</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Tour_Product__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Tour_Product__c</field>
+            <value>
+                <elementReference>myVariable_current.Booking_Component__r.Product__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
+    <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_waitStartTimeVariable</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Flow.CurrentDateTime</elementReference>
+        </value>
+    </variables>
+</Flow>

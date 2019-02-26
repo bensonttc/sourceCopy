@@ -1,0 +1,14 @@
+<apex:page cache="false" applyBodyTag="false" controller="CTQ_BarcodeController" renderAs="pdf"
+sidebar="false" showHeader="false" title="CTQ Barcode">
+  <apex:pageBlock rendered="{!success}">
+    <!-- Begin Default Content REMOVE THIS -->
+    <h3>Scan box: {!scanboxName}</h3>
+    <h3>Batch name: {!batchName}</h3>
+    <!-- End Default Content REMOVE THIS -->
+    <br/>
+    <apex:image id="theBarcode" value="{!barcodeURL}" alt="This is the barcode"/>
+  </apex:pageBlock>
+  <apex:pageBlock rendered="{!NOT(success)}">
+    <h1>{!errorMessage}</h1>
+  </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,144 @@
+Name,RoomingList_ID,PAX_On_Tour,Actual_Room_ID__c,Actual_Room_Type__c,Temp_Change_of_Class,In_Change_Class_Mode,Module_Code__c,Start_Date__c,End_Date__c,PAX_Timeline__c,Bag_Number__c
+p1,,,,,,,M2,2/1/2017,4/30/2017,"{
+   ""days"":{
+      ""2"":{
+         ""RoomingList_ID"":""01I20000000znWhEAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":3,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""3"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":4,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""4"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":1,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      }
+   }
+}",5
+p2,,,,,,,M2,2/1/2017,4/30/2017,"{
+   ""days"":{
+      ""2"":{
+         ""RoomingList_ID"":""01I20000000znWhEAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":3,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""3"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":2,
+         ""Actual_Room_Type__c"":""Single"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""4"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":6,
+         ""Actual_Room_Type__c"":""Single"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      }
+   }
+}
+",3
+p3,,,,,,,M4,2/1/2017,4/30/2017,"{
+   ""days"":{
+      ""2"":{
+         ""RoomingList_ID"":""01I20000000znWhEAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":3,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""3"":{
+         ""RoomingList_ID"":""tmpRoomingListID"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":1,
+         ""Actual_Room_Type__c"":""Single"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""4"":{
+         ""RoomingList_ID"":""tmpRoomingListID"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":7,
+         ""Actual_Room_Type__c"":""Single"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      }
+   }
+}
+",4
+p4,,,,,,,M3,2/1/2017,4/30/2017,"{
+   ""days"":{
+      ""2"":{
+         ""RoomingList_ID"":""01I20000000znWhEAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":3,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""3"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":4,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""4"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":1,
+         ""Actual_Room_Type__c"":""Single"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      }
+   }
+}
+",2
+p5,,,,,,,M3,2/1/2017,4/30/2017,"{
+   ""days"":{
+      ""2"":{
+         ""RoomingList_ID"":""01I20000000znWhEAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":3,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""3"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":4,
+         ""Actual_Room_Type__c"":""Double"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      },
+      ""4"":{
+         ""RoomingList_ID"":""01I20000000znWxbAI"",
+         ""PAX_On_Tour"":true,
+         ""Actual_Room_ID__c"":1,
+         ""Actual_Room_Type__c"":""Single"",
+         ""Temp_Change_of_Class"":"""",
+         ""In_Change_Class_Mode"":""""
+      }
+   }
+}",1

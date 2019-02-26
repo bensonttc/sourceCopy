@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Booking</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Bookings</value>
+    </caseValues>
+    <layouts>
+        <layout>Booking (Sys Admins)</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Registration --></label>
+            <section>Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Totals --></label>
+            <section>Tour Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Booking Layout</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Registration --></label>
+            <section>Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Totals --></label>
+            <section>Tour Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Booking Reservation Agent</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Registration --></label>
+            <section>Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Totals --></label>
+            <section>Tour Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Booking data management</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Totals --></label>
+            <section>Tour Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FIT Brands Layout</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Totals --></label>
+            <section>Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Guest Relations Booking Layout</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Totals --></label>
+            <section>Tour Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Reservation Layout</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Detail --></label>
+            <section>Booking Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Cancellation Details --></label>
+            <section>Cancellation Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Date Information --></label>
+            <section>Date Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Reservation Note --></label>
+            <section>Reservation Note</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SF1</layout>
+        <sections>
+            <label><!-- Agent Details --></label>
+            <section>Agent Details</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Type --></label>
+            <section>Booking Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Integration and Admin Information --></label>
+            <section>Integration and Admin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Details --></label>
+            <section>Payment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Totals --></label>
+            <section>Tour Totals</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

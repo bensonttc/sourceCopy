@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>New Horizons (AUS) Sales Manager</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>New Horizons (AUS) Sales Manager</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>New_Horizons_AUS</parentRole>
+</Role>

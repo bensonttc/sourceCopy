@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Request__c</baseObject>
+    <category>other</category>
+    <deployed>false</deployed>
+    <description>Straightforward reports on Requests</description>
+    <label>Requests - Snappy</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Request_Type__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Business Unit</displayNameOverride>
+            <field>Business_Unit_Lookup__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Brochure__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Tour_Name__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Tour_Code__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Data_Source__c</field>
+            <table>Request__c</table>
+        </columns>
+        <masterLabel>Requests</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Opt-In</displayNameOverride>
+            <field>Marketing_Consent__c.Opt_In__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Assumed Opt-in</displayNameOverride>
+            <field>Marketing_Consent__c.Assumed_Opt_in__c</field>
+            <table>Request__c</table>
+        </columns>
+        <masterLabel>Marketing Consent</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Agency_Name__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Working_with_Travel_Agent__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Am_Travel_Agent__c</field>
+            <table>Request__c</table>
+        </columns>
+        <masterLabel>Travel Agency</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Customer__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Title__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Name__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Last_Name__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Address_1__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Address_2__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Address_3__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Postal_Code__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>City__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>State__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Region__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Country__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Phone__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Email__c</field>
+            <table>Request__c</table>
+        </columns>
+        <masterLabel>Request Details</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Trafalgar Latest Booking</displayNameOverride>
+            <field>Customer__c.TT_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Trafalgar Tour Count</displayNameOverride>
+            <field>Customer__c.Trafalgar_Tour_Count__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Trafalgar Latest Dep</displayNameOverride>
+            <field>Customer__c.Next_Trafalgar_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Insight Latest Booking</displayNameOverride>
+            <field>Customer__c.IV_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Insight Tour Count</displayNameOverride>
+            <field>Customer__c.Insight_Tour_Count__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Insight Latest Dep</displayNameOverride>
+            <field>Customer__c.Next_Insight_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contiki Latest Booking</displayNameOverride>
+            <field>Customer__c.CH_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contiki Tour Count</displayNameOverride>
+            <field>Customer__c.Contiki_Tour_Count__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contiki Latest Dep</displayNameOverride>
+            <field>Customer__c.Next_Contiki_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Contiki Latest Booking Date</displayNameOverride>
+            <field>Customer__c.CH_Booking__c.Original_Booking_Date__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Uniworld Latest Booking</displayNameOverride>
+            <field>Customer__c.UW_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Uniworld Tour Count Total</displayNameOverride>
+            <field>Customer__c.Uniworld_Tour_Count_Total__c</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Uniworld Latest Dep</displayNameOverride>
+            <field>Customer__c.Next_Uniworld_Booking__c</field>
+            <table>Request__c</table>
+        </columns>
+        <masterLabel>Customer Account Info</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Street</displayNameOverride>
+            <field>Customer__c.BillingStreet</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing City</displayNameOverride>
+            <field>Customer__c.BillingCity</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing State/Province</displayNameOverride>
+            <field>Customer__c.BillingState</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Zip/Postal Code</displayNameOverride>
+            <field>Customer__c.BillingPostalCode</field>
+            <table>Request__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Billing Country</displayNameOverride>
+            <field>Customer__c.BillingCountry</field>
+            <table>Request__c</table>
+        </columns>
+        <masterLabel>Customer Account Address</masterLabel>
+    </sections>
+</ReportType>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>U by Uniworld (ASIA)</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Trafalgar_India</publicGroup>
+        </publicGroups>
+        <roles>
+            <role>Head_of_Reservations_Asia</role>
+            <role>Reservations_Asia</role>
+            <role>Reservations_Agent_Asia</role>
+            <role>Reservations_Agent_2_ASIA</role>
+            <role>Reservations_Team_Manager_Asia</role>
+            <role>Uniworld_SGP_Marketing</role>
+            <role>Uniworld_SGP_MD_Head_of_Sales</role>
+            <role>Uniworld_SGP_Sales_Manager</role>
+        </roles>
+        <users>
+            <user>darshan.maheshwari@ttc.com</user>
+            <user>rohan.kulkarni@trafalgartours.com</user>
+            <user>sanjay.temkar@trafalgartours.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

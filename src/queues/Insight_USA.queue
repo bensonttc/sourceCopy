@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Insight (USA)</name>
+    <queueMembers>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>GET_USA_Reservations_Team_Manager</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+        <roles>
+            <role>Head_of_Reservations_USA</role>
+            <role>Insight_USA_Reservations</role>
+            <role>Insight_USA_Reservations_Team_Manager</role>
+        </roles>
+        <users>
+            <user>julie.hanna@ttc.com</user>
+            <user>katharine.lopez@insightvacations.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

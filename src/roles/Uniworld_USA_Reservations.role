@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Uniworld (USA) Reservations</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Uniworld (USA) Reservations</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Uniworld_USA_Reservations_Team_Manager</parentRole>
+</Role>

@@ -1,0 +1,5 @@
+<apex:page StandardController="Booking_Component__c">
+    <div align="left" style="font-size:16pt;background-color:white;border:5px solid white;">
+        <h1 style="font-size:16pt;color:#007ac9">{!Booking_Component__c.RecordType.Name} ({!Booking_Component__c.Full_Status__c})</h1>
+    </div>
+</apex:page>

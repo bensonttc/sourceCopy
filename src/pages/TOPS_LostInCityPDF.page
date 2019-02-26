@@ -1,0 +1,96 @@
+<!-- 
+    Visualforce page used to generate the lost in city pdf
+-->
+<!--
+    14 Feb 2017    Maksud Ali Modified (Story# S-461774) - Please see the story description for more details.
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+-->
+<apex:page controller="TOPS_LostInCityPDFController" renderAs="pdf" cache="false" 
+            applyBodyTag="false" sidebar="false" showHeader="false" language="{!$CurrentPage.parameters.language}">
+  <head>
+      <style>
+      /*Changes start, Done by Maksud Ali for Story :S-461774 */
+      @page {
+        margin: 3mm;
+        size:letter;
+      }
+         body{
+         font-size: 14px;
+         font-family:calibri;
+       }
+       .lost th{
+         border-bottom: 2px solid; 
+       }
+       .lost td{
+         border-bottom: 2px solid; 
+       }
+       td{
+         font-family:calibri;
+       }
+      /*End changes*/
+       body{
+         font-size: 14px;
+         font-family:calibri;
+       }
+       .lost th{
+         border-bottom: 2px solid; 
+       }
+       .lost td{
+         border-bottom: 2px solid; 
+       }
+       td{
+         font-family:calibri;
+       }
+      </style>
+  </head>
+  <body>
+    <apex:pageBlock >   
+       <table  width="100%">
+           <tr><th style="text-align: center;font-size: 25px;text-decoration: underline;"> {!cityTitle}  </th></tr>
+           <tr><td style="text-align: center;font-size: 20px;"> {!citySubTitle} </td></tr>
+           <tr><td style="text-align: center;">  </td></tr>
+           <tr><th style="text-align: center;font-size: 16px;"> {!emergency_no} </th></tr>
+           <tr><th style="text-align: center;font-size: 16px;"> {!emergencyContactInfo} </th></tr>
+           <tr><td style="text-align: center;font-size: 13px;"> {!$Label.Lost_in_city_emergency_text_1} </td></tr>
+           <tr><td>  </td></tr>
+           <tr><td style="text-align: center;font-size: 13px;"> {!regionalEmergencyText} </td></tr>
+       </table>
+       
+      <apex:pageblocktable value="{!wrapperList}" var="rec" cellpadding="5" style="border: 2px solid;" width="100%" styleClass="lost">
+        <!-- Changes start, Done by Maksud Ali for story : S-461774 -->
+        <apex:column HeaderValue="{!$Label.Arrival_Date}" width="12%">
+          <apex:outputText value="{0, date, d MMM yyyy}">
+          <!-- End changes -->
+              <apex:param value="{!rec.itiner.Start_Date_of_Service__c}"/> 
+          </apex:outputText>
+        </apex:column>
+        <apex:column HeaderValue="{!$Label.City}" value="{!rec.accountRec.BillingCity}"/>
+        <apex:column HeaderValue="{!$Label.Hotel_Name}" value="{!rec.accountRec.Name}{!rec.isPaxAbsent}"/> 
+        <apex:column HeaderValue="{!$Label.Hotel_Address}" value="{!rec.address}"/>
+        <!-- Changes start, Done by Maksud Ali for story : S-461774 -->
+        <apex:column HeaderValue="{!$Label.Hotel_Telephone}" width="18%">
+        <!-- End changes -->
+          {!IF(!ISBLANK(rec.accountRec.Reception_Phone__c), rec.accountRec.Reception_Phone__c, rec.accountRec.Phone)}
+        </apex:column>
+      </apex:pageblocktable>
+       
+    </apex:pageBlock>
+    <div style="text-align:center; font-weight:bold; font-size: 13px;">
+      {!hashTag}
+    </div>
+     
+    <apex:variable var="i" value="{!1}"/>
+      <table width="100%">
+      <apex:repeat value="{!footerlogoList}" var="flogo">
+        <td>     
+          <!-- Changes Start,Done by Maksud Ali for Story : S-455965 --> 
+          <apex:image url="{!URLFOR($Resource.BrandImages,
+        flogo.imageName)}" width="{!flogo.imageWidth}"/>
+          <apex:variable var="i" value="{!i+1}"/>
+          <!-- End changes -->
+        </td>
+      </apex:repeat>
+    </table>
+  </body>
+  
+</apex:page>

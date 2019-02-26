@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>GET (USA)</name>
+    <queueMembers>
+        <roles>
+            <role>GET_USA_Marketing</role>
+            <role>GET_USA_MD_Head_of_Sales</role>
+            <role>GET_USA_Reservations</role>
+            <role>GET_USA_Reservations_Team_Manager</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

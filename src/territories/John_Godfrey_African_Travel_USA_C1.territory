@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>More CA postcodes</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>John Godfrey - African Travel (USA) - C1</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <accountAccessLevel>Read</accountAccessLevel>
+    <parentTerritory>John_Godfrey_African_Travel_USA</parentTerritory>
+</Territory>

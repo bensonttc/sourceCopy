@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Contiki &amp; Insight &amp; Trafalgar &amp; Uniworld &amp; GET (USA) Digital</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Contiki &amp; Insight &amp; Trafalgar &amp; Uniworld &amp; GET (USA) Digital</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Head_of_Region_USA</parentRole>
+</Role>

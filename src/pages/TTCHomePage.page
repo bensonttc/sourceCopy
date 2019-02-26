@@ -1,0 +1,72 @@
+<apex:page controller="TQAppController" action="{!loginRedirect}" sidebar="false" showHeader="false">
+<!--<apex:page controller="TQAppController" action="{!loginRedirect}" sidebar="false" showHeader="false" rendered="{!IF($Profile.Name =='TD TOPS User', False, True)}">-->
+  <apex:form > 
+    <div class="section1">
+  
+      <div style= "display: flex; align-items: center; justify-content: center;">
+          <a href="https://ttc.com/"><apex:image id="TTCImage" value="{!$Resource.TravCorp_Logo}"/></a>
+      </div>
+  
+      <div style= "text-align: center; font-size: 25px;">
+      <br/><br/>
+          <h1>Oops, something went wrong, please click back in your browser.</h1>
+      </div>
+      
+      <div style= "text-align: center; font-size: 15px;">
+      <br/><br/>
+          <h1>Please click your browser back button to return to the previous page, or click the logo of the relevant TTC brand to be taken to the brand website.</h1>
+      </div>
+  
+  
+  <br/><br/><br/><br/>   
+    
+    
+       <div style= "display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;" >
+    
+          <div style= "padding:10px">
+              <a href="https://www.trafalgar.com/"><apex:image id="TTLogo" value="{!$Resource.Trafalgar_Logo}"/></a>
+          </div>
+          
+          <div style= "padding:10px">
+              <a href="https://www.costsavertour.com/"><apex:image id="COSTLogo" value="{!$Resource.CostSaver_Logo}"/></a>
+          </div>
+        
+          <div style= "padding:10px">
+              <a href="https://www.contiki.com/"><apex:image id="CHLogo" value="{!$Resource.Contiki_Logo_New}"/></a>
+          </div>
+        
+          <div style= "padding:10px">
+              <a href="https://www.insightvacations.com/"><apex:image id="IVLogo" value="{!$Resource.Insight_New_Premium_Logo_New}"/></a>
+          </div>
+          
+          <div style= "padding:10px">
+              <a href="https://www.luxurygoldvacations.com/"><apex:image id="LGLogo" value="{!$Resource.Luxury_Gold_Logo}"/></a>
+          </div>    
+       </div>
+    
+    <br/><br/>
+    
+       <div style= "display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+    
+          <div style= "padding:20px">
+              <a href="https://www.aatkings.com/"><apex:image id="AALogo" value="{!$Resource.AAT_Kings_Logo_New}"/></a>
+          </div>
+          
+          <div style= "padding:20px">
+              <a href="https://www.uniworld.com/"><apex:image id="UNLogo" value="{!$Resource.Uniworld_Logo_New}"/></a>
+          </div>
+            
+          <div style= "padding:20px">
+              <a href="https://www.ubyuniworld.com/"><apex:image id="UULogo" value="{!$Resource.U_by_Uniworld_Logo}"/></a>
+          </div>
+          
+          <div style= "padding:20px">
+              <a href="https://www.getours.com/"><apex:image id="GELogo" value="{!$Resource.GET_Logo_New}" style="width: 57%;"/></a>
+          </div>
+        
+       </div>
+    </div>    
+    
+  </apex:form>   
+    
+</apex:page>

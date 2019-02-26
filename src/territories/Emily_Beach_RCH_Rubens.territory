@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Emily Beach - RCH - Rubens</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <accountAccessLevel>Read</accountAccessLevel>
+    <parentTerritory>Kayleigh_Woodman_RCH_Rub_41</parentTerritory>
+</Territory>

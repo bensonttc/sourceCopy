@@ -1,0 +1,121 @@
+<!-- 18th November 2016  Ravi Jain      Original (Story # S-443725) -->
+<!--    Visualforce page used to generate the passenger list pdf for TDs (TOPS app)
+-->
+<!--
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+    12 Jul 2018, Calvin Goodenough added new variable for Module name instead of mother trip name
+-->
+<apex:page controller="TOPS_FarewellListPDFController"  renderAs="pdf"  cache="flase"  language="{!languageParam}"
+            applyBodyTag="false" sidebar="false" showHeader="false">
+
+  <head>
+      <style>
+       table, th, td,tr {
+         border: 0px solid black !important;
+         border-collapse: collapse !important;
+      }
+       .pHeader {
+        background: rgb({!colourCodeVal}) !important;
+        color: white;
+        
+       } 
+       .pRowEven { 
+         background: #C3C3C3 !important; 
+       }       
+       .pRowOdd {
+         background: white !important;
+       }       
+       body{
+         font-size: {!fontSize};
+       }
+      </style>
+  </head> 
+   
+  <body>
+    <apex:pageBlock > 
+        
+            
+    <div class="pHeader" style="Width : 100%; height:35px; font-weight:bold; font-size:25px; padding-left:2px;"> {!$Label.Stay_In_Touch}</div>
+    <br/>
+    <table columns="4" width="100%" style="border-collapse:collapse;">
+    <tr class="pHeader" >
+        <td style="color:white">{!yourTrip}</td>
+        <td style="text-decoration:underline;color:white">{!theTripName}</td> <!-- new variable added to use module name when applicable -->
+        <td style="color:white"> {!yourTripStartDate}</td>
+        <td style="text-decoration:underline;color:white">
+            <apex:outputText value="{0, date, dd MMM yyyy}">
+                <apex:param value="{!tourRecord.Start_Date__c}" />
+            </apex:outputText>
+        </td> 
+    </tr>
+    <tr>
+      <td> {!yourTravelDirector} </td>
+      <td>
+        {!travelDirectorName}
+        <br/>
+        <span style="color:blue; cursor:pointer;">
+          <a href="mailto:{!travelEmail}">
+            {!travelEmail}
+          </a>
+        </span>
+      </td>
+      <td> {!$Label.Your_Driver}</td>
+      <td>
+        {!tourDriver.Name}
+        <br/>
+        <span style="color:blue; cursor:pointer;">
+          <a href="mailto:{!tourDriver.Email__c}">
+            {!tourDriver.Email__c}
+          </a>
+        </span>
+      </td>
+    </tr>
+    </table> 
+    <br/>
+ 
+        <div class="pHeader" style="Width : 100%; font-weight:bold; padding-left:0px;"> {!$Label.Friends_I_ve_Made} </div>
+        <apex:pageBlockTable value="{!passengerList}" var="passenger" 
+           headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%"  style="{!IF(!(blankPassanger.size>0),'border-top: 2px solid','')}">
+              <!-- <apex:column headerValue="{!$Label.Name}" value="{!passenger.First_Name__c} {!passenger.Family_Name__c}" width="25%"/> -->
+              <!-- Code commented and changes done by Ravi Jain for story S-443725 -->
+              <!-- Code changes start here -->
+            
+              <apex:column headerValue="{!$Label.Name}" width="25%">{! If(passenger.Preferred_Name__c !='' , passenger.Preferred_Name__c, passenger.First_Name__c)} {!passenger.Family_Name__c}</apex:column>
+              <!-- Code changes end here -->
+            
+              <apex:column headerValue="{!$Label.From}"  width="40%">
+                <apex:outputText value="{!passenger.Address_Region__c}"/> 
+                <apex:outputText value=", " rendered="{!If(passenger.Address_Region__c !='' && passenger.Address_Country__c !='', true,false)}"/>
+                <apex:outputText value="{!passenger.Address_Country__c}"/> 
+              </apex:column>
+              <apex:column value="{!passenger.Email__c}" headerValue="{!$Label.Email}" width="35%"/>
+              
+        </apex:pageBlockTable>
+        
+        <apex:datatable value="{!blankPassanger }" var="passenger" 
+            rowClasses="{!blankPassangerCSS}" width="100%" style="{!IF(blankPassanger.size>0,'border-bottom: 2px solid','')}">
+              <apex:column width="25%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="40%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="35%">&nbsp;&nbsp;</apex:column>
+        </apex:datatable>
+        <table width="100%">
+            <tr><td align ="center">{!hashTag}</td></tr>
+        </table>
+  </apex:pageBlock>
+  <apex:variable var="i" value="{!1}"/>
+    <table width="100%">
+    <apex:repeat value="{!footerlogoList}" var="footerlogo">
+      <td> 
+        <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+             
+        <apex:image url="{!URLFOR($Resource.BrandImages,footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+        <!-- End changes -->
+        <apex:variable var="i" value="{!i+1}"/>
+      </td>
+    </apex:repeat>
+    </table>
+    
+        
+  </body>
+  
+</apex:page>

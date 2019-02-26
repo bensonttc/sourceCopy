@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Groups Trafalgar USA</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Groups Trafalgar USA</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <accountAccessLevel>Edit</accountAccessLevel>
+    <parentTerritory>Global_Groups_Manager</parentTerritory>
+</Territory>

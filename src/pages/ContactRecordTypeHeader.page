@@ -1,0 +1,5 @@
+<apex:page StandardController="Contact">
+    <div align="center" style="font-size:16pt;background-color:{!IF(Contact.Inactive__c==False,'#007ac9','Red')};border:5px solid {!IF(Contact.Inactive__c==False,'#007ac9','Red')};">
+        <h1 style="font-size:16pt;color:white">{!IF(Contact.Inactive__c==False,Contact.RecordType.Name,"Inactive - " & Contact.RecordType.Name)}</h1>
+    </div>
+    </apex:page>

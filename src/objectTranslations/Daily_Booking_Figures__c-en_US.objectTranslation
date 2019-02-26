@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Daily Booking Figures</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Daily Booking Figures</value>
+    </caseValues>
+    <layouts>
+        <layout>Daily Booking Figures Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Daily Figures --></label>
+            <section>Daily Figures</section>
+        </sections>
+        <sections>
+            <label><!-- Last Year -1 --></label>
+            <section>Last Year -1</section>
+        </sections>
+        <sections>
+            <label><!-- Last Year -2 --></label>
+            <section>Last Year -2</section>
+        </sections>
+        <sections>
+            <label><!-- Last Year -3 --></label>
+            <section>Last Year -3</section>
+        </sections>
+        <sections>
+            <label><!-- Last Years Figures --></label>
+            <section>Last Years Figures</section>
+        </sections>
+        <sections>
+            <label><!-- Linked Figures --></label>
+            <section>Linked Figures</section>
+        </sections>
+        <sections>
+            <label><!-- Results Days --></label>
+            <section>Results Days</section>
+        </sections>
+        <sections>
+            <label><!-- Section --></label>
+            <section>Section</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

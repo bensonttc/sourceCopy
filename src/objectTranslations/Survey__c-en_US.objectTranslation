@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Survey</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Surveys</value>
+    </caseValues>
+    <layouts>
+        <layout>Travel Director Driver ETR</layout>
+        <sections>
+            <label><!-- Coach &amp; Driver --></label>
+            <section>Coach &amp; Driver</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Guests and Guest Gifts --></label>
+            <section>Guests and Guest Gifts</section>
+        </sections>
+        <sections>
+            <label><!-- Itinerary Changes, Compensation and Meet &amp; Greet --></label>
+            <section>Itinerary Changes, Compensation and Meet &amp; Greet</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Photo Comments --></label>
+            <section>Photo Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Overview --></label>
+            <section>Tour Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Wifi --></label>
+            <section>Wifi</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Director Guest ETR</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Director Hotel ETR</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Questionnaire --></label>
+            <section>Questionnaire</section>
+        </sections>
+        <sections>
+            <label><!-- Results --></label>
+            <section>Results</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Director Local Specialist ETR</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Local Specialist Feedback --></label>
+            <section>Local Specialist Feedback</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Director Meal ETR</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meal Feedback --></label>
+            <section>Meal Feedback</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Director Optional ETR</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Feedback on Optional --></label>
+            <section>Feedback on Optional</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Director Tour Instance ETR</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Group Photo --></label>
+            <section>Group Photo</section>
+        </sections>
+        <sections>
+            <label><!-- Guests --></label>
+            <section>Guests</section>
+        </sections>
+        <sections>
+            <label><!-- Itinerary and Arrival Experience --></label>
+            <section>Itinerary and Arrival Experience</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Transportation --></label>
+            <section>Transportation</section>
+        </sections>
+        <sections>
+            <label><!-- Wifi --></label>
+            <section>Wifi</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

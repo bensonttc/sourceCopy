@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Insight (SA)</name>
+    <queueMembers>
+        <roles>
+            <role>Trafalgar_Contiki_Insight_Uniworld_Busabout_SA_Reservations</role>
+            <role>Trafalgar_Contiki_Insight_Uniworld_Busabout_SA_Reservations_Team_Manager</role>
+        </roles>
+        <users>
+            <user>nivashini.sookdeo@travcorp.net</user>
+            <user>pieter.beyers@insightvacations.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>RCH Guernsey Duke of Richmond &amp; Old Government House Sales Manager</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>RCH Guernsey Duke of Richmond &amp; Old Government House Sales Manager</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>RCH_Guernsey_Duke_of_Richmond_Old_Government_House_Head_of_Sales</parentRole>
+</Role>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>USA Guest Relations Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Guest_Relations_USA</publicGroup>
+        </publicGroups>
+        <roles>
+            <role>Geneva_Guest_Relations</role>
+            <role>Guest_Relations_Director</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

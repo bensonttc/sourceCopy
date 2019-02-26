@@ -1,0 +1,216 @@
+<apex:page applyHtmlTag="false" standardStylesheets="false" showHeader="false" sidebar="false" controller="TQAppController" action="{!loginRedirect}" >
+<html ng-controller="AppCtrl">
+
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" ></meta>
+        <meta name="format-detection" content="telephone=no"></meta>
+
+        <title ng-bind="pageTitle"></title>
+
+        <script type="text/javascript">
+            window.sfAppId = 'mts';
+            window.themeId = 'iv';
+            window.tqScreenOrientation = '';
+            window.staticResourcePath = '{!URLFOR($Resource.ACNONE_mts_iv)}';
+
+            /**
+             * Returns a value that is either the correct path for the Salesforce Static Resource file,
+             * or an empty string in case the application is not running in a VisualForce page (e.g. local development).
+             *
+             * Also note: This method will always return a path that has a trailing slash ( in case of running in a VF
+             * page).
+             *
+             */
+            window.getSfdcStaticResourcePathSafe = function() {
+
+                var notRunningInVisualForce = window.staticResourcePath.indexOf('URLFOR($Resource.ACNONE_') > -1;
+
+                if (notRunningInVisualForce) {
+                    return '';
+                } else {
+                    var hasTrailingSlash = window.staticResourcePath.lastIndexOf('/') === window.staticResourcePath.length -1;
+
+                    if (hasTrailingSlash) {
+                        return window.staticResourcePath;
+                    } else {
+                        return window.staticResourcePath.concat('/');
+                    }
+
+                }
+            };
+
+
+            // to work inside VF, save the sessionId so the login process can use it
+            window.accentureONECore = {
+                sessionId: '{!$Api.Session_Id}',
+                userId: '{!$User.Id}',
+                siteUrl: '{!siteUrl}',
+                communityId: '{!NetworkId}',
+                sellingCompanyId: '{!SellingCompanyId}',
+                ttcCompanyId: '{!ttcCompanyId}',
+                region: '{!Region}',
+                locale: '{!Locale}',
+                privacyPolicyLink: '{!privacyPolicyLink}',
+                isFirstLogin: {!isFirstLogin}
+
+
+            };
+
+            var __sfdcSessionId = '{!GETSESSIONID()}',
+                __sfdcSiteUrlPrefix = '{!sitePrefix}';
+            window.sitePrefix = '{!sitePrefix}';
+            window.appVersion = '0.0.0';
+            window.frameworkVersion = '1.2.0';
+
+            //config done in grunt
+            window.ENV_VARS = {
+                deploymentEnv: 'develop'
+            };
+        </script>
+
+        <script type="text/javascript" src="{!SSOLibraryURL}"></script>
+
+        <!--SF-BLOCK-START
+            <script>
+                var __sfdcSessionId = '{!GETSESSIONID()}';
+            </script>
+        SF-BLOCK-END-->
+
+        <!-- compiled CSS -->
+
+        
+        <!--<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.ACNONE_mts_iv,'assets/AcnOne.mts.min.css')}"/> -->
+         <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.ACNONE_mts_iv,'assets/AcnOne.mts.iv.css')}"/>        
+
+        <!-- bower:js -->
+        <!-- endbower -->
+
+        <!-- compiled JavaScript -->
+        
+        <script type="text/javascript" src="{!URLFOR($Resource.ACNONE_mts_iv,'vendor.js')}"></script>
+        
+    </head>
+
+    <body class="mts iv" ng-class="{true:'tq-content-has-footer', false: ''}[showFooter]">
+        <ng-include src="rootTemplate"></ng-include>
+
+        <!-- SplashScreen to display before bootstrap will start-->
+        <div id="SPLASHSCREEN">
+            <div class="backdrop visible backdrop-loading active"></div>
+            <div class="loading-container visible active"><div class="loading">
+                <div class="spinner spinner-spiral">
+                    <div style="margin-bottom:20px;" class="tq-after-hide">Just a moment please...<br/>We are taking you to your personal space</div>
+                    <svg viewBox="0 0 64 64">
+                        <g>
+                            <defs>
+                            <linearGradient id="sGD" gradientUnits="userSpaceOnUse" x1="55" y1="46" x2="2" y2="46">
+                                <stop offset="0.1" class="stop1"></stop><stop offset="1" class="stop2"></stop>
+                            </linearGradient>
+                            </defs>
+                            <g stroke-width="4" stroke-linecap="round" fill="none" transform="rotate(265.584 32 32)">
+                                <path stroke="url(#sGD)" d="M4,32 c0,15,12,28,28,28c8,0,16-4,21-9"></path>
+                                <path d="M60,32 C60,16,47.464,4,32,4S4,16,4,32"></path>
+                                <animateTransform values="0,32,32;360,32,32" attributeName="transform" type="rotate" repeatCount="indefinite" dur="750ms">
+
+                                </animateTransform>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div></div>
+        </div>
+
+        <!-- include requirejs and configure it -->
+        
+        <script type="application/javascript">
+            require.config({
+                baseUrl: '{!URLFOR($Resource.ACNONE_mts_iv,'.')}',
+                paths: {
+                    angularAnimate: 'vendor/angular-animate/angular-animate',
+                    angularTouch: 'vendor/angular-touch/angular-touch',
+                    angularSanitize: 'vendor/angular-sanitize/angular-sanitize',
+                    angularRoundProgress: 'vendor/angular-round-progress-directive/index',
+                    angularGoogleMaps: 'vendor/angular-google-maps/index',
+                    angularCarousel: 'vendor/angular-carousel/dist/angular-carousel',
+                    angularTranslate: 'vendor/angular-translate/angular-translate',
+                    angularTranslateLoaderStaticFiles: 'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files',
+                    angularCalendar: 'vendor/angular-ui-calendar/src/calendar',
+                    angularVis: 'vendor/angular-vis/index',
+                    uiRouter: 'vendor/angular-ui-router/release/angular-ui-router',
+                    ionicCore: 'vendor/ionic/js/ionic',
+                    ionic: 'vendor/ionic/js/ionic-angular',
+                    ionicMaterial: 'vendor/ionic-material/dist/ionic.material',
+                    angular: 'vendor/angular/angular',
+                    templatesApp: 'templates-app',
+                    templatesCommon: 'templates-common',
+                    coreapi: 'src/acn-one/acn-ng/components/coreapi/coreapi',
+                    components: 'src/acn-one/acn-ng/components',
+                    acnNg: 'src/acn-one/acn-ng',
+                    acnCore: 'src/acn-one/acn-core',
+                    app: 'src/apps/mts',
+                    currentTheme: 'src/themes/iv',
+                    youOne: 'src/you-one',
+                    client: 'src/apps/mts',
+                    core: 'src/acn-one/acn-core',
+                    lodash: 'vendor/lodash/lodash',
+                    angularBootstrap: 'vendor/angular-bootstrap/ui-bootstrap',
+                    isoCountries: 'vendor/iso-countries/dist/countries.min',
+                    md2: 'vendor/js-md2/src/md2',
+                    signaturePad: 'vendor/signature_pad/signature_pad',
+                    pinterest: 'vendor/facebook/sdk',
+                    facebook: 'vendor/pinterest/pinterest',
+                    carousel: 'vendor/jcarousel/dist/jquery.jcarousel',
+                    d3: 'vendor/d3/d3',
+                    ionicDatepicker: 'vendor/ionic-datepicker/dist/ionic-datepicker.bundle.min',
+                    'exif-js': 'vendor/exif-js/exif'
+                },
+                shim: {
+                    'angular': {'exports': 'angular'},
+                    'angularTouch': ['angular'],
+                    'angularTranslate': ['angular'],
+                    'angularAnimate': ['angular'],
+                    'angularSanitize': ['angular'],
+                    'angularRoundProgress': ['angular'],
+                    'angularGoogleMaps': ['angular'],
+                    'angularCarousel': ['angular', 'angularTouch'],
+                    'angularCalendar' : ['angular'],
+                    'angularTranslateLoaderStaticFiles': ['angularTranslate'],
+                    'uiRouter': ['angular'],
+                    ionicCore: {'exports': 'ionic'},
+                    'ionic': {'deps': ['ionicCore', 'angularAnimate', 'angularSanitize', 'angularTouch']},
+                    'ionicDatepicker': ['ionic', 'angular'],
+                    'lodash': ['angular']
+                },
+                priority: [],
+                waitSeconds: 60
+            });
+
+            startApp();
+
+            function startApp() {
+                require(['app/app'], function (app) {
+                    'use strict';
+                    //TQ.config.Core.setOnlineMode(true); //Debug mode
+                    angular.bootstrap(document, [app['name']]);
+                   // setTimeout(function(){ $('#SPLASHSCREEN').remove(); }, 200);
+                });
+            }
+        </script>
+
+        <!-- Include Google Tag Manager-->
+        <script>
+            gtmDataLayer = [];
+        </script>
+
+        <noscript><iframe src="{!URLFOR($Resource.ACNONE_mts_iv,'//www.googletagmanager.com/ns.html?id=GTM-MJQDL6')}"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','gtmDataLayer','GTM-MJQDL6');</script>
+    </body>
+</html>
+
+</apex:page>

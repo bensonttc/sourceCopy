@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Tour Instance</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tour Instances</value>
+    </caseValues>
+    <layouts>
+        <layout>Ops - Tour Instance Layout</layout>
+        <sections>
+            <label><!-- Coaching --></label>
+            <section>Coaching</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Instructions --></label>
+            <section>Instructions</section>
+        </sections>
+        <sections>
+            <label><!-- NPS &amp; TD Results --></label>
+            <section>NPS &amp; TD Results</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TD - Tour Instance Layout</layout>
+        <sections>
+            <label><!-- Coaching Information --></label>
+            <section>Coaching Information</section>
+        </sections>
+        <sections>
+            <label><!-- Currency Info --></label>
+            <section>Currency Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Stats --></label>
+            <section>Stats</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tour Instance Layout</layout>
+        <sections>
+            <label><!-- Coaching --></label>
+            <section>Coaching</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- NPS &amp; TD results --></label>
+            <section>NPS &amp; TD results</section>
+        </sections>
+        <sections>
+            <label><!-- Stats --></label>
+            <section>Stats</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Transport - Tour Instance Layout</layout>
+        <sections>
+            <label><!-- Coaching --></label>
+            <section>Coaching</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

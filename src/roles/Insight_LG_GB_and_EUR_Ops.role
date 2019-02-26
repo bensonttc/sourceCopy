@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Operations Insight &amp; LG GB and EUR</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Operations Insight &amp; LG GB and EUR</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>TRAF_and_Insight_Cross_Brand</parentRole>
+</Role>

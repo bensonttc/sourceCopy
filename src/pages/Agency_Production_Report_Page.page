@@ -1,0 +1,158 @@
+<apex:page standardcontroller="Account" extensions="Agency_Production_Report_Extension" showHeader="false" sidebar="false" renderas="{!RenderAs}" contenttype="{!ContentType}" readOnly="true"  applyBodyTag="false" applyhtmltag="false" standardstylesheets="false" cache="true">
+
+<!--
+
+contenttype="application/vnd.ms-excel#FILENAME.xls"> 
+
+renderAs="pdf"> 
+
+-->
+
+    <head>
+        <apex:stylesheet value="{!$Resource.CustomCommon}"/>  
+        <apex:stylesheet value="{!$Resource.Custom0}"/>
+        <apex:stylesheet value="{!$Resource.dstandard}"/>
+        <apex:stylesheet value="{!$Resource.elements}"/>
+        <apex:stylesheet value="{!$Resource.Extended}"/>
+        <apex:stylesheet value="{!$Resource.Setup}"/>
+        <apex:stylesheet value="{!$Resource.Zen}"/> 
+    </head>
+
+
+
+    <apex:outputPanel id="wholePage">
+
+        <apex:pageMessages id="pageMessageBit" />  
+        <apex:form >
+            <apex:pageBlock title="Agency Production Report for {!Account.name}">  
+                <!--<apex:commandButton action="{!getBookings}" value="runreport"/>-->
+
+                <!-- Travel Agent header -->
+                <apex:pageblocksection collapsible="true" columns="2">  
+                    <apex:outputField value="{!Account.name}" />
+                    <apex:outputField value="{!Account.IATA_Code__c}" />
+                    <apex:outputField value="{!Account.BillingStreet}" />
+                    <apex:outputField value="{!Account.Phone}" />
+                    <apex:outputField value="{!Account.BillingCity}" />
+                    <apex:outputField value="{!Account.Fax}" />
+                    <apex:outputField value="{!Account.BillingPostalCode}" />
+                    <apex:outputField value="{!Account.Email__c}" />
+                    <apex:outputField value="{!Account.BillingState}" />
+                    <apex:pageblocksectionitem >
+                        <apex:outputLabel value="Currency"/>
+                        <apex:outputtext value="{!ThisCurrency}" />
+                    </apex:pageblocksectionitem>
+                    <!--<apex:outputField value="{!Account.CurrencyIsoCode}" /> -->
+                    <apex:outputField value="{!Account.BillingCountry}" />
+                </apex:pageblocksection>
+
+                <br/>
+                <!-- Filter Button -->
+                
+                <apex:commandLink value="Click here to show Filters" action="{!GenerateFilters}" rendered="{!AND(NOT(showFilters), NOT(RenderAsPDForExcel))}" status="doingSomething" reRender="wholePage"/>
+
+                <!-- Filters -->
+                <apex:outputPanel id="filters" rendered="{!showFilters}">
+                    <apex:pageblocksection title="Filters" collapsible="false" columns="2">
+                        <apex:pageblocksectionitem >
+                            <apex:outputLabel value="Business Unit: "/>
+                            <apex:outputPanel >
+                                <apex:selectList value="{!BusinessUnit}" multiselect="false" size="1" rendered="{!NOT(RenderAsPDForExcel)}">
+                                    <apex:selectOptions value="{!BusinessUnits}"/>
+                                </apex:selectList>
+                                <apex:outputtext value="{!BusinessUnitName}" rendered="{!RenderAsPDForExcel}"/>
+                            </apex:outputPanel>
+                        </apex:pageblocksectionitem> 
+                        <br/>
+
+                        <apex:pageblocksectionitem >
+                            <apex:outputLabel value="Group Bookings Only: "/>
+                            <apex:outputPanel >
+                                <apex:inputCheckbox value="{!GroupBookingOnly}" rendered="{!NOT(RenderAsPDForExcel)}"/>
+                                <apex:outputtext value="{!GroupBookingOnly}" rendered="{!RenderAsPDForExcel}"/>
+                            </apex:outputPanel>
+                        </apex:pageblocksectionitem>
+                        <br/>
+
+                        <apex:outputPanel rendered="{!NOT(RenderAsPDForExcel)}">
+                            <apex:commandButton action="{!getBookings}" value="Refresh Report" status="doingSomething" reRender="wholePage" />
+                            <br/>
+                            <br/>
+                        </apex:outputPanel>
+                    </apex:pageblocksection>   
+                </apex:outputPanel>
+
+                <apex:commandLink value="Close Filters" action="{!CloseFilters}" rendered="{!AND(showFilters, NOT(RenderAsPDForExcel))}" status="doingSomething" reRender="wholePage"/>
+
+                <apex:actionStatus id="doingSomething"  stopText="" rendered="{!NOT(RenderAsPDForExcel)}">
+                    <apex:facet name="start">
+                        <apex:image width="20" height="20" url="{!URLFOR($Resource.TimerImage)}"/>
+                    </apex:facet>
+                </apex:actionStatus> 
+
+                <apex:pageblocksection collapsible="true" columns="1" rendered="{!ReportReady}"> 
+
+                    <br/>
+
+                    <apex:pageBlockTable value="{!Agg}" var="Ag" id="Ag2"> 
+                        <apex:column headerValue="Month" style="width:30px" >  
+                            <apex:outputtext value="{!Ag.month}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column>  
+                        <apex:column headerValue="{!CYMTwo_Year} Pax" style="width:30px; text-align:right" >  
+                            <apex:outputtext value="{!Ag.CYMTwo_Pax}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}" />
+                        </apex:column>
+                        <apex:column headerValue="{!CYMTwo_Year} Revenue" style="width:30px; text-align:right">  
+                            <apex:outputtext value="{!Ag.CYMTwo_ValueFormat}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column> 
+                        <apex:column headerValue="{!CYMOne_Year} Pax" style="width:30px; text-align:right">  
+                            <apex:outputtext value="{!Ag.CYMOne_Pax}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column> 
+                        <apex:column headerValue="{!CYMOne_Year} Revenue" style="width:30px; text-align:right" >  
+                            <apex:outputtext value="{!Ag.CYMOne_ValueFormat}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column> 
+                        <apex:column headerValue="{!C_Year} Pax" style="width:30px; text-align:right">  
+                            <apex:outputtext value="{!Ag.CY_Pax}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column> 
+                        <apex:column headerValue="{!C_Year} Revenue" style="width:30px; text-align:right" >  
+                            <apex:outputtext value="{!Ag.CY_ValueFormat}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column> 
+
+                        <apex:column headerValue="{!C_Year} Pax Variance" style="width:30px; text-align:right; background-color:rgba(0, 127,255, 0.13)" >
+
+                            <apex:outputtext value="{!Ag.CY_VariencePaxFormat}" style="{!IF(Ag.month == 'Total','font-weight: bold;', '')} {!IF(Ag.PaxNegative,'color:red;', 'color:black;')} "/>
+                        </apex:column> 
+
+                        <apex:column headerValue="{!C_Year} Revenue Variance" style="width:30px; text-align:right; background-color:rgba(0, 127,255, 0.13)" >
+                            <apex:outputtext value="{!Ag.CY_VarienceValue}" style="{!IF(Ag.month == 'Total','font-weight: bold;', '')} {!IF(Ag.ValueNegative,'color:red;', 'color:black;')} "/>
+                        </apex:column> 
+
+                        <apex:column headerValue="{!CYPOne_Year} Pax" style="width:30px; text-align:right" >  
+                            <apex:outputtext value="{!Ag.CYPOne_Pax}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column> 
+                        <apex:column headerValue="{!CYPOne_Year} Revenue" style="width:30px; text-align:right" >  
+                            <apex:outputtext value="{!Ag.CYPOne_ValueFormat}" style="{!IF(Ag.month == 'Total','font-weight: bold', '')}"/>
+                        </apex:column>
+                    </apex:pageBlockTable>
+
+                </apex:pageblocksection>
+                
+
+                <apex:pageBlockButtons id="pbb" rendered="{!NOT(RenderAsPDForExcel)}" style="display:none;">
+                    <apex:commandButton action="{!BackToAcc}" value="Back To Travel Agent" />
+                    <apex:commandButton action="{!RenderPdf}" value="Export to PDF" />
+                    <apex:commandButton action="{!RenderExcel}" value="Export to Excel"/>
+
+                </apex:pageBlockButtons>  
+
+                <!-- **************************** Show Buttons If Not SF1 ****************************-->
+                <script>
+                    var IsSalesforce1 = false;
+                    if(typeof sforce != "undefined") IsSalesforce1 = true;
+                    var e = document.getElementById("{!$Component.pbb}");
+                    if (!IsSalesforce1) e.style.display=''; // don't show buttons to SF1 users. 
+                </script> 
+
+            </apex:pageBlock>
+        </apex:form>
+    </apex:outputPanel>
+</apex:page>

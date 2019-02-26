@@ -1,0 +1,210 @@
+<!-- 28th October 2016    Maksud Ali            Modified (Story# S-438217) - Please see the story description for more details. -->
+<!-- 04th Jan 2017    Ravi Jain                 Modified (Story# S-455844) - Please see the story description for more details. -->
+
+<apex:page controller="TOPS_FerryListPDFController" renderAs="PDF" StandardStyleSheets="false" applyBodyTag="false">
+
+  <head>
+    <style>
+      @page {
+       /* changes done by Maksud Ali */
+        margin: 3mm;
+        size:letter;
+      }
+      body {
+        font-size: {!fontSize};
+        font-family:calibri,arial;
+      }
+      
+      td {
+        height: 15px;
+      }
+      
+      .pHeader {
+        background: #999999;
+        color: white;
+      }
+      
+      .headerRow .numberClass {
+        border: none;
+        background: white !important;
+      }
+      
+      .borderClass {
+        border: none;
+      }
+      .passengerTableColumnHeader{
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <apex:pageBlock >
+      <table width="100%">
+        <tr>
+          <!-- Start Changes. Done by Maksud Ali for story S-438217 -->
+          <th width="80%" style="text-align: center;color:#0087FF;font-size: 14px;font-weight: 1000;">{!$Label.Ferry_List_Title}
+          </th> <!-- End Changes for story S-438217 -->
+          <!-- Added white-space: nowrap; as per customer suggest - Oct 27 -->
+          <th width="20%" style="text-align: right;font-size: 15px;white-space: nowrap;">{!theSupplierName}</th>
+        </tr>
+      </table>
+
+      <table width="80%">
+        <tr>
+          <td width="30%">
+            <table cellspacing="0" cellpadding="0" border="1">
+              <colgroup>
+                <col width="20%" />
+                <col width="10%" />
+              </colgroup>
+              <tr>
+                <th style="font-size: 9px;">{!$Label.Ferry_List_ETD}</th>
+                <td>
+                  <apex:outputField value="{!tourInstanceItineraryRec.Start_Date_of_Service__c}" /> </td>
+              </tr>
+              <tr>
+                <th style="font-size: 9px;">{!$Label.Ferry_List_Booking_Ref}</th>
+                <td style="color:red;font-weight: 800;">{!tourInstanceItineraryRec.Ferry_Booking_Reference__c}</td>
+              </tr>
+              <tr>
+                <th style="font-size: 9px;">{!$Label.Ferry_List_Vehicle_Reg}</th>
+                <td>{!tourRecord.Coach_Registration_Number__c}</td>
+              </tr>
+            </table>
+          </td>
+          <td width="10%"></td>
+          <td width="40%">
+            <table cellspacing="0" cellpadding="0" border="1">
+              <colgroup>
+                <col width="20%" />
+                <col width="20%" />
+                <col width="20%" />
+              </colgroup>
+              <tr>
+                <td colspan="3" style="text-align: center;color:white;background:#999999;font-size: 9px;">{!$Label.Ferry_List_Itinerary}</td>
+              </tr>
+              <tr>
+                <th>{!tourInstanceItineraryRec.Ferry_Direction_Travel__c} </th>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <apex:variable var="i" value="{!1}" />
+      <!--Start Change. done by Maksud Ali for story S-438217-->
+      <apex:pageBlockTable value="{!wrapperPassengerList}" var="passenger" style="border-left:none;border-bottom:none;border-top:none;" cellspacing="0" cellpadding="0" border="1" headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%">
+        <apex:column style="border: none;" width="5%" headerClass="numberClass, passengerTableColumnHeader">
+          <apex:outputText value="{!passenger.passengerClass}"/>
+        </apex:column>
+        <apex:column style="border: none;" headerClass="numberClass, passengerTableColumnHeader" width="3%">
+          &nbsp;&nbsp;{!i}
+          <apex:variable var="i" value="{!i+1}"/>
+        </apex:column>
+        <apex:column value="{!passenger.pass.Gender__c}" width="5%" headerClass="passengerTableColumnHeader"/>
+        <apex:column headerValue="{!$Label.Name_in_full}" value="{!passenger.fulName}" width="18%" headerClass="passengerTableColumnHeader"/>
+        <apex:column style="word-wrap: break-word" headerValue="{!$Label.AD_CH_INF}" width="1%" headerClass="passengerTableColumnHeader"> {!passenger.age} </apex:column>
+        <apex:column headerValue="{!$Label.Travel_Document_Type}" width="5%" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{!$Label.Passport}" rendered="{!IF(ISBLANK(passenger.pass.id), false, true)}"/>
+        </apex:column>
+        <apex:column headerValue="{!$Label.Travel_Document_Number}" width="5%" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{!passenger.pass.Passport_Number__c}" rendered="{!showPassportNumbers}"/>
+        </apex:column>
+        <apex:column headerValue="{!$Label.Travel_Document_Country_of_Issue}" width="16%" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{!passenger.pass.Country_of_Issue__c}" rendered="{!showPassportNumbers}"/>
+        </apex:column>
+        <!--<apex:column headerValue="{!$Label.Travel_Document_Expiry_Date}" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{0, date, dd'/'MM'/'yyyy}" rendered="{!showPassportNumbers}">
+            <apex:param value="{!passenger.pass.Passport_Expiry_Date__c}"/> 
+          </apex:outputText>
+        </apex:column> 
+        <apex:column headerValue="Date of Birth" width="7%" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{0, date, dd'/'MM'/'yyyy}" rendered="{!showPassportNumbers}">
+            <apex:param value="{!passenger.pass.Date_of_Birth__c}"/> 
+          </apex:outputText>
+        </apex:column>-->
+         <!-- Code commented and changes and done by Ravi Jain for story S-455844 --> 
+          <!-- Code changes start here -->
+          
+          <apex:column headerValue="{!$Label.Travel_Document_Expiry_Date}" headerClass="passengerTableColumnHeader">
+             
+          <apex:outputText value="{0, date, dd'/'MM'/'yyyy}" rendered="{!AND(showPassportNumbers, userLocale != 'en_US')}">
+            <apex:param value="{!passenger.pass.Passport_Expiry_Date__c}"/> 
+          </apex:outputText>
+          
+         <apex:outputText value="{0, date, MM'/'dd'/'yyyy}" rendered="{!AND(showPassportNumbers, userLocale == 'en_US')}">
+          <apex:param value="{!passenger.pass.Passport_Expiry_Date__c}"/> 
+         </apex:outputText>
+        </apex:column> 
+          
+        <apex:column headerValue="Date of Birth" width="7%" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{0, date, dd'/'MM'/'yyyy}" rendered="{!AND(showPassportNumbers, userLocale != 'en_US')}">
+            <apex:param value="{!passenger.pass.Date_of_Birth__c}"/> 
+          </apex:outputText>
+           
+         <apex:outputText value="{0, date, MM'/'dd'/'yyyy}" rendered="{!AND(showPassportNumbers, userLocale == 'en_US')}">
+          <apex:param value="{!passenger.pass.Date_of_Birth__c}"/> 
+         </apex:outputText>
+        </apex:column>
+         <!-- Code changes end here -->
+         
+          
+        <apex:column headerValue="Nationality" width="16%" headerClass="passengerTableColumnHeader">
+          <apex:outputText value="{!passenger.pass.Nationality__c}" rendered="{!showPassportNumbers}"/>
+        </apex:column>
+        <apex:column headerValue="{!$Label.Special_Assistance}" value="{!passenger.pass.Disabilities__c}" headerClass="passengerTableColumnHeader"/>
+      </apex:pageBlockTable>
+      <!--End Change. done by Maksud Ali for story S-438217-->
+      <table width="100%" cellspacing="0" cellpadding="0" border="1" style="border-left:none;border-bottom:none;border-top:none;">
+        <colgroup>
+          <col width="8%" />
+          <col width="16%" />
+          <col width="9%" />
+          <col width="70%" />
+        </colgroup>
+
+        <tr>
+          <td class="borderClass"> </td>
+          <td>{!$Label.Ferry_List_Total_Adults}</td>
+          <td> {!totalAdult}</td>
+          <td style="border-bottom:none;"> </td>
+        </tr>
+        <tr>
+          <td class="borderClass"> </td>
+          <td>{!$Label.Ferry_List_Total_Children}</td>
+          <td>{!totalChild}</td>
+          <td style="border-bottom:none;border-top:none;"> </td>
+        </tr>
+        <tr>
+          <td class="borderClass"> </td>
+          <td>{!$Label.Ferry_List_Total_Infants}</td>
+          <td>{!totalInfant}</td>
+          <td style="border-bottom:none;font-size: 9px;color:white;background:#0087FF">{!$Label.Ferry_List_Data} </td>
+        </tr>
+        <tr>
+          <td class="borderClass"> </td>
+          <td>{!$Label.Ferry_List_Total_Passengers}</td>
+          <td>{!totalPassenger}</td>
+          <td> </td>
+        </tr>
+      </table>
+      <!--Start Change. done by Maksud Ali for story S-438217-->
+      <!--
+      <table width="100%" style="text-align: center;font-size: 9px;color:#999999;">
+        <tr>
+          <td> &nbsp;&nbsp;&nbsp;{!$label.Ferry_List_Footer} </td>
+        </tr>
+      </table> -->
+      <!--End Change. done by Maksud Ali for story S-438217-->
+    </apex:pageBlock>
+
+
+  </body>
+</apex:page>

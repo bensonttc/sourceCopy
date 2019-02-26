@@ -1,0 +1,60 @@
+<!-- 
+    Visualforce page used to change the supplier accross multiple TII records  renderAs="PDF"
+-->
+
+<!-- 
+    11 May 2018 Calvin Goodenough 
+-->
+<apex:page controller="TOPS_BookOutController"   >
+
+    
+  <body>
+    <apex:form >  
+    <apex:pageBlock >   
+                <apex:outputLabel >Change Supplier for trip:<b> {!tourRecord.Instance_Code__c} </b></apex:outputLabel> <br/><br/>
+ </apex:pageBlock>
+       <apex:pageBlock >   
+                <apex:outputLabel > Select Supplier to change: </apex:outputLabel> 
+                <apex:selectList size="1" value="{!oldSupplier}"  >
+                  <apex:selectOptions value="{!supplierOptions}" />
+                </apex:selectlist>   <br/> <br/>        
+              New Supplier: <apex:inputText value="{!newSupplier}" label="New Supplier: "/>
+             <apex:commandButton value="Search" action="{!searchBox}" > 
+             </apex:commandButton>
+             <br/><br/>
+             <apex:outputLabel > Select new Supplier: </apex:outputLabel> 
+                <apex:selectList size="1" value="{!foundSupplier}"  >
+                  <apex:selectOptions value="{!supplierSearch}" />
+                </apex:selectlist>   
+                <apex:commandButton value="Change below records" action="{!changeTIIs}" rerender="thePanel" > 
+             </apex:commandButton>   <br/><br/>      
+        </apex:pageBlock>
+    </apex:form>
+
+    <apex:pageBlock > 
+    <b>Current TII items to be changed:</b>         
+        <apex:pageBlockTable value="{!supplierList}" var="supplier" 
+           headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%"  style="border-top: 2px solid">
+              <apex:column value="{!supplier.Day_Number__c}"  width="10%"/>
+               <apex:column value="{!supplier.Start_Date_of_Service__c}"  width="10%"/>
+                <apex:column value="{!supplier.Component_Type__c}"  width="10%"/>
+              <apex:column value="{!supplier.Supplier__r.Name}" width="10%"/>
+         <apex:column value="{!supplier.City__c}" width="10%"/>
+         <apex:column value="{!supplier.Module_Code__c}" width="10%"/>
+        </apex:pageBlockTable>               
+    </apex:pageBlock>
+        <apex:pageBlock >  
+        <b>Updated TII items:</b>      
+        <apex:pageBlockTable value="{!supsToUpdate}" var="supUp" ID="thePanel"
+           headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%"  style="border-top: 2px solid">
+              <apex:column value="{!supUp.Day_Number__c}"  width="10%"/>
+               <apex:column value="{!supUp.Start_Date_of_Service__c}"  width="10%"/>
+                <apex:column value="{!supUp.Component_Type__c}"  width="10%"/>
+              <apex:column value="{!supUp.Supplier__r.Name}" width="10%"/>
+               <apex:column value="{!supUp.City__c}" width="10%"/>
+               <apex:column value="{!supUp.Module_Code__c}" width="10%"/>
+   </apex:pageBlockTable>               
+    </apex:pageBlock>
+   </body>
+
+</apex:page>

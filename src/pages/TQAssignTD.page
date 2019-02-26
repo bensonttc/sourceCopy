@@ -1,0 +1,29 @@
+<apex:page controller="TQAssignTDController" showHeader="true" sidebar="true">
+
+	<apex:form >
+		<apex:sectionHeader title="Assign TDs from CSV file"/>
+		<apex:pagemessages />
+		<apex:pageBlock >
+			<apex:inputFile value="{!contentFile}" filename="{!nameFile}" /> 
+			<apex:commandButton action="{!parseTDAssignments}" value="Upload File" id="theButton" style="width:70px;"/>
+		</apex:pageBlock>
+
+		<apex:outputText rendered="{!success != null && success.size>0}">
+			<br/>
+			<h3>Result:</h3><br/>
+			<apex:repeat value="{!success}" var="res">
+					Line : {!res}<br/>
+			</apex:repeat>
+		</apex:outputText>
+
+		<apex:outputText rendered="{!error != null && error.size>0}">
+			<br/>
+			<h3>Errors:</h3><br/>
+			<apex:repeat value="{!error}" var="res">
+					Line : {!res}<br/>
+			</apex:repeat>
+		</apex:outputText>
+
+   </apex:form>
+	
+</apex:page>

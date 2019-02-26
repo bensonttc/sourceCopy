@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://sso-ubyuniworld.travcorpservices.com/openid/connect/auth</authorizeUrl>
+    <consumerKey>MTS_PROD_UU</consumerKey>
+    <consumerSecret>LBLNb8fOf6RHnm6lrRtxwAviVbY0qFw3HGAXMHQFsAragTCOVD3W+hHO4tPeBJwYXK7ChSm3HBW3Y7NgSI64cnAoVAjWyBBg</consumerSecret>
+    <defaultScopes>openid email profile</defaultScopes>
+    <executionUser>miranda@ttc.cloudperspective.co.uk.mmulapi</executionUser>
+    <friendlyName>TTC Connect UU</friendlyName>
+    <iconUrl>http://wiki.openid.net/f/openid-logo-wordmark.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <registrationHandler>TQSsoRegistrationHandler</registrationHandler>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://sso-ubyuniworld.travcorpservices.com/openid/connect/token</tokenUrl>
+    <userInfoUrl>https://sso-ubyuniworld.travcorpservices.com/openid/connect/userinfo</userInfoUrl>
+</AuthProvider>

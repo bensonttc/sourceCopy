@@ -1,0 +1,13 @@
+<apex:page StandardController="Booking_Passenger__c">
+    <div align="left" style="font-size:16pt;background-color:white;border:5px solid white;">
+        <h1 style="font-size:16pt;color:#007ac9">
+            <apex:outputPanel id="BookingPassenger" rendered="{!IF(Booking_Passenger__c.RecordType.Name == 'Booking Passenger', true, false)}">
+                {!Booking_Passenger__c.RecordType.Name} 
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="Guest" rendered="{!IF(Booking_Passenger__c.RecordType.Name == 'Guest', true, false)}">
+                {!Booking_Passenger__c.RecordType.Name}
+            </apex:outputPanel>         
+        </h1>
+    </div>
+</apex:page>

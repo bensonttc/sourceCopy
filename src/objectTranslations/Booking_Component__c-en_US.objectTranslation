@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Booking Component</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Booking Components</value>
+    </caseValues>
+    <layouts>
+        <layout>Flight Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Flight Details --></label>
+            <section>Flight Details</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Details --></label>
+            <section>Passenger Details</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recordtype --></label>
+            <section>Recordtype</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Food &amp; Beverage Component Layout</layout>
+        <sections>
+            <label><!-- Component Type --></label>
+            <section>Component Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Details --></label>
+            <section>Passenger Details</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Room Details --></label>
+            <section>Room Details</section>
+        </sections>
+        <sections>
+            <label><!-- Travel Dates and Locations --></label>
+            <section>Travel Dates and Locations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Other Component Layout</layout>
+        <sections>
+            <label><!-- Component Type --></label>
+            <section>Component Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Details --></label>
+            <section>Passenger Details</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Room Details --></label>
+            <section>Room Details</section>
+        </sections>
+        <sections>
+            <label><!-- Travel Dates and Locations --></label>
+            <section>Travel Dates and Locations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Room Component Layout</layout>
+        <sections>
+            <label><!-- Component Type --></label>
+            <section>Component Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Details --></label>
+            <section>Passenger Details</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reservation Dates --></label>
+            <section>Reservation Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Room Details --></label>
+            <section>Room Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tour Component Layout</layout>
+        <sections>
+            <label><!-- Component Type --></label>
+            <section>Component Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Details --></label>
+            <section>Passenger Details</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Details --></label>
+            <section>Tour Details</section>
+        </sections>
+        <sections>
+            <label><!-- Travel Dates and Locations --></label>
+            <section>Travel Dates and Locations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tour Component Layout Guest Support</layout>
+        <sections>
+            <label><!-- Component Type --></label>
+            <section>Component Type</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Details --></label>
+            <section>Passenger Details</section>
+        </sections>
+        <sections>
+            <label><!-- Price Information --></label>
+            <section>Price Information</section>
+        </sections>
+        <sections>
+            <label><!-- Tour Details --></label>
+            <section>Tour Details</section>
+        </sections>
+        <sections>
+            <label><!-- Travel Dates and Locations --></label>
+            <section>Travel Dates and Locations</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

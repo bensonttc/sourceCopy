@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/zip</contentType>
+    <description>v.0.011-etaMobileCaddy utils (inc. diff hardReset redirect URL MSD-362 and logger improvements MSD-359 and bug fix 364 and MSD-367 including previousValue parsing, MSD-371 perm silent fails, MSD-379 insertUpdate)</description>
+</StaticResource>

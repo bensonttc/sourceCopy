@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Account - RCH</layout>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account - Read Only</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label><!-- Contract Details --></label>
+            <section>Contract Details</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+        <sections>
+            <label><!-- Supplier Details --></label>
+            <section>Supplier Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Brand - Read Only</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- RecordType --></label>
+            <section>RecordType</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Business Account</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Business Account - RCH</layout>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Business Account - RCH - Admin</layout>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Business Unit - Admin</layout>
+        <sections>
+            <label><!-- Recordtype --></label>
+            <section>Recordtype</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Business Unit - Read Only</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Recordtype --></label>
+            <section>Recordtype</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Admin</layout>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Contiki</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Insight</layout>
+        <sections>
+            <label><!-- Accounts Training Widget --></label>
+            <section>Accounts Training Widget</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Read Only</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Trafalgar</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Trafalgar &amp; Insight</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Consortia - Uniworld</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporate</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Cloud MDM Duplicates --></label>
+            <section>Cloud MDM Duplicates</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporate - Admin</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Duplicates --></label>
+            <section>Duplicates</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporation - Admin</layout>
+        <sections>
+            <label><!-- RecordType --></label>
+            <section>RecordType</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporation - Read Only</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- RecordType --></label>
+            <section>RecordType</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Customer Page Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary Fields --></label>
+            <section>Booking Summary Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Exclusion details --></label>
+            <section>Exclusion details</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Customer Page Layout - Read Only</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary Fields --></label>
+            <section>Booking Summary Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Customer Page Layout - Restricted</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary Fields --></label>
+            <section>Booking Summary Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Data Customer Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary Fields --></label>
+            <section>Booking Summary Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Groups</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Groups - Admin</layout>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Guest Relations Person Account</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary Fields --></label>
+            <section>Booking Summary Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Exclusions from Marketing --></label>
+            <section>Exclusions from Marketing</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Person Account Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Address Validation --></label>
+            <section>Address Validation</section>
+        </sections>
+        <sections>
+            <label><!-- Admin Exclusion Reason --></label>
+            <section>Admin Exclusion Reason</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary --></label>
+            <section>Booking Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact --></label>
+            <section>Emergency Contact</section>
+        </sections>
+        <sections>
+            <label><!-- System Info --></label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Prospect Page Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Exclusion Detail --></label>
+            <section>Exclusion Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+        <sections>
+            <label><!-- Recordtype --></label>
+            <section>Recordtype</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Prospect Page Layout - Restricted</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+        <sections>
+            <label><!-- Recordtype --></label>
+            <section>Recordtype</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RCH Customer</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary --></label>
+            <section>Booking Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RCH Person Account</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>RCH Prospect</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary --></label>
+            <section>Booking Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+        <sections>
+            <label><!-- Recordtype --></label>
+            <section>Recordtype</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Res Agent Layout Customer</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Summary Fields --></label>
+            <section>Booking Summary Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Exclusions from Marketing --></label>
+            <section>Exclusions from Marketing</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Road Crew</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Contact Details --></label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label><!-- Driving License Details --></label>
+            <section>Driving License Details</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- Next of Kin --></label>
+            <section>Next of Kin</section>
+        </sections>
+        <sections>
+            <label><!-- Passport Details --></label>
+            <section>Passport Details</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Details --></label>
+            <section>Personal Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Supplier - Contracted</layout>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Supplier - Hotel</layout>
+        <sections>
+            <label><!-- Arrival --></label>
+            <section>Arrival</section>
+        </sections>
+        <sections>
+            <label><!-- Breakfast &amp; Dinner --></label>
+            <section>Breakfast &amp; Dinner</section>
+        </sections>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Emails --></label>
+            <section>Emails</section>
+        </sections>
+        <sections>
+            <label><!-- Other Details --></label>
+            <section>Other Details</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Supplier - Operations</layout>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Details --></label>
+            <section>Contract Details</section>
+        </sections>
+        <sections>
+            <label><!-- Hotel Details --></label>
+            <section>Hotel Details</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Supplier - Restaurant</layout>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tour Director</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Contact Details --></label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label><!-- Emails --></label>
+            <section>Emails</section>
+        </sections>
+        <sections>
+            <label><!-- Info --></label>
+            <section>Info</section>
+        </sections>
+        <sections>
+            <label><!-- NPS &amp; TD performance --></label>
+            <section>NPS &amp; TD performance</section>
+        </sections>
+        <sections>
+            <label><!-- Next of Kin --></label>
+            <section>Next of Kin</section>
+        </sections>
+        <sections>
+            <label><!-- Passport Details --></label>
+            <section>Passport Details</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Details --></label>
+            <section>Personal Details</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency (Litmos)</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- E-Learning --></label>
+            <section>E-Learning</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - AAT Kings</layout>
+        <sections>
+            <label><!-- Account Activities --></label>
+            <section>Account Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Account Management --></label>
+            <section>Account Management</section>
+        </sections>
+        <sections>
+            <label><!-- Account Profile --></label>
+            <section>Account Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Admin</layout>
+        <sections>
+            <label><!-- AA --></label>
+            <section>AA</section>
+        </sections>
+        <sections>
+            <label><!-- ATI --></label>
+            <section>ATI</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- BV --></label>
+            <section>BV</section>
+        </sections>
+        <sections>
+            <label><!-- CH --></label>
+            <section>CH</section>
+        </sections>
+        <sections>
+            <label><!-- CS --></label>
+            <section>CS</section>
+        </sections>
+        <sections>
+            <label><!-- IV --></label>
+            <section>IV</section>
+        </sections>
+        <sections>
+            <label><!-- LG --></label>
+            <section>LG</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+        <sections>
+            <label><!-- TT --></label>
+            <section>TT</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+        <sections>
+            <label><!-- UW --></label>
+            <section>UW</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - African Travel</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Agency Sales --></label>
+            <section>Agency Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Latest Bkg (TTC Sister Brands) --></label>
+            <section>Latest Bkg (TTC Sister Brands)</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Contiki</layout>
+        <sections>
+            <label><!-- Account Activities --></label>
+            <section>Account Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Account Management --></label>
+            <section>Account Management</section>
+        </sections>
+        <sections>
+            <label><!-- Account Profile --></label>
+            <section>Account Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Down Under Tours</layout>
+        <sections>
+            <label><!-- Account Activities --></label>
+            <section>Account Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Account Profile --></label>
+            <section>Account Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - FIT</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Insight</layout>
+        <sections>
+            <label><!-- Account Management --></label>
+            <section>Account Management</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Agency Sales --></label>
+            <section>Agency Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Insight Vacations --></label>
+            <section>Insight Vacations</section>
+        </sections>
+        <sections>
+            <label><!-- Luxury Gold --></label>
+            <section>Luxury Gold</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Multi</layout>
+        <sections>
+            <label><!-- AAT Kings --></label>
+            <section>AAT Kings</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Contiki --></label>
+            <section>Contiki</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Insight Vacations --></label>
+            <section>Insight Vacations</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+        <sections>
+            <label><!-- Trafalgar --></label>
+            <section>Trafalgar</section>
+        </sections>
+        <sections>
+            <label><!-- Uniworld --></label>
+            <section>Uniworld</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Multi (No Contiki)</layout>
+        <sections>
+            <label><!-- AAT Kings --></label>
+            <section>AAT Kings</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Insight Vacations --></label>
+            <section>Insight Vacations</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+        <sections>
+            <label><!-- Trafalgar Tours --></label>
+            <section>Trafalgar Tours</section>
+        </sections>
+        <sections>
+            <label><!-- Uniworld --></label>
+            <section>Uniworld</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - RCH</layout>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Read Only</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- E-Learning --></label>
+            <section>E-Learning</section>
+        </sections>
+        <sections>
+            <label><!-- Production --></label>
+            <section>Production</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Res Agent</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- E-Learning --></label>
+            <section>E-Learning</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Trafalgar</layout>
+        <sections>
+            <label><!-- Account Management --></label>
+            <section>Account Management</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Agency Sales --></label>
+            <section>Agency Sales</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Brendan Vacations --></label>
+            <section>Brendan Vacations</section>
+        </sections>
+        <sections>
+            <label><!-- CostSaver --></label>
+            <section>CostSaver</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+        <sections>
+            <label><!-- Trafalgar Tours --></label>
+            <section>Trafalgar Tours</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Trafalgar &amp; Insight</layout>
+        <sections>
+            <label><!-- Account Management --></label>
+            <section>Account Management</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Agency Sales - Insight --></label>
+            <section>Agency Sales - Insight</section>
+        </sections>
+        <sections>
+            <label><!-- Agency Sales - Trafalgar --></label>
+            <section>Agency Sales - Trafalgar</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- CostSaver --></label>
+            <section>CostSaver</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Insight Vacations --></label>
+            <section>Insight Vacations</section>
+        </sections>
+        <sections>
+            <label><!-- Luxury Gold --></label>
+            <section>Luxury Gold</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- TTC Agent Academy --></label>
+            <section>TTC Agent Academy</section>
+        </sections>
+        <sections>
+            <label><!-- Trafalgar Tours --></label>
+            <section>Trafalgar Tours</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - Uniworld</layout>
+        <sections>
+            <label><!-- Account Management --></label>
+            <section>Account Management</section>
+        </sections>
+        <sections>
+            <label><!-- Account Profile --></label>
+            <section>Account Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Agency Details --></label>
+            <section>Agency Details</section>
+        </sections>
+        <sections>
+            <label><!-- Agency and Consultant Analysis --></label>
+            <section>Agency and Consultant Analysis</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Travel Agency - data management</layout>
+        <sections>
+            <label><!-- Activities --></label>
+            <section>Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Record Type --></label>
+            <section>Record Type</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Agency Production Report --></label>
+        <name>Agency_Production_Report</name>
+    </quickActions>
+</CustomObjectTranslation>

@@ -1,0 +1,98 @@
+<!-- Experimental proof of concept for Seat Rotation -->
+<!-- Based in part of RoomingListPDF (c) Appirio -->
+<!-- Calvin Goodenough June 2017 -->
+<!-- Cleaned up by Ravi, June-Dec 2018 -->
+<!-- Fonts and sizes tweaked by Calvin, Dec 2018 --> 
+
+<apex:page controller="TOPS_seatRotationPDFController" showHeader="false" StandardStyleSheets="false" renderAs="pdf" applyHtmlTag="false" applyBodyTag="false">
+  <head>
+    <style>
+      @page { size : letter;
+        margin-left: 6mm;
+        margin-right: 7mm;
+        margin-top: 4mm;
+        margin-bottom: 0mm;
+      }
+      body {
+        font-size: {18px};
+        text-align:center;
+      }
+      .valignCls {
+        vertical-align: top;
+      }
+      .borderCls {
+        border: 1px solid;
+      }
+      .mergeRow {
+          
+          width:105px;
+          height:55px;
+          text-align:Center;
+          word-wrap:break-word;
+          white-space: normal;
+          border: 1px solid #000000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <apex:pageBlock >
+          <!-- Header of doc with brand, trip code, day and location -->   
+        <td style="width: 750px; text-align: centre; font-weight:bold; font-size: 14px;">       
+              <b>{!theItineraryCode}</b> 
+         </td>
+     <table style="table-layout:fixed; font-weight:bold;" >        
+         <tr>
+             <td style="text-align:left;width:33%; font-weight:bold;"><b>Day {!theDay} : {!theRoute}</b></td>
+             <td style="text-align:center;width:33%;font-weight:bold; ">Seating Chart</td>
+             <td style="text-align:right;width:33%;font-weight:bold; ">            
+                  <apex:outputtext value="{0,date, d MMM yyyy}">
+                      <apex:param value="{!theArrivalDate}"/>
+                  </apex:outputtext>
+             </td>   
+         </tr>                  
+     </table>
+          <!-- Debug info to be commented out later -->
+<!--           {!theOrientation} {!theMethod} {!theCoachSeatPlan.size} <br/>
+      Total Rows {!theTotalRows}; Rows before stairs {!theRowsBeforeStairs}; Rows after stairs {!theRowsAfterStairs}; Number of stairs {!theNumberOfStairs}; Driver side {!theDriverSide}; Seats to rotate {!theSeatsToRotate}; 
+      <br/>-->
+     <td style="width:730px; font-size: 22px; text-align:Center;"><b>{!IF(theOrientation=='DownUp','Back of Coach','Front of Coach')}</b></td>
+        <!-- Main block for the seating plan -->
+        <apex:variable var="pc" value="{!1}" />
+        <apex:variable var="rc" value="{!1}" />
+        <table style = "border-spacing: 1px 5px;font-size: 19px;">  
+            
+             <apex:repeat value="{!mergeRow}" var="thePlan">
+             <tr>
+             <td style="width:55px;height:20px;text-align:Center;word-wrap:break-word;white-space: normal;)}">{!thePlan.startNumbering}</td>
+             
+             <td style="{!IF(AND((thePlan.firstRow != '**S T A I R S' && pc != size), thePlan.firstRow != null), 'width:130px;height:55px;text-align:Center;word-wrap:break-word;white-space: normal;border: 1px solid #000000;', '')}">{!thePlan.firstRow}</td>
+             <td style="{!IF(AND((thePlan.secondRow != '**S T A I R S' && pc != size), thePlan.secondRow != null), 'width:130px;height:55px;text-align:Center;word-wrap:break-word;white-space: normal;border: 1px solid #000000;', '')}">{!thePlan.secondRow}</td>           
+             <td style="{!IF(thePlan.thirdRow != null, 'width:130px;height:55px;text-align:Center;word-wrap:break-word;white-space: normal;border: 1px solid #000000;', '')}">{!thePlan.thirdRow}</td>
+             <td style="{!IF(AND(pc != size, thePlan.fourthRow != null), 'width:130px;height:55px;text-align:Center;word-wrap:break-word;white-space: normal;border: 1px solid #000000;' , '')}">{!thePlan.fourthRow}</td>
+             <td style="{!IF(AND(pc != size, thePlan.fifthRow != null), 'width:130px;height:55px;text-align:Center;word-wrap:break-word;white-space: normal;border: 1px solid #000000;', '')}">{!thePlan.fifthRow}</td>
+             <td style="width:55px;height:20px;text-align:Center;word-wrap:break-word;white-space: normal;)}">{!thePlan.endNumbering}</td>
+             </tr>
+             <apex:variable var="pc" value="{!pc + 1}"/> 
+            </apex:repeat>             
+        </table>
+    </apex:pageblock>
+  <td style="width:730px; font-size: 22px; text-align:Center;"><b>{!IF(theOrientation=='UpDown','Back of Coach','Front of Coach')}</b></td>
+      <!-- Footer for the logos based on the brand-->
+      <apex:variable var="i" value="{!1}"/>
+        <table width="100%">
+          <apex:repeat value="{!footerlogoList}" var="footerlogo">
+            <td style="width:200px;  border:none; {!IF(OR(footerlogoList.size <= i), 'text-align:right;', IF(i == 1, 'text-align:left;', 'text-align: center;'))}">
+              <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+                <apex:image url="{!URLFOR($Resource.BrandImages,footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+                <!-- End changes -->
+              <apex:variable var="i" value="{!i+1}"/>
+            </td>
+          </apex:repeat>
+        </table>
+    <div style="text-align:center; font-weight:bold; font-size: 13px;">
+      {!hashTag}
+    </div>
+    <!--   {!myTemp}-->
+  </body>
+</apex:page>

@@ -1,0 +1,118 @@
+<!-- 
+    Visualforce page used to generate the passenger list pdf for TDs (TOPS app) 
+-->
+
+<!-- 
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+-->
+<apex:page controller="TOPS_PassengerListPDFController"  renderas="pdf"  cache="true" language="{!languageParam}"
+            applyBodyTag="false" sidebar="false" showHeader="false">
+
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <style>
+       .pHeader {
+        background: rgb({!colourCodeVal}) !important;
+        color: white;
+       } 
+       .pRowEven { 
+         background: #C3C3C3 !important;
+       }       
+       .pRowOdd {
+         background: white !important;
+       }       
+       body{
+         font-size: {!fontSize};
+       }
+       td {
+         font-family: calibri !important;
+       }
+      </style>
+  </head>
+  
+  <body>
+    <apex:pageBlock >
+        <table width="100%" style="border-bottom: 2px solid;">
+          <td>
+            {!brandName} - {!tourRecord.Product_Name__c}
+          </td>
+        </table>
+        
+        <table width="100%" style="border-bottom: 2px solid;">
+          <th  width="30%">{!tourRecord.Instance_Code__c}
+          </th>
+        
+          <th  width="40%">{!tdrole}: {!travelDirectorName}
+          </th>
+          
+           <th>Driver: {!driverName}
+          </th>
+        </table>
+        
+        <apex:pageBlockTable value="{!passengerList}" var="passenger" 
+           headerClass="pHeader" rowClasses="pRowEven, pRowOdd" width="100%"  style="{!IF(!(blankPassanger.size>0),'border-top: 2px solid','')}">
+              <apex:column style="font-family:Calibri;"  headerValue="{!$Label.Passport_List_Surname}" value="{!passenger.Family_Name__c}" width="10%" />
+              <apex:column value="{!passenger.First_Name__c}" width="10%"/>
+              <apex:column headerValue="{!$Label.Passport_List_Gender}" value="{!genderMap[passenger.Gender__c]}" width="5%"/>
+              <apex:column value="{!passenger.Nationality__c}" width="15%"/>
+              <apex:column headerValue="{!$Label.Passport_List_Passport_No}" value="{!passenger.Passport_Number__c}"  width="10%"/>
+              <apex:column headerValue="{!$Label.Issue_Date}" value="{!passenger.Passport_Issue_Date__c}" width="10%"/>
+              <apex:column headerValue="{!$Label.Expiry_Date}" value="{!passenger.Passport_Expiry_Date__c}" width="10%"/>
+              <apex:column value="{!passenger.Country_of_Issue__c}" width="10%"/>
+              <apex:column value="{!passenger.Date_of_Birth__c}" width="10%"/>
+        </apex:pageBlockTable>
+        
+        <apex:datatable value="{!blankPassanger }" var="passenger" 
+            rowClasses="{!blankPassangerCSS}" width="100%" style="{!IF(blankPassanger.size>0,'border-bottom: 2px solid','')}">
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="5%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="15%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+              <apex:column width="10%">&nbsp;&nbsp;</apex:column>
+        </apex:datatable> 
+        
+        <apex:datatable value="{!tourDriver}" var="passenger" 
+            rowClasses="{!tourDriverCSS}" width="100%">
+              <apex:column value="{!passenger.Family_Name__c}" width="10%"/>
+              <apex:column value="{!passenger.First_Name__c}" width="10%"/>
+              <apex:column value="{!genderMap[passenger.Gender__c]}" width="5%"/>
+              <apex:column value="{!passenger.Nationality__c}" width="15%"/>
+              <apex:column value="{!passenger.Passport_Number__c}"  width="10%"/>
+              <apex:column value="{!passenger.Passport_Issue_Date__c}" width="10%"/>
+              <apex:column value="{!passenger.Passport_Expiry_Date__c}" width="10%"/>
+              <apex:column value="{!passenger.Country_of_Issue__c}" width="10%"/>
+              <apex:column value="{!passenger.Date_of_Birth__c}" width="10%"/>
+        </apex:datatable> 
+
+        <apex:datatable value="{!tourDirector}" var="passenger" 
+           rowClasses="{!tourDirectorCSS}" width="100%">
+              <apex:column value="{!passenger.Family_Name__c}" width="10%"/>
+              <apex:column value="{!passenger.First_Name__c}" width="10%"/>
+              <apex:column value="{!genderMap[passenger.Gender__c]}" width="5%"/>
+              <apex:column value="{!passenger.Nationality__c}" width="15%"/>
+              <apex:column value="{!passenger.Passport_Number__c}"  width="10%"/>
+              <apex:column value="{!passenger.Passport_Issue_Date__c}" width="10%"/>
+              <apex:column value="{!passenger.Passport_Expiry_Date__c}" width="10%"/>
+              <apex:column value="{!passenger.Country_of_Issue__c}" width="10%"/>
+              <apex:column value="{!passenger.Date_of_Birth__c}" width="10%"/>
+        </apex:datatable>  
+    </apex:pageBlock>
+      <apex:variable var="i" value="{!1}"/>
+    <table width="100%">
+    <apex:repeat value="{!footerlogoList}" var="footerlogo">
+      <td style="{!IF(OR(footerlogoList.size <= i), 'text-align:right;', IF(i == 1, 'text-align:left;', 'text-align: center;'))}">
+        <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+        <apex:image url="{!URLFOR($Resource.BrandImages,
+        footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+        <!-- End changes -->
+        <apex:variable var="i" value="{!i+1}"/>
+      </td>
+    </apex:repeat>
+    </table>
+  </body>
+  
+</apex:page>

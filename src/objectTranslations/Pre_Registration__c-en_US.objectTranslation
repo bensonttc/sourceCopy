@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Pre-Registration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Pre-Registrations</value>
+    </caseValues>
+    <layouts>
+        <layout>Pre-Registration Layout</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Booking Details --></label>
+            <section>Booking Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Interests --></label>
+            <section>Interests</section>
+        </sections>
+        <sections>
+            <label><!-- Next of Kin Information --></label>
+            <section>Next of Kin Information</section>
+        </sections>
+        <sections>
+            <label><!-- Passenger Information --></label>
+            <section>Passenger Information</section>
+        </sections>
+        <sections>
+            <label><!-- Passport Information --></label>
+            <section>Passport Information</section>
+        </sections>
+        <sections>
+            <label><!-- Preferences --></label>
+            <section>Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Previous Travel --></label>
+            <section>Previous Travel</section>
+        </sections>
+        <sections>
+            <label><!-- Validation --></label>
+            <section>Validation</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

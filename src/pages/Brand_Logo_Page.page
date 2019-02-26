@@ -1,0 +1,5 @@
+<apex:page Controller="Brand_logo_Controller" sidebar="false" Showheader="false">
+    <center>
+        <apex:image style="align:center" width="{!Brand.Width__c}" height="{!Brand.Height__c}" url="{!URLFOR($Resource[Brand.Static_Resource_Name__c])}" rendered="{!AND(Renderlogo,IF(Brand != null, true, false) )}"/>
+    </center>   
+</apex:page>

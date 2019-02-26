@@ -1,0 +1,6 @@
+<apex:page showHeader="false" 
+  controller="TQAttachmentController" 
+  action="{!dispatch}" 
+  cache="false" 
+  contentType="application/json"
+>{!result}</apex:page>

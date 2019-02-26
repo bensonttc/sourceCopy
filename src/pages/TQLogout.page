@@ -1,0 +1,5 @@
+<apex:page showHeader="false" 
+  controller="TQAppController" 
+  action="{!logoutRedirect}" 
+  cache="false"
+></apex:page>

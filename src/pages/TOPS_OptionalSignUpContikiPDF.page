@@ -1,0 +1,258 @@
+<!-- 
+    Visualforce page used to generate the Print Optional-SignUp-Contiki pdf for TDs (TOPS app) 
+-->
+<apex:page controller="TOPS_OptionalSignUpContikiPDFController" renderAs="pdf" cache="true" language="{!languageParam}"
+            applyBodyTag="false" sidebar="false" showHeader="false">
+
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <style>
+        @page {
+          size: landscape;
+          margin: 5.0mm;
+          margin-left: 20.0mm;
+        }
+       .pHeader {
+        background: rgb({!colourCodeVal}) !important;
+        color: white;
+       } 
+         
+       .pHeadLabels {
+           text-align: middle;
+       }
+       .pHeadFonts {
+         font-size: 12px;
+         font-family: cursive !important;
+         text-transform: uppercase;
+         font-style: italic;
+       }    
+       body{
+         font-size: {!fontSize};
+       }
+       td {
+         font-family: calibri !important;
+         border-width: 1px;
+       }
+       .columnWidth_1 {
+         width: 230px;
+       }
+       .columnWidth_2 {
+         width: 40px;
+       }
+       .columnWidth_3 {
+         width: 30px;
+       }
+      </style> 
+  </head>
+   <body>
+     <table id="tbl">
+     <tr>
+      <td ALIGN="center">
+        <apex:pageBlock id="pb1">
+          <br/>
+          <apex:outputPanel id="op1" >
+          <apex:outputText value="{!$Label.TM_COPY}" style="font-size: 12px;" />
+          <br/>
+          <apex:image url="{!URLFOR($Resource.BrandImages,'/Contiki.png')}" width="120" height="40" />  
+          <br/>
+          <apex:outputText value="{!$Label.Me_Time_Optional}" styleClass="pHeadFonts" /> 
+          <br/>
+          <apex:outputText value="{!tourRecord.Product_Name__c}  {!tourRecord.Instance_Code__c}" style="font-size: 10px;" /> 
+          <br/>
+        </apex:outputPanel>
+        <div style="width:420px;">
+          <span style="float:left;">{!$Label.Travellers_to_complete_this_section_only}</span>
+          <span style="float:right;">{!$Label.To_be_completed_by_TM}</span>
+        </div>
+        <apex:pageBlockTable value="{!tourOptionalList}" headerClass="pHeader"  var="tourOp1" border="1" style="table-layout:fixed; width:420px; margin-top:15px;">
+          <apex:column style="font-family:Calibri; text-align:left;" headerClass="columnWidth_1" headerValue="{!$Label.Me_Time_Optional}" value="{!tourOp1.Location__c} {!if(tourOp1.Location__c !='','-','')} {!tourOp1.Name}">
+            <apex:facet name="footer"> 
+              <apex:outputText value="{!$Label.Optional_Voucher_Amount}"  style="font-family:Calibri; text-align:left; font-size:10px" /> 
+            </apex:facet>
+          </apex:column>
+          <apex:column headerValue="{!$Label.Euro}" headerClass="columnWidth_2" style="font-family:Calibri; text-align:center;" value="{!tourOp1.Adult_Price__c}"/>
+          <apex:column style=" font-weight: bold;" headerClass="columnWidth_3">
+            <apex:facet name="header">
+              <apex:image url="{!URLFOR($Resource.CheckMarkIcon)}" width="15" height="15"/>
+            </apex:facet> 
+          </apex:column>
+          <apex:column headerValue="{!$Label.Amount_paid_CC}" width="15%"/>
+          <apex:column headerValue="{!$Label.Amount_paid_Cash}" width="15%"/>
+        </apex:pageBlockTable>
+        <apex:datatable value="{!blankOptionalList}" var="blnkOp1" border="1" style="table-layout:fixed; width:420px;">
+          <apex:column style="font-family:Calibri; font-weight:bold; text-align:left; width: 230px;" value="{!blnkOp1.Name}"/>
+          <apex:column style="width:40px;">{!IF(blnkOp1.Name == 'Cost Per Day', averageCost, IF(blnkOp1.Name == '','',totalAdultPrice))}</apex:column> 
+          <apex:column style="width:30px;"></apex:column>
+          <apex:column width="15%">&nbsp;</apex:column>
+          <apex:column width="15%">&nbsp;</apex:column>
+        </apex:datatable> 
+        <apex:datatable value="{!footOptionalList}" var="footOp" border="1" style="table-layout:fixed; width:420px;">
+            <apex:column style="font-family:Calibri; font-weight:bold; font-size:11px; width:325px;">
+              <div>
+                <span style="float:left;">
+                  <apex:image url="{!URLFOR($Resource.BrandImages, 'noRegrets.png')}" width="150" height="60"/>
+                </span>
+                <span style="float:right; padding-right:20px; padding-top:10px;">
+                  <apex:outputText value="{!footOp.Name}" escape="false"/>
+                </span>
+             </div>
+            </apex:column>
+            <apex:column width="5%"></apex:column>
+        </apex:datatable> 
+        
+        <div id="lowerId1" style="text-align: left !important;" width="90%">
+            <br/>
+            <apex:outputText id="idPlsNote1" value="{!$Label.Please_Note}" style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"></apex:outputText>
+            <br/>
+            &nbsp; &nbsp;<apex:outputText id="idNot11" value="1. {!$Label.Sign_Up_Note_1}" style="font-family:Calibri; text-align:left; font-weight:bold; font-size:10px"></apex:outputText>
+            <br/>
+            &nbsp; &nbsp;<apex:outputText id="idNot12" value="2. {!$Label.Sign_Up_Note_2}" style="font-family:Calibri; text-align:left; font-weight:bold; font-size:10px"></apex:outputText>
+            <br/>
+        </div>
+        
+         <div id="trlrSign1" style="text-align: left !important;" width="90%">
+            <br/>
+            <apex:outputText Id="trvName1" value="{!$Label.Traveller_Name}: ____________________________________________" style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"></apex:outputText>
+            <br/>
+            <apex:outputText id="sign1" value="{!$Label.Signature}:    ____________________________________________" style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"></apex:outputText>
+            <br/>
+        </div>
+        
+        <div id="crdCard" style="text-align: left !important;" width="90%">
+            <br/>
+            
+            <table width="80%" >
+             <tr>
+                 <td ><apex:outputText Id="crdCard1" value="{!$Label.Credit_Card_Last_Digits}"   style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"/></td>
+                 <td>
+                     <table styleClass="tabStyle" border="1" cellpadding="0" cellspacing="0">
+                         <tr>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                         </tr>
+                     </table>
+                 </td>
+             </tr>
+            
+            </table>
+            
+        </div>
+      </apex:pageBlock>
+        </td>
+        
+      <td ALIGN="center">
+        <div style="top:7px; position:relative; margin-left:50px;">
+          <apex:pageBlock id="pb2">
+          <apex:outputPanel id="op2" >
+           <apex:outputText value="{!$Label.TRAVELLER_COPY}" style="font-size: 12px;" />
+            <br/>
+           <apex:image url="{!URLFOR($Resource.BrandImages,'/Contiki.png')}" width="120" height="40" />  
+            <br/>
+            <apex:outputText value="{!$Label.Me_Time_Optional}" styleClass="pHeadFonts" /> 
+            <br/>
+           <apex:outputText value="{!tourRecord.Product_Name__c}  {!tourRecord.Instance_Code__c}" style="font-size:10px;"/> 
+           <br/>
+           </apex:outputPanel>
+         
+        <div style="width:420px;">
+          <span style="float:left;">{!$Label.Travellers_to_complete_this_section_only}</span>
+          <span style="float:right;">{!$Label.To_be_completed_by_TM}</span>
+        </div>
+
+        <apex:pageBlockTable value="{!tourOptionalList}" headerClass="pHeader" var="tourOp2" border="1" style="table-layout:fixed; width:420px; margin-top:15px;">
+              <apex:column style="font-family:Calibri; text-align:left;" headerClass="columnWidth_1" headerValue="{!$Label.Me_Time_Optional}" value="{!tourOp2.Location__c} {!if(tourOp2.Location__c !='','-','')} {!tourOp2.Name}">
+               <apex:facet name="footer" > 
+                     <apex:outputText value="{!$Label.Optional_Voucher_Amount}"  style="font-family:Calibri; text-align:left; font-size:10px" /> 
+                  </apex:facet> 
+              </apex:column>
+              <apex:column headerValue="{!$Label.Euro}" headerClass="columnWidth_2" style="font-family:Calibri; text-align:center;" value="{!tourOp2.Adult_Price__c}"/>
+              <apex:column width="10%" headerClass="columnWidth_3">
+                    <apex:facet name="header"> <apex:image url="{!URLFOR($Resource.CheckMarkIcon)}" width="15" height="15"/>   </apex:facet> 
+              </apex:column>
+              <apex:column headerValue="{!$Label.Amount_paid_CC}"  width="15%"/>
+              <apex:column headerValue="{!$Label.Amount_paid_Cash}"  width="15%"/>
+              
+        </apex:pageBlockTable>
+         <apex:datatable value="{!blankOptionalList}" var="blnkOp2" border="1" style="table-layout:fixed; width:420px;">
+          <apex:column style="font-family:Calibri; font-weight:bold; text-align:left; width: 230px;" value="{!blnkOp2.Name}"/>
+          <apex:column style="width:40px;">{!IF(blnkOp2.Name == 'Cost Per Day', averageCost, IF(blnkOp2.Name == '','',totalAdultPrice))}</apex:column> 
+          <apex:column style="width:30px;"></apex:column>
+          <apex:column width="15%">&nbsp;</apex:column>
+          <apex:column width="15%">&nbsp;</apex:column>
+        </apex:datatable> 
+        
+        <apex:datatable value="{!footOptionalList}" var="footOp" border="1" style="table-layout:fixed; width:420px;">
+            <apex:column style="font-family:Calibri; font-weight:bold; font-size:11px; width:325px;">
+              <div>
+                <span style="float:left;">
+                  <apex:image url="{!URLFOR($Resource.BrandImages, 'noRegrets.png')}" width="150" height="60"/>
+                </span>
+                <span style="float:right; padding-right:20px; padding-top:10px;">
+                  <apex:outputText value="{!footOp.Name}" escape="false"/>
+                </span>
+              </div>
+            </apex:column>
+            <apex:column width="5%"></apex:column>
+        </apex:datatable> 
+
+        <div id="lowerId2" style="text-align: left !important;" width="90%">
+            <br/>
+            <apex:outputText id="idPlsNote2" value="{!$Label.Please_Note}" style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"></apex:outputText>
+            <br/>
+            &nbsp; &nbsp;<apex:outputText id="idNot21" value="1. {!$Label.Sign_Up_Note_1}" style="font-family:Calibri; text-align:left; font-weight:bold; font-size:10px"></apex:outputText>
+            <br/>
+            &nbsp; &nbsp;<apex:outputText id="idNot22" value="2. {!$Label.Sign_Up_Note_2}" style="font-family:Calibri; text-align:left; font-weight:bold; font-size:10px"></apex:outputText>
+            <br/>
+        </div>
+        
+        <div id="trlrSign2" style="text-align: left !important;" width="90%">
+            <br/>
+            <apex:outputText Id="trvName2" value="{!$Label.Traveller_Name}: ____________________________________________" style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"></apex:outputText>
+            <br/>
+            <apex:outputText id="sign2" value="{!$Label.Signature}:     ____________________________________________" style="font-family:Calibri; text-align:left !important; font-weight:bold; font-size:11px"></apex:outputText>
+            <br/>
+        </div>
+        
+         <div id="keepRec" width="90%">
+            <br/>
+            <table >
+             <tr>
+                 <td ><apex:outputText Id="crdCard1" value="{!$Label.Keep_Record}"   style="font-family:Calibri; font-weight:bold; font-size:11px"/></td>
+                 <td>
+                     <table >
+                         <tr>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                             <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                         </tr>
+                     </table>
+                 </td>
+             </tr>
+            
+            </table>
+             
+          </div>
+        
+      </apex:pageBlock>
+        </div>
+      </td>
+    </tr>
+    </table>
+    
+   <!-- <apex:variable var="i" value="{!1}"/>
+    <table width="100%">
+        <apex:repeat value="{!footerlogoList}" var="footerlogo">
+           <td style="{!IF(OR(footerlogoList.size <= i), 'text-align: right;', IF(i == 1,'text-align: left;', 'text-align: center;'))}">
+                       <apex:image url="{!URLFOR($Resource.BrandImages,
+                      footerlogo)}" width="200" height="100" />
+                       <apex:variable var="i" value="{!i+1}"/>
+                      </td>
+        </apex:repeat> 
+    </table> -->
+
+  </body>
+  
+</apex:page>

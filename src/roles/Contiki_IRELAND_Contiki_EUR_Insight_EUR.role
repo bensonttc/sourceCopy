@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Contiki (IRELAND)  &amp; Insight (EUR)</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Contiki (IRELAND)  &amp; Insight (EUR)</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Northern_Ireland_Insight_Contiki_Uniworld</parentRole>
+</Role>

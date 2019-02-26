@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Operations Contiki NZ</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Operations Contiki NZ</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>Operations</parentRole>
+</Role>

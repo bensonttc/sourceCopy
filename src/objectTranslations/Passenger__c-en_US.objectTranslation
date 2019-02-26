@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Passenger</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Passengers</value>
+    </caseValues>
+    <layouts>
+        <layout>MTS Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Links --></label>
+            <section>Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ops - Passenger Layout</layout>
+        <sections>
+            <label><!-- Booking Details --></label>
+            <section>Booking Details</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Details --></label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Details --></label>
+            <section>Emergency Contact Details</section>
+        </sections>
+        <sections>
+            <label><!-- Insurance --></label>
+            <section>Insurance</section>
+        </sections>
+        <sections>
+            <label><!-- On Trip Info --></label>
+            <section>On Trip Info</section>
+        </sections>
+        <sections>
+            <label><!-- Passport Info --></label>
+            <section>Passport Info</section>
+        </sections>
+        <sections>
+            <label><!-- Profile --></label>
+            <section>Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Registration Details --></label>
+            <section>Registration Details</section>
+        </sections>
+        <sections>
+            <label><!-- Requests --></label>
+            <section>Requests</section>
+        </sections>
+        <sections>
+            <label><!-- Rooming Details --></label>
+            <section>Rooming Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Passenger Layout</layout>
+        <sections>
+            <label><!-- Booking Details --></label>
+            <section>Booking Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Details --></label>
+            <section>Emergency Contact Details</section>
+        </sections>
+        <sections>
+            <label><!-- Links --></label>
+            <section>Links</section>
+        </sections>
+        <sections>
+            <label><!-- MMB Info --></label>
+            <section>MMB Info</section>
+        </sections>
+        <sections>
+            <label><!-- Modular Info --></label>
+            <section>Modular Info</section>
+        </sections>
+        <sections>
+            <label><!-- On Trip Info --></label>
+            <section>On Trip Info</section>
+        </sections>
+        <sections>
+            <label><!-- Passport Info --></label>
+            <section>Passport Info</section>
+        </sections>
+        <sections>
+            <label><!-- Requests --></label>
+            <section>Requests</section>
+        </sections>
+        <sections>
+            <label><!-- Rooming Details --></label>
+            <section>Rooming Details</section>
+        </sections>
+        <sections>
+            <label><!-- TD and Control System Fields (to be removed from layout) --></label>
+            <section>TD and Control System Fields (to be removed from layout)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TD Page Layout</layout>
+        <sections>
+            <label><!-- Booking Info --></label>
+            <section>Booking Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Emails Sent From TOPS Status --></label>
+            <section>Emails Sent From TOPS Status</section>
+        </sections>
+        <sections>
+            <label><!-- Module Info --></label>
+            <section>Module Info</section>
+        </sections>
+        <sections>
+            <label><!-- Optional Summary --></label>
+            <section>Optional Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Rooming Info --></label>
+            <section>Rooming Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Transport - Passenger Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

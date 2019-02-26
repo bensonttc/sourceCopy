@@ -1,0 +1,303 @@
+<apex:page showHeader="false" sidebar="false" controller="YTD_Report_Controller" readonly="true" >
+    <style type="text/css">
+
+        .CSSTableGenerator {
+            margin:0px;padding:0px;
+            width:100%;
+            border:1px solid #000000;
+        }
+        .CSSTableGenerator tr:hover td{
+            background-color:#ffffff;
+        }
+        .CSSTableGenerator tr:last-child td{
+            border-width:0px 1px 0px 0px;
+        }.CSSTableGenerator tr td:last-child{
+            border-width:0px 0px 1px 0px;
+        }.CSSTableGenerator tr:last-child td:last-child{
+            border-width:0px 0px 0px 0px;
+        }
+        .CSSTableGenerator tr:first-child td:first-child{
+            border-width:0px 0px 1px 0px;
+        }
+        .CSSTableGenerator tr:first-child td:last-child{
+            border-width:0px 0px 1px 1px;
+        }
+        .HeaderRow{
+            background:-o-linear-gradient(bottom, #b2b2b2 5%, #b2b2b2 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b2b2b2), color-stop(1, #b2b2b2) );
+            background:-moz-linear-gradient( center top, #b2b2b2 5%, #b2b2b2 100% );
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#b2b2b2", endColorstr="#b2b2b2");  background: -o-linear-gradient(top,#b2b2b2,b2b2b2);
+
+            background-color:#b2b2b2;
+            border:0px solid #000000;
+            text-align:center;
+            border-width:0px 0px 0px 0px;
+            font-size:12px;
+            font-family:Arial;
+            font-weight:bold;
+            color:#000000;
+        }
+
+        .NormalRow{
+            vertical-align:middle;
+            
+            background-color:#ffffff;
+
+            border:1px solid #000000;
+            border-width:0px 1px 1px 0px;
+            text-align:right;
+            padding:5px;
+            font-size:11px;
+            font-family:Arial;
+            font-weight:normal;
+            color:#000000;
+        }
+
+    </style>
+
+
+  <!--  <apex:sectionHeader title="YTD" subtitle="MyHeaderSubTitle" /> -->
+    
+    <apex:outputpanel >
+        <apex:actionstatus id="actStatusId">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #DCD6D6;
+                       height: 100%;opacity:0.65;width:100%;position:fixed;"> 
+                    <div class="waitingHolder" style="top: 74.2px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Loading...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+    </apex:outputpanel>
+    
+    <apex:form >
+     
+    <apex:pageBlock title="YTD">
+        <apex:pageBlockButtons location="top">
+            <apex:commandButton action="{!GoHome}" value="Home"/>
+            <apex:commandButton action="{!removeDrillDown}" value="Remove Drill Down"/>
+        </apex:pageBlockButtons>
+
+        
+        <apex:outputPanel id="wholeTable">
+        <apex:pageMessages id="pageMessageBit" /> 
+        <apex:pageBlockSection title="Business Units" columns="1">
+            
+            <!--Radio button to switch between revenue and pax-->
+            <apex:outputPanel id="radioButton">
+                <apex:selectRadio value="{!PaxOrVal}">
+                    <apex:actionSupport event="onchange" status="actStatusId" rerender="wholeTable" action="{!changeValOrPax}"/>
+                    <apex:selectOptions value="{!Options}"/>
+                </apex:selectRadio>
+
+                <!--Action status - spinning wheel to show it is doing something
+                <apex:actionStatus id="doingSomething"  stopText="">
+                    <apex:facet name="start">
+                        <apex:image width="20" height="20" url="{!URLFOR($Resource.TimerImage)}"/>
+                    </apex:facet>
+                </apex:actionStatus> -->
+            </apex:outputPanel>
+
+            <apex:pageblocksectionitem >
+                <apex:outputText value="All Revenue in:" />
+                <apex:outputText value="{!userCurrency}" />
+            </apex:pageblocksectionitem> 
+            
+
+
+            <apex:dataTable value="{!AllAgg}" var="Ag" id="Ag2" styleClass="CSSTableGenerator"> 
+                
+                <!--
+                <apex:column > 
+                    <apex:outputtext value="{!Ag.rowNum}"/>
+                </apex:column>  
+                -->
+                
+                <!--Business Unit column -->
+                <apex:column style="width:200px; text-align:left;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow, Ag.GrandTotalRow), 'HeaderRow','NormalRow')}">  
+                    <!--<apex:outputtext value="{!Ag.Acc.name}" /> -->
+                    <apex:outputtext value="{!Ag.Brand} Total:" rendered="{!Ag.SubTotalRow}"/>
+
+                    <apex:outputtext value="Grand Total:" rendered="{!Ag.GrandTotalRow}"/>
+
+                    <apex:CommandLink value="{!Ag.Acc.name}" action="{!GoToRecord}" target="_blank" style="color:#0000FF" rendered="{!NOT(OR(Ag.SubTotalRow, Ag.GrandTotalRow))}">
+                        <apex:param name="RecId" value="{!Ag.Acc.ID}" assignTo="{!RecordId}"/>
+                    </apex:CommandLink>
+                </apex:column>  
+
+                <!--Brochure column -->
+                <apex:column style="width:120px; text-align:left;" rendered="{!Brochures}" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}"> 
+
+                    <apex:outputtext value="Brochure Name" rendered="{!IF(Ag.HeaderRow, true,false)}"/>
+
+                    <apex:outputtext value="{!Ag.RecordName}"/>
+                    
+                </apex:column> 
+
+                <!--Agency column -->
+                <apex:column style="width:120px; text-align:left;" rendered="{!TravelAgents}" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}"> 
+
+                    <apex:outputtext value="Travel Agency" rendered="{!IF(Ag.HeaderRow, true,false)}"/>
+
+                    <apex:outputtext value="{!Ag.OtherAccount.name}" rendered="{!IF(Ag.OtherAccount.name == 'Other', true, false)}"/>
+                    <apex:CommandLink value="{!Ag.OtherAccount.name}" action="{!GoToRecord}" rendered="{!IF(Ag.OtherAccount.name != 'Other', true, false)}" target="_blank" style="color:#0000FF">
+                        <apex:param name="RecId" value="{!Ag.OtherAccount.ID}" assignTo="{!RecordId}"/>
+                    </apex:CommandLink> 
+                </apex:column> 
+
+                <!--Consortia column -->
+                <apex:column style="width:120px; text-align:left;" rendered="{!Consortia}" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}"> 
+
+                    <apex:outputtext value="Consortia" rendered="{!IF(Ag.HeaderRow, true,false)}"/>
+
+                    <apex:outputtext value="{!Ag.RecordName}" rendered="{!IF(Ag.RecordName == 'Other', true, false)}"/>
+                    <apex:CommandLink value="{!Ag.RecordName}" action="{!GoToRecord}" rendered="{!IF(Ag.RecordName != 'Other', true, false)}" target="_blank" style="color:#0000FF">
+                        <apex:param name="RecId" value="{!Ag.RecordID}" assignTo="{!RecordId}"/>
+                    </apex:CommandLink> 
+                </apex:column> 
+
+                <!--Consultant column -->
+                <apex:column style="width:120px; text-align:left;" rendered="{!Consultants}" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}"> 
+
+                    <apex:outputtext value="Consultant" rendered="{!IF(Ag.HeaderRow, true,false)}"/>
+
+                    <apex:outputtext value="{!Ag.Consultant.lastName}" rendered="{!IF(Ag.Consultant.lastName == 'Other', true, false)}"/>
+                    <apex:CommandLink value="{!Ag.Consultant.name}" action="{!GoToRecord}" rendered="{!IF(Ag.Consultant.name != 'Other', true, false)}" target="_blank" style="color:#0000FF">
+                        <apex:param name="RecId" value="{!Ag.Consultant.ID}" assignTo="{!RecordId}"/>
+                    </apex:CommandLink> 
+                </apex:column> 
+
+                <!--SM column -->
+                <apex:column style="width:120px; text-align:left;" rendered="{!SMs}" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}">  
+
+                    <apex:outputtext value="Sales Manager" rendered="{!IF(Ag.HeaderRow, true,false)}"/>
+
+                    <!--<apex:outputtext value="{!Ag.Bro.Brochure_Name__c}" />-->
+                    <apex:CommandLink value="{!Ag.RecordName}" action="{!GoToRecord}" target="_blank" style="color:#0000FF">
+                        <apex:param name="RecId" value="{!Ag.RecordId}" assignTo="{!RecordId}"/>
+                    </apex:CommandLink>
+                </apex:column> 
+
+                
+
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.CYM1_VF}" />
+                </apex:column>  
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.YTD_VF}" />
+                </apex:column>  
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.CY_VF}" />
+                </apex:column>  
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.CYVariance_VF}" />
+                </apex:column> 
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.CYPaid_VF}" />
+                </apex:column>  
+
+                <apex:column style="width:10px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}"/>  
+
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.BookedLast_VF}" />
+                </apex:column>  
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.CYP1_VF}" />
+                </apex:column>  
+                <apex:column style="width:60px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow, Ag.GroupedHeaderRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="{!Ag.CYP1Variance_VF}" />
+                </apex:column> 
+
+                <apex:column style="width:10px; text-align:right;" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.HeaderRow), 'HeaderRow','NormalRow')}" />   
+
+                <!-- SMs Drill down -->
+                <apex:column style="width:30px; text-align:center" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="SMs" rendered="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), true,false)}"/>
+
+                    <apex:CommandLink value="" action="{!addSM}" rendered="{!IF(OR(Ag.HeaderRow, Ag.HideDrillDown, Ag.UltimateHeaderRow, AND(Ag.UpDrillDown, SMs)), false,true)}" rerender="wholeTable" status="actStatusId">
+                        <!--<apex:image width="20" height="20" url="/img/arrow_dwn.gif" /> -->
+                        <apex:image width="10" height="10" url="/img/setup_plus.gif" />
+                        <apex:param name="DrillTo" value="OwnerID" assignTo="{!DrillDownTo}"/>
+                        <apex:param name="BU" value="{!Ag.Acc.ID}" assignTo="{!BusinessUnit}"/>
+                        <apex:param name="Row" value="{!Ag.rowNum}" assignTo="{!CurrentRow}"/>
+                    </apex:CommandLink>
+
+                    <apex:CommandLink value="" action="{!removeDrillDown}" rendered="{!IF(AND(Ag.UpDrillDown, SMs), true,false)}" rerender="wholeTable" status="actStatusId">
+                        <!--<apex:image width="20" height="20" url="/img/arrow_up.gif" /> -->
+                        <apex:image width="10" height="10" url="/img/setup_minus.gif" />
+                    </apex:CommandLink>
+                </apex:column> 
+
+                <!-- Brochure Drill down -->
+                <apex:column style="width:30px; text-align:center" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="Brochures" rendered="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), true,false)}"/>
+
+                    <apex:CommandLink value="" action="{!addBrochures}" rendered="{!IF(OR(Ag.HeaderRow, Ag.HideDrillDown, Ag.UltimateHeaderRow, AND(Ag.UpDrillDown, Brochures)), false,true)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_plus.gif" />
+                        <apex:param name="DrillTo" value="OwnerID" assignTo="{!DrillDownTo}"/>
+                        <apex:param name="BU" value="{!Ag.Acc.ID}" assignTo="{!BusinessUnit}"/>
+                        <apex:param name="Row" value="{!Ag.rowNum}" assignTo="{!CurrentRow}"/>
+                    </apex:CommandLink>
+
+                    <apex:CommandLink value="" action="{!removeDrillDown}" rendered="{!IF(AND(Ag.UpDrillDown, Brochures), true,false)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_minus.gif" />
+                    </apex:CommandLink>
+                </apex:column> 
+
+                <!-- Consortia Drill down -->
+                <apex:column style="width:30px; text-align:center" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="Consortia" rendered="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), true,false)}"/>
+
+                    <apex:CommandLink value="" action="{!addConsortium}" rendered="{!IF(OR(Ag.HeaderRow, Ag.HideDrillDown, Ag.UltimateHeaderRow, AND(Ag.UpDrillDown, Consortia)), false,true)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_plus.gif" />
+                        <apex:param name="DrillTo" value="OwnerID" assignTo="{!DrillDownTo}"/>
+                        <apex:param name="BU" value="{!Ag.Acc.ID}" assignTo="{!BusinessUnit}"/>
+                        <apex:param name="Row" value="{!Ag.rowNum}" assignTo="{!CurrentRow}"/>
+                    </apex:CommandLink>
+
+                    <apex:CommandLink value="" action="{!removeDrillDown}" rendered="{!IF(AND(Ag.UpDrillDown, Consortia), true,false)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_minus.gif" />
+                    </apex:CommandLink>
+                </apex:column> 
+
+                <!-- Agencies Drill down -->
+                <apex:column style="width:30px; text-align:center" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="Travel Agencies" rendered="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), true,false)}"/>
+
+                    <apex:CommandLink value="" action="{!addTravelAgents}" rendered="{!IF(OR(Ag.HeaderRow, Ag.HideDrillDown, Ag.UltimateHeaderRow, AND(Ag.UpDrillDown, TravelAgents)), false,true)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_plus.gif" />
+                        <apex:param name="DrillTo" value="OwnerID" assignTo="{!DrillDownTo}"/>
+                        <apex:param name="BU" value="{!Ag.Acc.ID}" assignTo="{!BusinessUnit}"/>
+                        <apex:param name="Row" value="{!Ag.rowNum}" assignTo="{!CurrentRow}"/>
+                    </apex:CommandLink>
+
+                    <apex:CommandLink value="" action="{!removeDrillDown}" rendered="{!IF(AND(Ag.UpDrillDown, TravelAgents), true,false)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_minus.gif" />
+                    </apex:CommandLink>
+                </apex:column> 
+ 
+                 <!-- Consultants Drill down -->
+                <apex:column style="width:30px; text-align:center" styleclass="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), 'HeaderRow','NormalRow')}">  
+                    <apex:outputtext value="Consultants" rendered="{!IF(OR(Ag.UltimateHeaderRow, Ag.SubTotalRow), true,false)}"/>
+
+                    <apex:CommandLink value="" action="{!addConsultants}" rendered="{!IF(OR(Ag.HeaderRow, Ag.HideDrillDown, Ag.UltimateHeaderRow, AND(Ag.UpDrillDown, Consultants)), false,true)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_plus.gif" />
+                        <apex:param name="DrillTo" value="OwnerID" assignTo="{!DrillDownTo}"/>
+                        <apex:param name="BU" value="{!Ag.Acc.ID}" assignTo="{!BusinessUnit}"/>
+                        <apex:param name="Row" value="{!Ag.rowNum}" assignTo="{!CurrentRow}"/>
+                    </apex:CommandLink>
+
+                    <apex:CommandLink value="" action="{!removeDrillDown}" rendered="{!IF(AND(Ag.UpDrillDown, Consultants), true,false)}" rerender="wholeTable" status="actStatusId">
+                        <apex:image width="10" height="10" url="/img/setup_minus.gif" />
+                    </apex:CommandLink>
+                </apex:column> 
+
+            </apex:dataTable>
+
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Uniworld (AUS)</name>
+    <queueMembers>
+        <roles>
+            <role>Head_of_Reservations_Contiki_AUS_Trafalgar_AUS_Insight_AUS</role>
+            <role>Uniworld_Direct_Reservations_AUS</role>
+            <role>Uniworld_AUS_Direct_Team_Manager</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,400 @@
+<!--
+// Apex Page Name: TOPS_MenuSignUpPDF
+// For Apex Controller Class: TOPS_MenuSignUpPDFController
+// Description: This visualforce page used to generate PDF of Menu SignUp PDF.
+-->
+<!-- 
+    16 Feb 2017   Maksud Ali  Modified (Story# S-428451) - Please see the story description for more details.
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+-->
+<apex:page cache="true" language="{!languageParam}" applyBodyTag="false" controller="TOPS_MenuSignUpPDFController" renderAs="pdf"
+sidebar="false" showHeader="false" title="Menue SignUp" applyHtmlTag="false">
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <style>
+        @page {
+          size: landscape;
+          margin: 5.0mm;
+        }
+        .pHeader {
+          background: rgb({!colourCodeVal}) !important;
+          color: white;
+          height: 50px;
+          font-size: 14px;
+        }
+        .pHeader th {
+          border: 2px solid black;
+        }
+        .pRowEven {
+          background: #C3C3C3 !important;
+        }
+        .pRowOdd {
+          background: white !important;
+        }
+        table {
+          border: 2px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding-left: 3px;
+          border: 0.3pt solid black;
+          border-collapse: collapse;
+        }
+        body {
+          font-size: 12px;
+        }
+        td {
+          font-family: calibri !important;
+        }
+        .rotate {
+          writing-mode: tb-rl;
+        }
+        div,span {
+          word-break: break-word !important;
+        }
+      </style>
+    </head>
+    <body>
+      <apex:pageBlock >
+        <table width="100%">
+          <tr class="pHeader">
+            <th>{!tourOptional.Name}</th>
+            <th style="display:{!if(totalStarters != 0,'','none')}" colspan="{!totalStarters}">{!$Label.Starters}</th>
+            <th style="display:{!if(totalSoups != 0,'','none')}" colspan="{!totalSoups}">{!$Label.Soups}</th>
+            <th style="display:{!if(totalmainCourse != 0,'','none')}" colspan="{!totalmainCourse}" >{!$Label.Main_Course}</th>
+            <th style="display:{!if(totalDesserts != 0,'','none')}" colspan="{!totalDesserts}" >{!$Label.Desserts}</th>
+            <th style="display:{!if(isKidsMenuAvailable,'','none')}" colspan="2"></th>
+          </tr>
+          <tr class="pRowEven" style="font-weight: bold;">
+            <td width="10%" style="font-size:13px; border-right:2px solid black;">{!$Label.Name}</td>
+            <!-- Changes start, Done by Maksud Ali for story : S-428451 -->
+            <td width="{!width}%" style="display:{!if(isStarte1Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte2Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte3Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte4Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_4__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte5Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_5__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_5__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte6Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_6__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_6__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte7Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_7__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_7__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte8Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_8__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_8__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isSoup1Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isSoup2Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isSoup3Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isSoup4Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_4__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isMainCourse1Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse2Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse3Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse4Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_4__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse5Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_5__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_5__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse6Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_6__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_6__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse7Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_7__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_7__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse8Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_8__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_8__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isDesserts1Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts2Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts3Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts4Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_4__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts5Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_5__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_5__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts6Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_6__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_6__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts7Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_7__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_7__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts8Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_8__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_8__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}; font-size:13px;"><div><span>{!$Label.Childrens_menu}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}; font-size:13px;"><div><span>{!tourOptional.Supplier_Menu__r.Kids_menu_content__c}</span></div></td>
+            <!-- end changes -->
+          </tr>
+          <apex:variable var="x" value="{!1}"/>
+          <apex:repeat value="{!passengerList}" var="passenger">
+            <tr class="{!IF(MOD(x, 2) == 0, 'pRowEven', 'pRowOdd')}">
+              <td width="10%" style="border-right:2px solid black;">{!passenger.Family_Name__c} {!passenger.First_Name__c}</td>
+              <!-- Changes start, Done by Maksud Ali for story : S-428451 -->
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastStarterCounter}" var="index">
+                <td style="{!IF(i == totalStarters, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+              
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastSoupCounter}" var="index">
+                <td style="{!IF(i == totalSoups, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+              <!-- End changes -->
+              
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastMainCourseCounter}" var="index">
+                <td style="{!IF(i == totalmainCourse, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastDessertCounter}" var="index">
+                <td style="{!IF(i == totalDesserts, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+            </tr>
+            <apex:variable var="x" value="{!x + 1}"/>
+          </apex:repeat>
+          <apex:variable var="x" value="{!1}"/>
+          <apex:repeat value="{!blankPassanger}" var="passenger">
+            <tr class="{!IF(MOD(x, 2) == 0, 'pRowEven', 'pRowOdd')}">
+              <td width="10%" style="border-right:2px solid black;">&nbsp;&nbsp;</td>
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastSoupCounter}" var="index">
+                <td style="{!IF(i == totalSoups, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastStarterCounter}" var="index">
+                <td style="{!IF(i == totalStarters, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastMainCourseCounter}" var="index">
+                <td style="{!IF(i == totalmainCourse, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastDessertCounter}" var="index">
+                <td style="{!IF(i == totalDesserts, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+            </tr>
+            <apex:variable var="x" value="{!x + 1}"/>
+          </apex:repeat>
+          <tr class="pRowOdd">
+            <td width="10%" style="border-right:2px solid black; border-top:2px solid black;">
+              <b>{!$Label.Totals}</b>
+            </td>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastSoupCounter}" var="index">
+              <td style="{!IF(i == totalSoups, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastStarterCounter}" var="index">
+              <td style="{!IF(i == totalStarters, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastMainCourseCounter}" var="index">
+              <td style="{!IF(i == totalmainCourse, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastDessertCounter}" var="index">
+              <td style="{!IF(i == totalDesserts, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <td width="{!width}%" style="{!IF(isKidsMenuAvailable, 'display:; border-right:2px solid black; border-top:2px solid black;', 'display:none;')}">&nbsp;&nbsp;</td>
+            <td width="{!width}%" style="{!IF(isKidsMenuAvailable, 'display:; border-right:2px solid black; border-top:2px solid black;', 'display:none;')}">&nbsp;&nbsp;</td>
+          </tr>
+        </table>
+        <apex:pageBlock id="firstPageHeader" rendered="{!IF(secondPagePassengerList.size > 0, false, true)}">
+          <apex:variable var="i" value="{!1}"/>
+          <table width="100%">
+            
+            <apex:repeat value="{!footerlogoList}" var="footerlogo">
+              <td style="width:200px; padding:10px 10px 0px 10px; border:none; {!IF(OR(footerlogoList.size <= i), 'text-align:right;', IF(i == 1, 'text-align:left;', 'text-align: center;'))}">
+                <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+                <apex:image url="{!URLFOR($Resource.BrandImages,footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+                <!-- End changes -->
+                <apex:variable var="i" value="{!i+1}"/>
+              </td>
+            </apex:repeat>
+          </table>
+        </apex:pageBlock>
+      </apex:pageBlock>
+      <apex:pageBlock id="secondPageBlock" rendered="{!IF(secondPagePassengerList.size > 0, true, false)}">
+        <div style="page-break-after:always;"></div>
+        <table width="100%">
+          <tr class="pHeader">
+            <th>{!tourOptional.Name}</th>
+
+            <th style="display:{!if(totalStarters != 0,'','none')}" colspan="{!totalStarters}">{!$Label.Starters}</th>
+            <th style="display:{!if(totalSoups != 0,'','none')}" colspan="{!totalSoups}">{!$Label.Soups}</th>
+            <th style="display:{!if(totalmainCourse != 0,'','none')}" colspan="{!totalmainCourse}" >{!$Label.Main_Course}</th>
+            <th style="display:{!if(totalDesserts != 0,'','none')}" colspan="{!totalDesserts}" >{!$Label.Desserts}</th>
+            <th style="display: {!if(isKidsMenuAvailable,'','none')}" colspan="2"></th>
+          </tr>
+          <tr class="pRowEven" style="font-weight:bold;">
+            <td width="10%" style="font-size:13px; border-right:2px solid black;">{!$Label.Name}</td>
+            <!-- Changes start, Done by Maksud Ali for story : S-428451 -->
+            <td width="{!width}%" style="display:{!if(isStarte1Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte2Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte3Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte4Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_4__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte5Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_5__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_5__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte6Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_6__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_6__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte7Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_7__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_7__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isStarte8Available,'','none')}; font-size:13px; {!IF(theLastStarterText == tourOptional.Supplier_Menu__r.Starter_Text_8__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Starter_Text_8__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isSoup1Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isSoup2Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isSoup3Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isSoup4Available,'','none')}; font-size:13px; {!IF(theLastSoupText == tourOptional.Supplier_Menu__r.Soup_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Soup_Text_4__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isMainCourse1Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse2Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse3Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse4Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_4__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse5Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_5__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_5__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse6Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_6__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_6__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse7Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_7__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_7__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isMainCourse8Available,'','none')}; font-size:13px; {!IF(theLastMainCourseText == tourOptional.Supplier_Menu__r.Main_Text_8__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Main_Text_8__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isDesserts1Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_1__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_1__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts2Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_2__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_2__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts3Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_3__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_3__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts4Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_4__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_4__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts5Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_5__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_5__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts6Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_6__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_6__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts7Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_7__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_7__c}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isDesserts8Available,'','none')}; font-size:13px; {!IF(theLastDessertText == tourOptional.Supplier_Menu__r.Dessert_Text_8__c, 'border-right:2px solid black;', '')}"><div><span>{!tourOptional.Supplier_Menu__r.Dessert_Text_8__c}</span></div></td>
+
+            <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}; font-size:13px;"><div><span>{!$Label.Childrens_menu}</span></div></td>
+            <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}; font-size:13px;"><div><span>{!tourOptional.Supplier_Menu__r.Kids_menu_content__c}</span></div></td>
+            <!-- End Changes -->
+          </tr>
+          <apex:variable var="x" value="{!1}"/>
+          <apex:repeat value="{!secondPagePassengerList}" var="passenger">
+            <tr class="{!IF(MOD(x, 2) == 0, 'pRowEven', 'pRowOdd')}">
+              <td width="{if(isKidsMenuAvailable, 15, 15)}%" style="border-right:2px solid black;">
+                {!passenger.Family_Name__c} {!passenger.First_Name__c}
+              </td>
+              
+              <!-- Changes start, Done by Maksud Ali for story : S-428451 -->
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastStarterCounter}" var="index">
+                <td style="{!IF(i == totalStarters, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+              
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastSoupCounter}" var="index">
+                <td style="{!IF(i == totalSoups, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+              <!-- End changes -->
+              
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastMainCourseCounter}" var="index">
+                <td style="{!IF(i == totalmainCourse, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastDessertCounter}" var="index">
+                <td style="{!IF(i == totalDesserts, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+            </tr>
+            <apex:variable var="x" value="{!x + 1}"/>
+          </apex:repeat>
+          <apex:variable var="x" value="{!1}"/>
+          <apex:repeat value="{!secondPageBlankPassanger}" var="passenger">
+            <tr class="{!IF(MOD(x, 2) == 0, 'pRowEven', 'pRowOdd')}">
+              <td width="10%" style="border-right:2px solid black;">&nbsp;&nbsp;</td>
+              
+              <!-- Changes start, Done by Maksud Ali for story : S-428451 -->  
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastStarterCounter}" var="index">
+                <td style="{!IF(i == totalStarters, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+              
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastSoupCounter}" var="index">
+                <td style="{!IF(i == totalSoups, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+              
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastMainCourseCounter}" var="index">
+                <td style="{!IF(i == totalmainCourse, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <apex:variable var="i" value="{!1}"/>
+              <apex:repeat value="{!theLastDessertCounter}" var="index">
+                <td style="{!IF(i == totalDesserts, 'border-right:2px solid black;', '')}">&nbsp;&nbsp;</td>
+                <apex:variable var="i" value="{!i + 1}"/>
+              </apex:repeat>
+
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+              <td width="{!width}%" style="display:{!if(isKidsMenuAvailable,'','none')}">&nbsp;&nbsp;</td>
+            </tr>
+            <apex:variable var="x" value="{!x + 1}"/>
+          </apex:repeat>
+          <tr class="pRowOdd">
+            <td width="10%" style="border-right:2px solid black; border-top:2px solid black;">
+              <b>{!$Label.Totals}</b>
+            </td>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastSoupCounter}" var="index">
+              <td style="{!IF(i == totalSoups, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastStarterCounter}" var="index">
+              <td style="{!IF(i == totalStarters, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastMainCourseCounter}" var="index">
+              <td style="{!IF(i == totalmainCourse, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <apex:variable var="i" value="{!1}"/>
+            <apex:repeat value="{!theLastDessertCounter}" var="index">
+              <td style="{!IF(i == totalDesserts, 'border-right:2px solid black;', '')} border-top:2px solid black;">&nbsp;&nbsp;</td>
+              <apex:variable var="i" value="{!i + 1}"/>
+            </apex:repeat>
+
+            <td width="{!width}%" style="{!IF(isKidsMenuAvailable, 'display:; border-right:2px solid black; border-top:2px solid black;', 'display:none;')}">&nbsp;&nbsp;</td>
+            <td width="{!width}%" style="{!IF(isKidsMenuAvailable, 'display:; border-right:2px solid black; border-top:2px solid black;', 'display:none;')}">&nbsp;&nbsp;</td>
+          </tr>
+        </table>
+        <apex:variable var="i" value="{!1}"/>
+        <table width="100%">
+          <apex:repeat value="{!footerlogoList}" var="footerlogo">
+            <td style="width:200px; padding:10px 10px 0px 10px; border:none; {!IF(OR(footerlogoList.size <= i), 'text-align:right;', IF(i == 1, 'text-align:left;', 'text-align: center;'))}">
+              <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+                <apex:image url="{!URLFOR($Resource.BrandImages,footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+                <!-- End changes -->
+              <apex:variable var="i" value="{!i+1}"/>
+            </td>
+          </apex:repeat>
+        </table>
+      </apex:pageBlock>
+    </body>
+  </html>
+</apex:page>

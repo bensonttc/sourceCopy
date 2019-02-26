@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>Request Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Validation Fields (For Integration Use) --></label>
+            <section>Validation Fields (For Integration Use)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Request Layout Admin</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Data Validation (For Integration Purposes) --></label>
+            <section>Data Validation (For Integration Purposes)</section>
+        </sections>
+        <sections>
+            <label><!-- Validation Fields (For Integration Use) --></label>
+            <section>Validation Fields (For Integration Use)</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

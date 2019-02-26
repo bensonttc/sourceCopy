@@ -1,0 +1,19 @@
+<!-- 05th June 2018    Ravi Jain    Modified (Story# S-485984) - Please see the story description for more details. -->
+<apex:component controller="TOPS_EmailIconsController">
+    <!--<apex:repeat var="details" value="{!socialList}">
+    <a href="{!details.Share_Link__c}"><img src="{!details.Icon_URL__c}"/></a>
+    </apex:repeat>-->
+    
+    <!-- Code commented and changes done by Ravi Jain for story S-485984 -->
+    <!-- Start - Ravi Jain - S-485984 - June 05,2018 - Show the TD media icon if TDSocialIcon size is greater than 0--> 
+    <apex:outputPanel rendered="{!emailFlag == true}"><br/>You can follow me on:<br/></apex:outputPanel>
+    <apex:repeat var="details" value="{!TDSocialIcon}" rendered="{!TDSocialIcon.size != 0}">
+        <a href="{!details.shareLink}"><img src="{!details.iconUrl}"/></a>
+    </apex:repeat>
+     <apex:outputPanel rendered="{!emailFlag == true}"><br/><br/><br/>Remember to follow {!brand}<br/></apex:outputPanel>
+    <apex:repeat var="details" value="{!socialList}" rendered="{!socialList.size != 0}">
+    <a href="{!details.Share_Link__c}"><img src="{!details.Icon_URL__c}"/></a>
+    </apex:repeat>
+    <!-- End - Ravi Jain - S-485984 - June 05,2018 -->
+    
+</apex:component>

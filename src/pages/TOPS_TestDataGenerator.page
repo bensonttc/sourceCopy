@@ -1,0 +1,2 @@
+<apex:page showHeader="true" sidebar="true" standardController="Account" extensions="TOPS_TestDataGeneratorExtension" action="{!generateTestData}">
+</apex:page>

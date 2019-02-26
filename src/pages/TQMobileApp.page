@@ -1,0 +1,194 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" controller="TQMobileAppController">
+<html lang="en">
+	<head>
+		<link href="{!URLFOR($Resource.Bootstrap, 'dist/css/bootstrap.min.css')}" rel="stylesheet" />
+		<title>Tquila1 App Configurator</title>
+		<c:TquilaOneConfiguratorCSS />
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="{!URLFOR($Resource.Bootstrap, 'dist/js/bootstrap.min.js')}"></script>
+	</head>
+	<body>
+	<apex:form >
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">Track Object</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="appNameField">App Id</label>
+							<input class="form-control" id="appNameField" placeholder="Enter App Id" />
+						</div>
+					<div class="form-group">
+						<label for="objectField">Object</label>
+						<select class="form-control" id="objectField">
+							<apex:repeat value="{!objectsList}" var="o">
+								<option>{!o}</option>
+							</apex:repeat>
+						</select>
+					</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" onclick="window.location.href = '/apex/TQTrackedObjectEdit?clientAppId='+document.getElementById('appNameField').value+'&objApiName='+document.getElementById('objectField').value;">Create</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<button type="button" class="btn btn-default" style="float:right;" onclick="window.location.href = '/';">Back to Salesforce</button>
+			<button type="button" class="btn btn-primary" style="float:right; margin-right:5px;" onclick="document.getElementById('appNameField').value='';$('#myModal').modal('show');"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create new App</button>
+			<h2>Tquila1 App Configurator</h2>
+			<apex:actionFunction action="{!updateAll}" name="updateAll" >
+				<apex:param name="appname" value="" assignTo="{!appInFocus}"/>
+			</apex:actionFunction>
+
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+			<apex:repeat value="{!apps}" var="app">
+			<!-- <h2>{!app.appName} Tracked Objects</h2> -->
+
+			<div class="panel-group" role="tablist">
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="collapseListGroupHeading{!app.appName}" style="overflow:auto;">
+						<h4 class="panel-title" style="float:left;">
+						<a class="" data-toggle="collapse" href="#collapseListGroup{!app.appName}" aria-expanded="true" aria-controls="collapseListGroup{!app.appName}">
+						{!app.appName}
+						</a>
+						</h4>
+						<button type="button" style="float:right;" class="btn btn-primary btn-xs" aria-label="Logger Config" data-toggle="tooltip" title="Logger Config" onclick="alert('Not yet implemented!');">
+							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+						</button>
+						<apex:outputPanel rendered="{!NOT(ISNULL(app.conf))}">
+							<button type="button" style="float:right; margin-right:5px;" class="btn btn-primary btn-xs" data-toggle="tooltip" arial-label="Auto Sync Config" title="Auto Sync Config" onclick="window.location.href = '/setup/ui/editCustomSettingsData.apexp?id={!app.conf.Id}&retURL=%2Fapex/TQMobileApp';">
+								<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+							</button>
+						</apex:outputPanel>
+						<button type="button" style="float:right; margin-right:5px;" class="btn btn-primary btn-xs" data-toggle="tooltip" aria-label="Track a new Object" title="Track a new Object" onclick="document.getElementById('appNameField').value='{!app.appName}';$('#myModal').modal('show');">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+						</button>
+					</div>
+					<div id="collapseListGroup{!app.appName}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading{!app.appName}" aria-expanded="true">
+
+						<div id="no-more-tables">
+						<table class="table table-condensed">
+							<tr>
+								<th>Object</th>
+								<th class="nowrap" style="width: 100px !important;">Actions</th>
+								<th class="nowrap">Displayable</th>
+								<th class="nowrap">Active</th>
+							</tr>
+							<apex:repeat value="{!app.objs}" var="o">
+								<tr>
+									<td>{!o.label}</td>
+									<td>
+										<a class="btn btn-xs btn-default" href="/apex/TQTrackedObjectEdit?clientAppId={!app.appName}&objApiName={!o.apiName}" data-toggle="tooltip" aria-label="Edit" title="Edit">
+											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										</a> 
+										<a class="btn btn-xs btn-default" data-toggle="tooltip" aria-label="Delete" title="Delete"
+										 style="cursor: pointer;" onclick="javascript:TQMobileAppController.deleteObjSetting('{!o.config.Name}',function(result,status){location.reload();});">
+										 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										 </a>
+									</td>
+									<td style="text-align:center;">
+										<apex:outputPanel rendered="{!o.config.Displayable__c}">
+											<button style="width:32px;" type="button" data-configname="{!o.config.Name}" class="btn btn-success btn-xs" id="displayable-{!app.appName}-{!o.apiName}" title="On">
+												<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+											</button>
+										</apex:outputPanel>
+										<apex:outputPanel rendered="{!NOT(o.config.Displayable__c)}">
+											<button style="width:32px;" type="button" data-configname="{!o.config.Name}" class="btn btn-danger btn-xs" id="displayable-{!app.appName}-{!o.apiName}" title="Off">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+										</apex:outputPanel>
+
+										<script>
+										$( '#displayable-{!app.appName}-{!o.apiName}' ).click(function() {
+											var configname = $(this).data('configname');
+											var b = null;
+
+											$(this).toggleClass('btn-success');
+											$(this).toggleClass('btn-danger');
+
+											var status = $(this).attr('title');
+											if (status=='') {
+												status = $(this).attr('data-original-title');
+											}
+
+											if (status=='On') {
+												$(this).attr('title','Off');
+												$(this).html('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+												b = false;
+											}
+											else {
+												$(this).attr('title','On');
+												$(this).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>');
+												b = true;
+											}
+											TQMobileAppController.updateDisplayableStatus(configname,b,function(result,status){});
+										});
+										</script>
+									</td>
+									<td style="text-align:center;">
+										<apex:outputPanel rendered="{!o.config.Active__c}">
+											<button style="width:32px;" type="button" data-configname="{!o.config.Name}" class="btn btn-success btn-xs" id="active-{!app.appName}-{!o.apiName}" title="On">
+												<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+											</button>
+										</apex:outputPanel>
+										<apex:outputPanel rendered="{!NOT(o.config.Active__c)}">
+											<button style="width:32px;" type="button" data-configname="{!o.config.Name}" class="btn btn-danger btn-xs" id="active-{!app.appName}-{!o.apiName}" title="Off">
+												<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+											</button>
+										</apex:outputPanel>
+
+										<script>
+										$( '#active-{!app.appName}-{!o.apiName}' ).click(function() {
+											var configname = $(this).data('configname');
+											var b = null;
+
+											$(this).toggleClass('btn-success');
+											$(this).toggleClass('btn-danger');
+
+											var status = $(this).attr('title');
+											if (status=='') {
+												status = $(this).attr('data-original-title');
+											}
+
+											if (status=='On') {
+												$(this).attr('title','Off');
+												$(this).html('<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>');
+												b = false;
+											}
+											else {
+												$(this).attr('title','On');
+												$(this).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>');
+												b = true;
+											}
+											TQMobileAppController.updateActiveStatus(configname,b,function(result,status){});
+										});
+										</script>
+									</td>
+								</tr>
+							</apex:repeat>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			</apex:repeat>
+		</div>
+		</div>
+
+		<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+		</script>
+	</apex:form>
+	</body>
+</html>	
+</apex:page>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://sso-grandeuropeantravel.travcorpservices.com/openid/connect/auth</authorizeUrl>
+    <consumerKey>MTS_PROD_GE</consumerKey>
+    <consumerSecret>mmUtYmBjhmLB6xPNWr5EE8nSVrOgL+0bGGvtc2lHVj7b675ZW9s+uxfJk8pqp5P/wwQJvQ3DYw8BWd181AyorSH2xps6hPI8bI1m2p+zFoc=</consumerSecret>
+    <defaultScopes>openid email profile</defaultScopes>
+    <executionUser>miranda@ttc.cloudperspective.co.uk.mmulapi</executionUser>
+    <friendlyName>TTC Connect GE</friendlyName>
+    <iconUrl>http://wiki.openid.net/f/openid-logo-wordmark.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <registrationHandler>TQSsoRegistrationHandler</registrationHandler>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://sso-grandeuropeantravel.travcorpservices.com/openid/connect/token</tokenUrl>
+    <userInfoUrl>https://sso-grandeuropeantravel.travcorpservices.com/openid/connect/userinfo</userInfoUrl>
+</AuthProvider>

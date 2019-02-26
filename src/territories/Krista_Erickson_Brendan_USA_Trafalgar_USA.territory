@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Midwest: IA,MN,ND,NE,SD,WI</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Krista Erickson - Brendan Vacations (USA) &amp; Trafalgar (USA)</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <accountAccessLevel>Edit</accountAccessLevel>
+</Territory>

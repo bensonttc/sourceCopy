@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Uniworld Guest Relations Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Global_Guest_Relations_Uniworld</publicGroup>
+            <publicGroup>Guest_Relations_Australia</publicGroup>
+            <publicGroup>Guest_Relations_New_Zealand</publicGroup>
+            <publicGroup>Guest_Relations_South_Africa</publicGroup>
+        </publicGroups>
+        <roles>
+            <role>Geneva_Guest_Relations</role>
+            <role>Guest_Relations_Director</role>
+            <role>Head_of_Reservations_Asia</role>
+            <role>Reservations_Agent_Asia</role>
+            <role>Reservations_Agent_2_ASIA</role>
+            <role>Reservations_Team_Manager_Asia</role>
+            <role>Uniworld_AUS_MD_Head_of_Sales</role>
+            <role>Uniworld_SGP_Marketing</role>
+            <role>Uniworld_SGP_MD_Head_of_Sales</role>
+        </roles>
+        <users>
+            <user>dee.russell@getours.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;a href=&quot;https://eu9.salesforce.com/00O0O000009R9o6&quot; target=&quot;_self&quot;&gt;My Supplier Feedback&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://eu9.salesforce.com/00O0O00000Agces&quot;&gt;My Feedback on Optionals&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://eu9.salesforce.com/00O0O00000Ah40J&quot;&gt;My Submitted Reports&lt;/a&gt;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Feedback on Suppliers and Optionals</masterLabel>
+    <template>
+        <name>flexipage:defaultAppHomeTemplate</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

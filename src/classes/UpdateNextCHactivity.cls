@@ -1,0 +1,43 @@
+global class UpdateNextCHactivity {
+
+   @InvocableMethod(label='Update Next CH Activity')
+    public static void UpdateNextCHActivityMethod(list<String> accountId_set) {
+
+        System.debug('Update Next CH Activity');
+        
+        List<Account> account_soon_task = [
+        SELECT Id, 
+        (
+            SELECT Id, ActivityDate
+            FROM OpenActivities 
+            WHERE Brands__c includes ('Contiki')
+            ORDER BY ActivityDate ASC 
+            LIMIT 1
+        ) 
+        FROM Account 
+        WHERE Id in :accountId_set
+        ];
+
+        List<Account> accts = new List<Account>();
+        
+        if(!account_soon_task.isEmpty()){
+            for(Account a : account_soon_task){
+            
+                if( !a.OpenActivities.isEmpty() ){  //The Account has an Open Activity
+                    Date NEXT = a.OpenActivities[0].ActivityDate; 
+                    a.CH_Next_Activity__c = NEXT;
+                    accts.add(a);  
+                                         
+                }else{
+                    a.CH_Next_Activity__c = null;
+                    accts.add(a);  
+                } 
+                
+                
+            }
+        }
+     
+        update accts;
+    
+    } //end of method
+} //end of class

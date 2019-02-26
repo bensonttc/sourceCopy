@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Groups Specialist Insight CAN</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Groups Specialist Insight CAN</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Groups_Insight_CAN_Manager</parentRole>
+</Role>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Southern US</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Ashley Vaughan - Trafalgar (USA) &amp; Brendan Vacations (USA)</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <accountAccessLevel>Edit</accountAccessLevel>
+</Territory>

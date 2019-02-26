@@ -1,0 +1,92 @@
+<apex:page showHeader="false" sidebar="false" controller="TQAttachmentController"  action="{!initSharePage}">
+	<head>
+		<style type='text/css'>
+			.feeditem{
+			    max-width: 600px;
+			    width: 100%;
+			    margin: auto;			    
+			    border: 1px solid gray;
+			}
+			.feeditem-container{
+				padding: 15px 20px;
+				border-top: none;
+				display: -webkit-box;
+			    display: -webkit-flex;
+			    display: -moz-flex;
+			    display: -ms-flexbox;
+			    display: flex;
+			}
+			.chatter-avatarRegular{
+				margin-right: 20px;
+			}
+			.feeditembody{
+				-webkit-box-flex: 1;
+			    -webkit-flex: 1;
+			    -moz-flex: 1;
+			    -ms-flex: 1;
+			    flex: 1;
+			}
+			.preamblecontainer{
+				font-weight: bold;
+	    		font-size: 1.1em;
+	    		margin-bottom: 5px;
+			}
+			.feeditemattachments {
+				margin-top: 15px;
+			}
+			.feeditemfooter {
+				margin-top: 8px;
+				font-style: italic;
+			}
+			.contentThumbnail {
+				display: block;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="cxfeeditem feeditem">
+			<div class="feeditem-container">
+			    <div class="chatter-avatarRegular feeditemusericon chatter-avatar">
+		                  <img alt="{!attachmentInfo.userName}" class="chatter-photo" 
+		                  	   height="45" 
+		                  	   src="{!attachmentInfo.userAvatarUrl}" 
+		                  	   title="{!attachmentInfo.userName}" width="45"></img>   
+				</div>
+			
+			    <div class="feeditemcontent cxfeeditemcontent">
+					<div class="feeditembodyandfooter">
+			            <div class="feeditembody">
+			                <div class="preamblecontainer displayblock">
+			                    <span>
+			                    	<span class="feeditemsecondentity">{!attachmentInfo.userName}</span> 
+			                    </span>
+			                </div>
+			                
+			                <apex:outputPanel styleClass="cxfeeditemtextwrapper" 
+			                	rendered="{!AND(NOT(ISNULL(attachmentInfo.text)), attachmentInfo.text != '')}" 
+			                	layout="block">
+			                    <div class="cxfeeditemtextadditional">
+			                    	<span class="feeditemtext cxfeeditemtext">{!attachmentInfo.text}</span>
+			                    </div>
+			                </apex:outputPanel>
+			                
+			                <apex:outputPanel styleClass="feeditemattachments"
+			                	rendered="{!NOT(ISNULL(attachmentInfo.body))}"
+			                	layout="block">
+			                    <div class="feeditemaux EachFileAuxBody">
+			                    	<img class="contentThumbnail" src="data:image;base64,{!attachmentBase64}"></img>
+								</div>
+			                </apex:outputPanel>
+			            </div>
+			            <div class="feeditemfooter">
+			               <apex:outputText value="{0,date, dd MMMM yyyy 'at' HH:mm}">
+						       <apex:param value="{!attachmentInfo.CreatedDate}" />
+						   </apex:outputText>
+			            </div>
+			        </div>
+			    </div>
+		    </div>
+		</div>
+	</body>
+</apex:page>

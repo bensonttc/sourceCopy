@@ -1,0 +1,33 @@
+<apex:page standardcontroller="Case" recordSetVar="Cases" tabStyle="Case" extensions="BookingPassengerCaseController" showHeader="true" sidebar="true">
+    <apex:sectionHeader title="Case Edit" subtitle="New Case" />
+    
+    
+    <apex:form >
+    <apex:pageBlock title="Case Edit">
+        <apex:pageMessages />
+        <apex:pageBlockButtons location="top">
+            <apex:commandButton action="{!SaveCase}" value="Save" rendered="{!renderPage}"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel" />
+        </apex:pageBlockButtons>
+        <apex:outputPanel id="page" rendered="{!renderPage}">
+            <apex:pageBlockSection title="Case Information">
+                <apex:outputField value="{!Case.ContactID}" />
+                <apex:outputField value="{!Case.Status}"/>
+                <apex:inputField value="{!Case.Date_Opened__c}" required="true"/>                                                                            
+                <apex:outputField value="{!Case.OwnerID}" />
+                <apex:outputField value="{!Case.Booking_Passenger__c}" />
+                <apex:outputField value="{!Case.Business_Unit__c}" />
+                <apex:inputField value="{!Case.Booking_Component__c}" required="True" />
+                
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Description Information" columns="1">
+         
+            </apex:pageBlockSection>
+    
+        
+        </apex:outputPanel>
+    </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

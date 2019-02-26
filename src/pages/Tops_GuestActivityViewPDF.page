@@ -1,0 +1,117 @@
+<!--
+//
+// Page Name: Tops_GuestActivityViewPDF
+// Description: It will generate the PDF of guest activity view.
+//
+// 25th Nov 2016   Maksud Ali (Story# - S-453096)
+//
+-->
+
+<apex:page standardController="Tour_Instance__c" extensions="Tops_GuestActivityViewPDFController" renderAs="PDF"  StandardStyleSheets="false" applyBodyTag="false"
+sidebar="false" showHeader="false">
+
+  <head>
+          <style type="text/css">
+              @page { size : Letter;
+                margin-left: 4mm;
+                margin-right: 4mm;
+                margin-top: 3mm;
+                margin-bottom: 0mm;
+                size:Portrait;
+              }
+              table {
+                  width: 100%;
+                  border-collapse: collapse;
+              }
+            
+              table, tr,th, td {
+                  border: 1px solid black;
+              }
+              tr,th{orphans:10}
+              
+              .fontSize12 { font-size:{!fontSize} }
+              .fontSize10 { font-size:10px; }
+              .fontSize08 { font-size:8px; } 
+           </style>
+  </head>
+  <body>          
+          <table border ="1" style="width:100%">
+              <tr  class="fontSize12">
+                  <th colspan="2">{!Tour_Instance__c.Operating_Product_Code__c}/{!Tour_Instance__c.Departure_Code__c}</th>
+                  <apex:repeat value="{!guestsView.lstToursOptional}" var="tourOptions">
+                      <th align="center">{! IF(tourOptions.Adult_Price__c == null, '',CEILING(tourOptions.Adult_Price__c))} </th>
+                  </apex:repeat>
+                  
+              </tr>
+              <tr class="fontSize12">
+                  <td><b>{! guestsView.guestHeader}</b></td>
+                  <td align="center" width="60"><b>Adult / Child</b></td>
+                  <apex:repeat value="{!guestsView.lstToursOptional}" var="tourOptions">
+                      <td align="center"><b>{! IF(tourOptions.Adult_Price__c == null, tourOptions.Name,LEFT(tourOptions.Name,20))}</b></td>
+                  </apex:repeat>
+                  
+              </tr>
+              <apex:variable id="bgColor" value="#BFBFBF" var="bgColor"/>
+              <apex:repeat value="{!guestsView.lstPassenger}" var="gView">
+                  <tr  class="fontSize12" style="background-color: {!bgColor};">
+                      <td style="white-space: nowrap;width:80px;">{! gView.fullName }</td>
+                      <td align="center">{! gView.passengerType }</td>
+                      <apex:repeat value="{!gView.lstTourOptional}" var="tOptional">
+                          <td align="{! IF(tOptional.passengerOptional == '1' || tOptional.passengerOptional == '', 'center','right')}">
+                              {! tOptional.passengerOptional}
+                          </td>
+                      </apex:repeat>
+                  </tr>
+                  <apex:variable id="bgColor" value="{! IF(bgColor == 'white','#BFBFBF','white')}" var="bgColor"/>
+              </apex:repeat>
+              
+              
+              <tr class="fontSize12">
+                  <td align="center"><b>{!guestsView.todaysDate}</b></td>
+                  <td align="center"><b>{!guestsView.totalAdults}</b></td>
+                  <apex:repeat value="{!guestsView.lstTotals}" var="total">
+                      <td align="center"><b>{!IF(total > 0,total,'')}</b></td>
+                  </apex:repeat> 
+              </tr>
+              
+          </table>  
+           <apex:repeat value="{!splitColumnsList}" var="split">
+               <div style="page-break-after: always"/>
+               <table style="width:auto">
+                   <tr class="fontSize12">
+                           <th style="white-space: nowrap;width:80px;">&nbsp;</th>
+                       <apex:repeat value="{!split.lstSplitTableColumns}" var="splitCol">
+                           <th align="center">{! IF(splitCol.salesPrice == null, '',CEILING(splitCol.salesPrice))} &nbsp; </th>   
+                       </apex:repeat>        
+                   </tr>
+                   <tr class="fontSize12">
+                           <td style="white-space: nowrap;width:80px;"><b>{! guestsView.guestHeader}</b></td>
+                       <apex:repeat value="{!split.lstSplitTableColumns}" var="splitCol">
+                           <td align="center" width='{! IF(splitCol.salesPrice == null, 55, 70)}'><b>
+                           {! IF(splitCol.salesPrice == null, splitCol.passengerOptional,LEFT(splitCol.passengerOptional,20))}
+                           </b></td>
+                       </apex:repeat>        
+                   </tr>
+                   
+                   <apex:variable id="bgColor1" value="#BFBFBF" var="bgColor1"/>
+                   <apex:repeat value="{!split.lstSplitPsngrColumns}" var="splitCol">
+                       <tr class="fontSize12" style="background-color: {!bgColor1};">
+                               <td style="white-space: nowrap;width:80px;">{!splitCol.fullName}</td>
+                           <apex:repeat value="{!splitCol.lstTourOptional}" var="troption">
+                               <td align="{! IF(troption.passengerOptional == '1' || troption.passengerOptional == '', 'center','right')}">&nbsp;{! troption.passengerOptional} </td>
+                           </apex:repeat>                        
+                       </tr>
+                       <apex:variable id="bgColor1" value="{! IF(bgColor1 == 'white','#BFBFBF','white')}" var="bgColor1"/>
+                   </apex:repeat>
+                   <tr class="fontSize12">
+                           <td style="white-space: nowrap;width:80px;"><b>{!guestsView.todaysDate}</b></td>
+                      <apex:repeat value="{!split.splitedTotal}" var="total">
+                          <td align="center"><b>{!IF(total > 0,total,'')} &nbsp;</b></td>
+                      </apex:repeat> 
+                  </tr>
+                  
+               </table>
+           </apex:repeat> 
+{! debugMsg }
+             </body>
+</apex:page>

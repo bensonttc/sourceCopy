@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+    <script src="/soap/ajax/30.0/connection.js"></script>
+    <link rel="stylesheet" type="text/css" href="/sCSS/Theme2/en/dStandard.css" />
+  <script type="text/javascript">
+			var caseid = "{!Case.Id}";
+			var userid = "{!$User.Id}";
+			var CaseToUpdate = new sforce.SObject("Case");
+				CaseToUpdate.set("Id", caseid);
+				CaseToUpdate.set("OwnerId", userid);
+				var Result = sforce.connection.update([CaseToUpdate]);
+					 	if(Result[0].getBoolean("success"))
+					 	{
+					 		function redirect() { parent.frames.location.replace("/{!Case.Id}"); } 
+							redirect(); 
+					 	}
+					 	else {
+						alert("Error");
+						}	
+</script>
+</head>
+<body>
+</body>
+</html>

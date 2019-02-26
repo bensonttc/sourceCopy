@@ -1,0 +1,4 @@
+<apex:page standardController="Opportunity" extensions="Activities_Controller_Extension"  showHeader="true" sidebar="true">
+<c:ActivitiesByBrand sObjectIDparam="{!ThisID}" sObjectTypeParam="{!SObjectType}"/>
+
+</apex:page>

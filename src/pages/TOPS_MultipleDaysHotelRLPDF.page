@@ -1,0 +1,466 @@
+<!-- 
+// Apex Page Name: TOPS_RoomListPDF
+// For Apex Controller Class: TOPS_RoomListPDFController
+// Description: This visualforce page is used to generate PDF of booked rooms.
+// 04th Jan 2017    Ravi Jain     Modified (Story# S-455844) - Please see the story description for more details.
+-->
+<!--
+    17 Feb 2016, Maksud Ali Modified (Story# S-455965) - Please see the story description for more details.
+-->
+<!--
+     18 Dec 2017, Calvin Goodenough Changes made for Issue I-304069 to make 1 guest name per line and adjust col widths for multiple nights rooming list
+-->
+
+<apex:page cache="false" language="{!theLanguage}" applyBodyTag="false" controller="TOPS_MultipleDaysHotelRLController" renderAs="pdf"
+sidebar="false" showHeader="false" title="Booked Rooms List">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+      @page { size : letter;
+        margin-left: 4mm;
+        margin-right: 4mm;
+        margin-top: 3mm;
+        margin-bottom: 0mm;
+      }
+      body {
+        font-size: 14px;
+        /* Start changes, Done by Maksud Ali for Story : S-428444 */
+        font-family: calibri,arial !important;
+        /* End changes for Story : S-428444 */      
+      }
+      .theHeader {
+        font-weight: bold;
+      }
+      .theDataSection {
+        border: 1px solid black;
+        position: relative;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 895px;
+        width: auto;
+        font-size: {!theFontSize};
+        text-align: center;   
+      }
+      .theDataSection .theMainContent {
+        border: 0px solid black;
+        width: 567px;
+      }
+      .theRightSideBar {
+        border: 0px solid black;
+        margin-top: 70px;
+        float: right;
+        width: 203px;
+      }
+      .theRightSideBar .theHeaderInfo {
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        font-weight: bold;
+        font-size: 13px;
+        padding-left: 3px;
+      }
+      .theRightSideBar .theRightSideBarDataSection {
+        font-size: 13px;
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+      }
+      .left {
+        float: left;
+        padding-left: 3px;
+        width: 90%;
+      }
+      .right {
+        float: right;
+        padding-right: 3px;
+      }
+      .theCell {
+        height: 15px;
+      }
+      .debug {
+        border: 1px solid red;
+      }
+      .theReserveTimesSection {
+        font-size: 12px;
+      }
+      .theReserveTimesSection span {
+        font-size: 12px;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        width: 34px;
+        height: 15px;
+        float: left;
+        padding: 1px;
+      }
+      .theReserveTimesSection .theSpanHeader {
+        width: 50px;
+        border-left: 1px solid black;
+      }
+      .theContactInfo {
+        font-size: 13px;
+        margin-top: 32px;
+        padding: 5px;
+        height: 41px;
+        border-left: 1px solid black;
+      }
+      .theContactInfo span {
+        color: red;
+        font-weight: bold;
+      }
+      .theTableHeader {
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        height: 20px;
+      }
+      .theTableColumn {
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        padding: 2px;
+      }
+      .nearbyRooms {
+        font-size: 12px;
+        float: right;
+      }
+      .hotelName{
+          font-size: {!theFontSizeHotelName};
+      }
+      .hotelHeader{
+          font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="theRightSideBar">
+      <div class="theHeaderInfo" style="height:18px;">
+        {!$Label.Arrival_Time}:
+        <span style="width:110px; height:18px; background-color:yellow; float:right; padding-left:8px;">
+          {!theArrivalTime}
+        </span>
+      </div>
+      <div class="theRightSideBarDataSection" style="height:90px;">
+        <div class="theCell">
+          <span class="left">{!$Label.Total_No_Rooms}:</span>
+          <span class="right">{!totalRooms}</span>
+        </div>
+        <div class="theCell">
+          <span class="left">{!$Label.Singles}: {!theCrewDetails}</span>
+          <span class="right">{!totalSingles}</span>
+        </div>
+        <div class="theCell">
+          <span class="left">Twins: (Inc. {!totalDoubles} doubles)</span>
+          <span class="right">{!totalTwins}</span>
+        </div>
+        <div class="theCell">
+          <span class="left">{!$Label.Triples}:</span>
+          <span class="right">{!totalTriples}</span>
+        </div>
+        <div class="theCell">
+          <span class="left">{!$Label.Quads}:</span>
+          <span class="right">{!totalQuads}</span>
+        </div>
+        <div class="theCell">
+          <span class="left">{!$Label.Total_No_of_Guests}:</span>
+          <span class="right">{!totalHotelGuests}</span>
+        </div>
+      </div>
+      <div class="theHeaderInfo" style="height:15px;">
+        {!$Label.Special_Requests}:
+      </div>
+      <div class="theRightSideBarDataSection" style="height:580px;">
+        <div class="theCell" style="height:15px;">
+          <span class="left">
+            <b>1. {!$Label.All_non_smoking_rooms_please}.</b>
+          </span>
+        </div>
+        <div class="theCell" style="height:15px;">
+          <span class="left" style="width:95%">
+            <b>2. {!$Label.Please_write_room_no_next_to_bag_no}</b>
+          </span>
+        </div>
+        <div class="theCell" style="height:40px;">
+          <span class="left" style="width:90%;">
+            <b>3. {!$Label.Matrimonial_large_double_beds_for}:</b>
+            <span style="font-size:11px;">
+              {!matrimonialBeds}
+            </span>
+          </span>
+        </div>
+        <div class="theCell" style="height:60px;">
+          <span class="left" style="width:90%">
+            <b>4. {!$Label.Give_Nearby_Rooms_nos}:</b>
+            <br/>
+            <span style="font-size:11px;">
+              {!nearbyRooms}
+            </span>
+          </span>
+        </div>
+        <div class="theCell" style="height:400px;">
+          <span class="left" style="width:90%">
+            <b>5. {!$Label.Special_Diets}:</b>
+            <br/>
+            <span style="font-size:11px;">
+              <apex:repeat value="{!specialDiets}" var="theSpecialDiet">
+                {!theSpecialDiet}<br/>
+              </apex:repeat>
+            </span>
+          </span>
+        </div>
+        <div class="theCell" style="height:43px;">
+          <span class="left"><b>6. {!$Label.Additional_special_requests}:</b></span>
+        </div>
+      </div>
+      <div class="theHeaderInfo" style="height:17px;">
+        {!$Label.Reserve_Times}:
+      </div>
+      <div class="theReserveTimesSection">
+        <span class="theSpanHeader">
+          <b>{!$Label.Dates}</b>
+        </span>
+        <!--<span>
+          <apex:outputText value="{0, date, dd'/'MM}">
+            <apex:param value="{!firstColumnDate}"/>
+          </apex:outputText>
+        </span>
+        <span>
+          <apex:outputText value="{0, date, dd'/'MM}">
+            <apex:param value="{!secondColumnDate}"/>
+          </apex:outputText>
+        </span>
+        <span>
+          <apex:outputText value="{0, date, dd'/'MM}">
+            <apex:param value="{!thirdColumnDate}"/>
+          </apex:outputText>
+        </span>
+        <span>
+          <span>
+          <apex:outputText value="{0, date, dd'/'MM}">
+            <apex:param value="{!fourthColumnDate}"/>
+          </apex:outputText>
+        </span>-->
+         
+          <!-- Code commented and changes and done by Ravi Jain for story S-455844 --> 
+         <!-- Code changes start here -->
+          
+            <span>
+          <apex:outputText value="{0, date, dd'/'MM}" rendered="{!userLocale != 'en_US'}">
+                <apex:param value="{!firstColumnDate}"/>
+            </apex:outputText>
+            
+             <apex:outputText value="{0, date, MM'/'dd}" rendered="{!userLocale == 'en_US'}">
+                <apex:param value="{!firstColumnDate}"/>
+            </apex:outputText>
+        </span>
+        <span>
+             <apex:outputText value="{0, date, dd'/'MM}" rendered="{!userLocale != 'en_US'}">
+                <apex:param value="{!secondColumnDate}"/>
+            </apex:outputText>
+            
+             <apex:outputText value="{0, date, MM'/'dd}" rendered="{!userLocale == 'en_US'}">
+                <apex:param value="{!secondColumnDate}"/>
+            </apex:outputText>
+        </span>
+        <span>
+            <apex:outputText value="{0, date, dd'/'MM}" rendered="{!userLocale != 'en_US'}">
+                <apex:param value="{!thirdColumnDate}"/>
+            </apex:outputText>
+            
+             <apex:outputText value="{0, date, MM'/'dd}" rendered="{!userLocale == 'en_US'}">
+                <apex:param value="{!thirdColumnDate}"/>
+            </apex:outputText>
+        </span>
+        <span>
+          <span>
+              <apex:outputText value="{0, date, dd'/'MM}" rendered="{!userLocale != 'en_US'}">
+                <apex:param value="{!fourthColumnDate}"/>
+            </apex:outputText>
+            
+             <apex:outputText value="{0, date, MM'/'dd}" rendered="{!userLocale == 'en_US'}">
+                <apex:param value="{!fourthColumnDate}"/>
+            </apex:outputText>
+        </span>
+          <!-- Code changes end here --> 
+            
+        </span> 
+      </div>
+      <div class="theReserveTimesSection">
+        <span class="theSpanHeader">
+          <b>{!$Label.Wake_Up}</b>
+        </span>
+        <span></span>
+        <span>{!secondColumnWakeUpTime}</span>
+        <span>{!thirdColumnWakeUpTime}</span>
+        <span>{!fourthColumnWakeUpTime}</span>
+      </div>
+      <div class="theReserveTimesSection">
+        <span class="theSpanHeader">
+          <b>{!$Label.Baggage}</b>
+        </span>
+        <span>{!firstColumnBaggageTime}</span>
+        <span>{!secondColumnBaggageTime}</span>
+        <span>{!thirdColumnBaggageTime}</span>
+        <span>{!fourthColumnBaggageTime}</span>
+      </div>
+      <div class="theReserveTimesSection">
+        <span class="theSpanHeader">
+          <b>{!$Label.Depart}</b>
+        </span>
+        <span></span>
+        <span>{!secondColumnDepartTime}</span>
+        <span>{!thirdColumnDepartTime}</span>
+        <span>{!fourthColumnDepartTime}</span>
+      </div>
+      <div class="theHeaderInfo" style="margin-top:72px;">
+        {!$Label.Meals}:
+      </div>
+      <div class="theReserveTimesSection">
+        <span class="theSpanHeader"><b>{!$Label.Breakfast}</b></span>
+        <span></span>
+        <span>{!secondColumnBreakfastTime}</span>
+        <span>{!thirdColumnBreakfastTime}</span>
+        <span>{!fourthColumnBreakfastTime}</span>
+      </div>
+      <div class="theReserveTimesSection">
+        <span class="theSpanHeader"><b>{!$Label.Dinner}</b></span>
+        <span>{!firstColumnDinnerTime}</span>
+        <span>{!secondColumnDinnerTime}</span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="theContactInfo">
+        <b>{!$Label.In_event_of_problems}</b>
+        <span>{!tdPhoneNumber}</span>
+      </div>
+    </div>
+    <apex:pageBlock >
+      <table width="100%" class="theHeader">
+        <tr>
+          <td style="text-align: center;">
+            {!theRoomListTitle}
+          </td>
+        </tr>
+      </table>
+      <table class="hotelHeader" width="100%" style="height:40px; overflow:hidden;">
+        <tr>
+          <td width="15%"><b>{!$Label.Itinerary_Name}:</b></td>
+          <td width="35%">{!theItineraryName}</td>
+          <td width="15%"><b>{!$Label.Hotel_Name}:</b></td>
+          <td width="35%" class="hotelName">{!theHotelName}</td>
+        </tr>
+        <tr>
+          <td width="10%"><b>{!$Label.Itinerary_Code}:</b></td>
+          <td width="40%">{!theItineraryCode}</td>
+          <td width="10%"><b>{!$Label.Arrival_Date}:</b></td>
+          <td width="40%">
+            <!--<apex:outputText value="{0, date, dd'/'MM'/'yyyy}">
+              <apex:param value="{!theArrivalDate}"/>
+            </apex:outputText>-->
+            
+              <!-- Code commented and changes and done by Ravi Jain for story S-455844 --> 
+              <!-- Code changes start here -->
+              
+               <apex:outputText value="{!earliestArrivalDate}" rendered="{!userLocale != 'en_US'}">
+                <!--<apex:param value="{!theOrgArrivalDate}"/>-->
+               </apex:outputText>
+            
+             <apex:outputText value="{!earliestArrivalDate}" rendered="{!userLocale == 'en_US'}">
+                <!--<apex:param value="{!theOrgArrivalDate}"/>-->
+             </apex:outputText>
+             <!-- Code changes end here --> 
+              
+          </td>
+        </tr>
+      </table>
+      <div class="theDataSection">
+        <div class="theMainContent">
+          <apex:pageBlockTable value="{!theBookedRoomsList}" var="theBookedRoom" headerClass="theTableHeader" columnClasses="theTableColumn" width="100%" rendered="{!(theBookedRoomsList.size != 0)}">
+ <!-- previously 10% wdith -->
+            <apex:column headerValue="{!$Label.Room_Type}"  width="5%" style="height:15px; {!IF(theBookedRoom.isBlankRow, 'border-right: 0px solid black;', '')}">
+              <b>
+                {!theBookedRoom.theRoomType}
+                </b>
+            </apex:column>
+             <!-- previously 15% wdith -->
+            <apex:column headerValue="{!$Label.Room_Num}"  width="8%" style="{!IF(theBookedRoom.isBlankRow, 'border-right: 0px solid black;', '')}">
+              <span class="nearbyRooms">
+                {!theBookedRoom.theNearbyRoomSymbol}
+              </span>
+            </apex:column>
+             <!-- previously 10% wdith -->
+            <apex:column headerValue="{!$Label.Bag_Num}" width="5%" style="{!IF(theBookedRoom.isBlankRow, 'border-right: 0px solid black;', '')}">
+              <apex:variable var="counter" value="{!0}"/>
+              <apex:variable var="totalBags" value="{!theBookedRoom.theBagNumbers.size}"/>
+              <apex:repeat value="{!theBookedRoom.theBagNumbers}" var="theBagNumber">
+                <apex:variable var="counter" value="{!counter + 1}"/>
+                  <b>
+                   {!theBagNumber}
+                  </b>
+               
+                <div style="display:{!IF(counter < totalBags, 'block;', 'none;')}"></div>
+              </apex:repeat>
+            </apex:column>
+<!--            <apex:column headerValue="{!dur1}" width="65%"> old width col too narrow -->
+              <apex:column headerValue="{!dur1}" width="32.5%">
+              <apex:variable var="counter" value="{!0}"/>
+              <apex:variable var="totalGuests" value="{!theBookedRoom.theGuestNames.size}"/>
+              <apex:repeat value="{!theBookedRoom.theGuestNames}" var="theGuestName"> 
+                <apex:variable var="counter" value="{!counter + 1}"/>
+<!--                <div style="float:left;white-space: nowrap;">{!theGuestName}</div> old line wrpped some names-->
+                <div style="float:left;clear: left; white-space: nowrap;">{!theGuestName}</div>
+                <i style="float:right; padding-right:2px;white-space: nowrap;">
+                   
+                  {!IF((theBookedRoom.theRoomSpecialInstructions.size < counter-1),'',IF(AND(theBookedRoom.theRoomSpecialInstructions != null, theBookedRoom.theRoomSpecialInstructions.size != 0), theBookedRoom.theRoomSpecialInstructions[counter-1], ''))}
+                   
+                </i>
+                <div style="display:{!IF(counter < totalGuests, 'block;', 'none;')}">
+                  <br/>
+                </div>
+              </apex:repeat>
+            </apex:column>
+            
+<!--            <apex:column headerValue="{!dur2}" rendered="{!(changeOver >= 2 && duration >= 2)}" width="65%"> -->
+            <apex:column headerValue="{!dur2}" rendered="{!(changeOver >= 2 && duration >= 2)}" width="32.5%">
+              <apex:variable var="counter" value="{!0}"/>
+              <apex:variable var="totalGuests" value="{!theBookedRoom.theGuestNames1.size}"/>
+              <apex:repeat value="{!theBookedRoom.theGuestNames1}" var="theGuestName">
+                <apex:variable var="counter" value="{!counter + 1}"/>
+<!--                <div style="float:left;white-space: nowrap;">{!theGuestName}</div> -->
+                <div style="float:left;clear: left;  white-space: nowrap;">{!theGuestName}</div>
+                <i style="float:right; padding-right:2px;white-space: nowrap;">
+                  {!IF((theBookedRoom.theRoomSpecialInstructions.size <= counter-1),'',IF(AND(theBookedRoom.theRoomSpecialInstructions != null, theBookedRoom.theRoomSpecialInstructions.size != 0), theBookedRoom.theRoomSpecialInstructions[counter-1], ''))}
+                  
+                </i>
+                
+              </apex:repeat>  
+            </apex:column> 
+            
+ <!--            <apex:column headerValue="{!dur3}" rendered="{!(changeOver == 3 && duration == 3)}" width="65%"> -->
+             <apex:column headerValue="{!dur3}" rendered="{!(changeOver == 3 && duration == 3)}" width="32.5%">
+              <apex:variable var="counter" value="{!0}"/>
+              <apex:variable var="totalGuests" value="{!theBookedRoom.theGuestNames2.size}"/>
+              <apex:repeat value="{!theBookedRoom.theGuestNames2}" var="theGuestName">
+                <apex:variable var="counter" value="{!counter + 1}"/>
+                <div style="float:left; clear: left; white-space: nowrap;">{!theGuestName}</div>
+                <i style="float:right; padding-right:2px;white-space: nowrap;">
+                    {!IF((theBookedRoom.theRoomSpecialInstructions.size <= counter-1),'',IF(AND(theBookedRoom.theRoomSpecialInstructions != null, theBookedRoom.theRoomSpecialInstructions.size != 0), theBookedRoom.theRoomSpecialInstructions[counter-1], ''))}
+                  
+
+                </i>
+
+              </apex:repeat>
+            </apex:column>
+            
+          </apex:pageBlockTable>
+        </div>
+      </div>
+      <apex:variable var="i" value="{!1}"/>
+      <table width="100%">
+        <apex:repeat value="{!theFooterlogoList}" var="footerlogo">
+          <td style="width:200px; {!IF(OR(theFooterlogoList.size <= i), 'text-align:right;', IF(i == 1, 'text-align:left;', 'text-align: center;'))}">
+            <!-- Changes Start,Done by Maksud Ali for Story : S-455965 -->
+            <apex:image url="{!URLFOR($Resource.BrandImages,footerlogo.imageName)}" width="{!footerlogo.imageWidth}"/>
+            <!-- End changes -->
+            <apex:variable var="i" value="{!i+1}"/>
+          </td>
+        </apex:repeat>
+      </table>
+    </apex:pageBlock>
+  </body>
+</apex:page>

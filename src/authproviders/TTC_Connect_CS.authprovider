@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://sso-costsaver.travcorpservices.com/openid/connect/auth</authorizeUrl>
+    <consumerKey>MTS_PROD_CS</consumerKey>
+    <consumerSecret>BAG0+ieJoT0QZWKxCf0k2soEGo41a0AUXAn6Uzxo/raBKz0I6dzUNql5H1Tm0VMw75c1j3H6eL+IGop7oE7hLhrffT5eiAFTAotueR2/12U=</consumerSecret>
+    <defaultScopes>openid email profile</defaultScopes>
+    <executionUser>miranda@ttc.cloudperspective.co.uk.mmulapi</executionUser>
+    <friendlyName>TTC Connect CS</friendlyName>
+    <iconUrl>http://wiki.openid.net/f/openid-logo-wordmark.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>OpenIdConnect</providerType>
+    <registrationHandler>TQSsoRegistrationHandler</registrationHandler>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://sso-costsaver.travcorpservices.com/openid/connect/token</tokenUrl>
+    <userInfoUrl>https://sso-costsaver.travcorpservices.com/openid/connect/userinfo</userInfoUrl>
+</AuthProvider>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Trafalgar (AUS) Trade Reservation Agent</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Trafalgar (AUS) Trade Reservation Agent</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Trafalgar_AUS_Trade_Team_Manager</parentRole>
+</Role>

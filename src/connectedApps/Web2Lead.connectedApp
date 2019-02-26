@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>alex.drew@travcorpuk.com</contactEmail>
+    <label>Web2Lead</label>
+    <oauthConfig>
+        <callbackUrl>https://login.salesforce.com
+https://africantravelinc.com/salesforce/oauth_callback</callbackUrl>
+        <consumerKey>3MVG9lcxCTdG2VbtWAnBLcHTY.258p4O2CbHf6vKiMJso43GqWA464A3455TQ4QHFTsU9YYGp9Y3U4XWbyVl.</consumerKey>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

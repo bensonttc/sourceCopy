@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Trafalgar (NZ) &amp; Insight (NZ) &amp; Uniworld (NZ) &amp; AAT Kings (NZ) &amp; Contiki (NZ) SM</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Trafalgar (NZ) &amp; Insight (NZ) &amp; Uniworld (NZ) &amp; AAT Kings (NZ) Senior Sales Mana</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>New_Zealand_MD_Head_Of_Sales</parentRole>
+</Role>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Operations DA Cross Brand</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Operations DA Cross Brand</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>Operations_Contracting_Multi_Brand_USA</parentRole>
+</Role>

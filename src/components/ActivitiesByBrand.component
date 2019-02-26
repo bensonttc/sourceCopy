@@ -1,0 +1,232 @@
+<apex:component controller="ActivitiesByBrand_Controller" allowdml="true">
+  <!--
+
+// **** Built By John Jordan (Cloud Perspective) 01/09/2014
+// **** Acts as a controller extension for page Account_activities page which is used to
+// **** restrict access to tasks/events that belong to accounts based on roles that the user
+// **** belongs to. This is not true SFDC security, merely a way of hiding irrelevant activity
+  -->
+
+    <!--  ********************************************* -->
+    <!--- ****************  Component Details ********* -->
+    <!--  ********************************************* -->
+    <apex:attribute name="sObjectIDParam" assignTo="{!sobjectid}" description="The ID of the SObject Being Opened On The Standard Controller"  type="ID" required="true"/>
+    <apex:attribute name="sObjectTypeParam" assignTo="{!sObjectType}" description="The SOBject Type being passed to the component"  type="string" required="true"/>
+  
+    <!--  ********************************************* -->
+
+
+    <apex:form >
+    <apex:actionFunction name="RefreshTable" rerender="BigTable" status="actStatusId"/> 
+    <apex:pageBlock >        
+        <apex:pageMessages id="Messagebit"/>
+        <!------ ************ Buttons ******************* -->
+        <apex:pageBlockButtons id="pbb" style="display:none;">
+            <apex:outputLink value="/00T/e?{!if(OR(SobjectType='Lead', SobjectType='Contact'),'who_id', 'what_id')}={!sobjectID}&retURL={!sobjectID}" target="_top">[new task]</apex:outputLink>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:outputLink value="/00U/e?{!if(OR(SobjectType='Lead', SobjectType='Contact'),'who_id', 'what_id')}={!sobjectID}&retURL={!sobjectID}" target="_top">[new event]</apex:outputLink>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:outputLink value="/00T/e?title=Call&{!if(OR(SobjectType='Lead', SobjectType='Contact'),'who_id', 'what_id')}={!sobjectID}&retURL={!sobjectID}&followup=1&tsk5=Call" target="_top">[log a call]</apex:outputLink>&nbsp;&nbsp;&nbsp;&nbsp;
+            <apex:outputLink value="/002/e?parent_id={!LEFT(SobjectID,15)}&retURL={!sobjectID}" target="_top" rendered="{!EditAccessToThisObject}">[new note]</apex:outputLink> 
+            &nbsp;&nbsp;&nbsp;&nbsp;
+           <!-- <apex:CommandLink action="{!NewAttachment_Go}">[new attachment]</apex:commandLink>-->
+           <apex:outputLink value="/p/attach/NoteAttach?pid={!SobjectID}&retURL={!sobjectID}" target="_top" rendered="{!EditAccessToThisObject}">[new attachment]</apex:outputLink>          
+            <!--<apex:CommandLink action="{!NewNote_Go}">[new note]</apex:commandLink>-->
+            
+        </apex:pageBlockButtons>
+
+        <!-- **************************** Show Buttons If Not SF1 ****************************-->
+        <script>
+            var IsSalesforce1 = false;
+            if(typeof sforce != "undefined") IsSalesforce1 = true;
+            var e = document.getElementById("{!$Component.pbb}");
+            if (!IsSalesforce1) e.style.display=''; // don't show buttons to SF1 users. 
+        </script>  
+ 
+
+
+        <!------ ************************************** -->
+        <!------ ************ Change Brands *********** -->
+        <!------ ************************************** -->
+
+        <apex:pageBlockSection title="Update Brands" rendered="{!Display_UpdateBrands}" id="Brands">
+                <apex:pageBlockSectionItem >
+                    <apex:outputtext value="Brand" />
+                    <apex:selectList value="{!SelectedBrandsOpt}" multiselect="true" >
+                        <apex:selectOptions value="{!brandOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <br/>
+                <apex:commandLink style="text-decoration:none" styleClass="btn" value="Save" action="{!s_EditBrands}" >
+                        <apex:param name="ActivityAction" value="Save"/>
+                </apex:commandLink>
+                <br/><br/>
+                 <apex:commandLink style="text-decoration:none" styleClass="btn" value="Cancel" action="{!s_EditBrands}" immediate="true">
+                        <apex:param name="ActivityAction" value="Cancel"/>
+                </apex:commandLink>
+
+        </apex:pageBlockSection> 
+
+
+        <!------ ************************************** -->
+        <!------ ************ Attachment ******************* -->
+        <!------ ************************************** -->
+
+     <!--- no longer used ........
+        <apex:pageBlockSection title="New Attachment" rendered="{!Display_Attachment}">
+            
+                <apex:pageBlockSectionItem >
+                    <apex:outputtext value="Brand" />
+                    <apex:selectList value="{!SelectedBrands}" multiselect="true" >
+                        <apex:selectOptions value="{!brandOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:inputFile value="{!NewAttachment.body}" filename="{!NewAttachment.name}" id="file"/>
+                </apex:pageBlockSectionItem>
+
+              
+         
+                <apex:commandLink style="text-decoration:none" styleClass="btn"  value="Save" action="{!NewAttachment_Go}">
+                        <apex:param name="ActivityAction" value="Save"/>
+                </apex:commandLink>
+                <br/>
+                <apex:commandLink style="text-decoration:none" styleClass="btn" value="Cancel" action="{!NewAttachment_Go}" immediate="true">
+                        <apex:param name="ActivityAction" value="Cancel"/>
+                </apex:commandLink>
+        </apex:pageBlockSection>
+
+        -->
+
+        <!------ ************************************** -->
+        <!------ ************ Note ******************* -->
+        <!------ ************************************** -->
+
+        <!--- no longer used ........
+        <apex:pageBlockSection title="New Attachment" rendered="{!Display_Note}">
+            
+                <apex:pageBlockSectionItem >
+                    <apex:outputtext value="Brand" />
+                    <apex:selectList value="{!SelectedBrands}" multiselect="true" >
+                        <apex:selectOptions value="{!brandOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                
+                <apex:inputField value="{!NewNote.ISPrivate}" />
+                <apex:inputField value="{!NewNote.Title}" />
+                <apex:inputTextArea value="{!NewNote.body}" cols="50" rows="10"/>
+                
+         
+                <apex:commandLink style="text-decoration:none" styleClass="btn"  value="Save" action="{!NewNote_Go}">
+                        <apex:param name="ActivityAction" value="Save"/>
+                </apex:commandLink>
+                <br/>
+                <apex:commandLink style="text-decoration:none" styleClass="btn" value="Cancel" action="{!NewNote_Go}" immediate="true">
+                        <apex:param name="ActivityAction" value="Cancel"/>
+                </apex:commandLink>
+        </apex:pageBlockSection>
+        -->
+ 
+        <!------ **************************************    -->
+        <!------ ************ Table *******************    -->
+        <!------ **************************************    -->
+        <apex:outputpanel rendered="{!Display_Table}">
+            <apex:outputtext value="Display Options : "/>
+            <apex:selectList value="{!SelectedDisplay}" multiselect="false" size="1" onchange="RefreshTable();" >
+                <apex:selectOptions value="{!DisplayOptions}"/>
+            </apex:selectList><br/><br/>
+             
+             <apex:actionStatus id="actStatusId" >
+                <apex:facet name="start" >
+                  <img src="/img/loading32.gif" height="20px" />                    
+                </apex:facet>
+            </apex:actionStatus>
+        </apex:outputpanel> 
+
+        <apex:pageBlockTable value="{!activitywlist}" var="item" rendered="{!Display_Table}" id="BigTable">
+            <apex:column headervalue="Action" width="80px;"> 
+                <apex:outputlink value="/{!item.act1.activityid}/e" target="_top" rendered="{!item.act1.ObjectType='Task' || item.act1.ObjectType='Event'}" >Edit</apex:outputlink>
+                
+                <apex:outputtext rendered="{!SelectedDisplay!='NotesAttachments'}" value=" | "/>
+
+                <apex:outputlink value="/{!item.act1.activityid}/e?close=1&retURL={!sObjectID}" target="_top" rendered="{!SelectedDisplay='History' && item.act1.ObjectType='Task'}" >Cls</apex:outputlink>
+                <apex:commandlink onclick="return confirm('Are you sure?')" value="Del" action="{!s_Delete}" status="actStatusId" rendered="{!(item.act1.ObjectType!='Task' || SelectedDisplay='Activities') && EditAccessToThisObject}">
+                    <apex:param name="ActivityAction" value="{!item.Act1.activityid}"/>
+                    <apex:param name="ObjectType" value="{!item.act1.objecttype}"/>
+                </apex:Commandlink> 
+            </apex:column>
+
+            <apex:column headervalue="Subject"> 
+                <apex:outputlink value="/{!item.Act1.activityid}" target="_top" rendered="{!item.act1.acttype==''}">{!item.Act1.subject}</apex:outputlink>
+                 <apex:outputlink value="/servlet/servlet.FileDownload?file={!item.Act1.activityid}" target="_top" rendered="{!item.act1.acttype='Attachment'}">{!item.Act1.subject}</apex:outputlink>
+                 <apex:outputlink value="/{!item.Act1.activityid}" target="_top" rendered="{!item.act1.acttype='Note'}">{!item.Act1.subject}</apex:outputlink>
+            </apex:column> 
+
+            <!-- Created Date old -->
+            <!--<apex:column headervalue="Created Date"> 
+                <apex:outputText value="{0,date,dd'/'MM'/'yyyy}"> 
+                    <apex:param value="{!item.Act1.createddate}" />  
+                </apex:outputText> 
+            </apex:column> -->
+
+            <!-- Created Date user Locale Format -->
+            <apex:column headervalue="Created Date"> 
+               <apex:outputText value="{!item.CreatedDateLocale}"/>
+            </apex:column>
+
+            <!-- Due Date user Locale Format -->
+            <apex:column headervalue="Due Date"> 
+              <apex:outputText value="{!item.DueDateLocale}"/> 
+            </apex:column>
+
+            <!-- Due Date Old -->
+            <!--<apex:column headervalue="Due Date" rendered="{!SelectedDisplay!='NotesAttachments'}">
+                <apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+                    <apex:param value="{!item.Act1.ActivityDate}" /> 
+                </apex:outputText> 
+            </apex:column> -->
+
+
+            <apex:column value="{!item.Act1.Status}" headervalue="Status" rendered="{!SelectedDisplay!='NotesAttachments'}"/> 
+            <apex:column headervalue="Assigned To">
+                <apex:outputlink value="/{!item.Act1.Ownerid}" target="_top">{!item.Act1.OwnerName}</apex:outputlink>
+            </apex:column> 
+            <apex:column headervalue="Task" rendered="{!SelectedDisplay!='NotesAttachments'}">
+                <apex:inputCheckbox value="{!item.Act1.istask}" disabled="true"/>
+            </apex:column> 
+            <apex:column value="{!item.Act1.actType}" headervalue="Type" /> 
+            <apex:column value="{!item.Act1.CallType}" headervalue="Call Type" rendered="{!SelectedDisplay!='NotesAttachments'}"/> 
+            <apex:column value="{!item.Act1.Body}" headervalue="Body" rendered="{!SelectedDisplay=='NotesAttachments'}"/> 
+            <apex:column headervalue="Brands">
+                <apex:commandlink value="[edit]" action="{!s_EditBrands}" rendered="{!UserBrandList.size>1}" >  
+                    <apex:param name="ActivityID" value="{!item.Act1.ActivityID}"/>
+                    <apex:param name="ObjectType" value="{!item.Act1.ObjectType}"/>
+                    <apex:param name="ActivityAction" value="Edit"/>
+                    <apex:param name="ExistingBrands" value="{!item.Act1.brands}"/>
+                </apex:commandlink>
+                &nbsp;&nbsp;<apex:outputtext value="{!item.Act1.brands}" />
+                
+            </apex:column> 
+        </apex:pageBlockTable> 
+
+        <!--- ******************************-->
+        <!--- ************** More **********-->
+        <!--- ******************************-->
+        <br/><br/>
+        <apex:outputLink value="/apex/ActivitiesByBrandMore?&ID={!SobjectID}&Type=Task&SourceObjectType={!Sobjecttype}" target="_top" rendered="{!if(Display_Table && MaxActivitiesInPageOneDisplay<activitywlistsize,true,false)}" >[more tasks]</apex:outputLink> 
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <apex:outputLink value="/apex/ActivitiesByBrandMore?&ID={!SobjectID}&Type=Event&SourceObjectType={!Sobjecttype}" target="_top" rendered="{!if(Display_Table && MaxActivitiesInPageOneDisplay<activitywlistsize,true,false)}"    >[more events]</apex:outputLink> 
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <apex:outputLink value="/apex/ActivitiesByBrandMore?&ID={!SobjectID}&Type=Note&SourceObjectType={!Sobjecttype}" target="_top" rendered="{!if(Display_Table && MaxActivitiesInPageOneDisplay<activitywlistsize,true,false)}" >[more notes]</apex:outputLink> 
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <apex:outputLink value="/apex/ActivitiesByBrandMore?&ID={!SobjectID}&Type=Attachment&SourceObjectType={!Sobjecttype}" target="_top" rendered="{!if(Display_Table && MaxActivitiesInPageOneDisplay<activitywlistsize,true,false)}"   >[more attachments]</apex:outputLink> 
+ 
+        <br/><br/>
+
+    </apex:pageBlock>
+
+</apex:form>
+
+</apex:component>

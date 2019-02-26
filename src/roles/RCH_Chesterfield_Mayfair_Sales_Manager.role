@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>RCH Chesterfield Mayfair Sales Manager</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>RCH Chesterfield Mayfair Sales Manager</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>RCH_Chesterfield_Mayfair_MD_Head_of_Sales</parentRole>
+</Role>

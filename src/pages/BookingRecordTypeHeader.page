@@ -1,0 +1,13 @@
+<apex:page StandardController="Booking__c">
+    <div align="left" style="font-size:16pt;background-color:white;border:5px solid white;">
+        <h1 style="font-size:16pt;color:#007ac9">
+            <apex:outputPanel id="booking" rendered="{!IF(Booking__c.RecordType.Name == 'Booking', true, false)}">
+                {!Booking__c.RecordType.Name} ({!Booking__c.Full_Status__c} - {!Booking__c.Full_Payment_Status__c})
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="Reservation" rendered="{!IF(Booking__c.RecordType.Name == 'Reservation', true, false)}">
+                {!Booking__c.RecordType.Name}
+            </apex:outputPanel>         
+        </h1>
+    </div>
+</apex:page>

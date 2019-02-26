@@ -1,0 +1,13 @@
+<apex:page standardController="Contact" extensions="Activities_Controller_Extension"  showHeader="true" sidebar="true">
+    <!--
+
+// **** Built By John Jordan (Cloud Perspective) 01/09/2014
+// **** Acts as a controller extension for page contact_activities page which is used to
+// **** restrict access to tasks/events that belong to accounts based on roles that the user
+// **** belongs to. This is not true SFDC security, merely a way of hiding irrelevant activity
+sObjectTypeParam="{SObjectType}"
+    -->
+<!--<c:ActivitiesByBrand sObjectIDparam="{!ThisContact.ID}" sObjectTypeParam="{!SObjectType}"/>  -->
+<c:ActivitiesByBrand sObjectIDparam="{!ThisID}" sObjectTypeParam="{!SObjectType}"/>
+
+</apex:page>

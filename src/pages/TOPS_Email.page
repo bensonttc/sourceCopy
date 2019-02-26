@@ -1,0 +1,5 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false">
+    <apex:outputText value="{!$CurrentPage.parameters.data}" escape="false"></apex:outputText>
+  	<br/>
+    <c:TOPS_EmailIcons />
+</apex:page>

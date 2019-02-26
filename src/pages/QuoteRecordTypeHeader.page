@@ -1,0 +1,10 @@
+<apex:page StandardController="Opportunity">
+    <div align="center" style="font-size:16pt;background-color:#007ac9;border:5px solid white;">
+        <h1 style="font-size:16pt;color:#FFFFFF">
+            <apex:outputlabel id="opp"  value="Quote">
+            </apex:outputlabel>
+            
+          
+        </h1>
+    </div>
+</apex:page>

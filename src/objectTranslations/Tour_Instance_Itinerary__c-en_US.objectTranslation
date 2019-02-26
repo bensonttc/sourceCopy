@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Tour Instance Itinerary</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tour Instance Itineraries</value>
+    </caseValues>
+    <layouts>
+        <layout>TD Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Ferry Details --></label>
+            <section>Ferry Details</section>
+        </sections>
+        <sections>
+            <label><!-- Supplier Details --></label>
+            <section>Supplier Details</section>
+        </sections>
+        <sections>
+            <label><!-- Timings --></label>
+            <section>Timings</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tour Instance Itinerary Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dashboard Details --></label>
+            <section>Dashboard Details</section>
+        </sections>
+        <sections>
+            <label><!-- Ferry Details --></label>
+            <section>Ferry Details</section>
+        </sections>
+        <sections>
+            <label><!-- Supplier Details --></label>
+            <section>Supplier Details</section>
+        </sections>
+        <sections>
+            <label><!-- Timings --></label>
+            <section>Timings</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

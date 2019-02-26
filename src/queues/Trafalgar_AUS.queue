@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Trafalgar (AUS)</name>
+    <queueMembers>
+        <roles>
+            <role>Head_of_Reservations_Contiki_AUS_Trafalgar_AUS_Insight_AUS</role>
+            <role>Trafalgar_Direct_Reservation_AUS</role>
+            <role>Trafalgar_AUS_Marketing</role>
+            <role>Trafalgar_AUS_Trade_Reservation_Agent</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

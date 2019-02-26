@@ -1,0 +1,179 @@
+<apex:page showHeader="false" sidebar="false" controller="TQTrackedObjectEditController" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false">
+<html lang="en">
+	<head>
+		<link href="{!URLFOR($Resource.Bootstrap, 'dist/css/bootstrap.min.css')}" rel="stylesheet" />
+		<title>{!config.Name}</title>
+		<c:TquilaOneConfiguratorCSS />
+	</head>
+	<body>
+		<div class="container">
+		<apex:outputPanel rendered="{!err}">
+			<div class="alert alert-danger" role="alert">
+				{!errMsg}
+			</div>
+		</apex:outputPanel>
+		<apex:outputPanel rendered="{!NOT(err)}">
+			<apex:form html-role="form" styleClass="form-horizontal">
+
+				<button type="button" class="btn btn-default" style="float:right;" onclick="window.location.href = '/';">Back to Salesforce</button>
+
+				<h2>{!config.Name}</h2>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Client App ID</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" placeholder="{!config.ClientApp_ID__c}" readonly="readonly" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Object API Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" placeholder="{!config.Object_Api_Name__c}" readonly="readonly" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Max Records</label>
+					<div class="col-sm-10">
+						<apex:inputField styleClass="form-control" value="{!config.Max_Records_Before_Full_Sync__c}" />
+						<span class="help-block">Max amount of records to sync on a device to claim a full sync.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">List Header Fieldset</label>
+					<div class="col-sm-10">
+						<select multiple="multiple" class="form-control" id="listheadermultipicklist" style="height:225px;">
+							<apex:repeat value="{!ListHeaderFields}" var="f">
+								<apex:outputPanel rendered="{!f.selected}">
+									<option selected="selected">{!f.apiName}</option>
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(f.selected)}">
+									<option>{!f.apiName}</option>
+								</apex:outputPanel>
+							</apex:repeat>
+						</select>
+
+						<div style="display:none;">
+							<apex:inputField styleClass="form-control" value="{!config.List_Header_Fieldset__c}" id="listheaderlist" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Custom Index List</label>
+					<div class="col-sm-10">
+						<select multiple="multiple" class="form-control" id="customindexmultipicklist" style="height:225px;">
+							<apex:repeat value="{!CustomIndexFields}" var="f">
+								<apex:outputPanel rendered="{!f.selected}">
+									<option selected="selected">{!f.apiName}</option>
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(f.selected)}">
+									<option>{!f.apiName}</option>
+								</apex:outputPanel>
+							</apex:repeat>
+						</select>
+
+						<div style="display:none;">
+							<apex:inputField styleClass="form-control" value="{!config.Custom_Index_List__c}" id="customindexlist" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Order By</label>
+					<div class="col-sm-10">
+						<apex:inputField styleClass="form-control" value="{!config.Order_By__c}" />
+						<span class="help-block">Define the value for the "ORDER BY".</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Where</label>
+					<div class="col-sm-10">
+						<apex:inputField styleClass="form-control" value="{!config.Where__c}" />
+						<span class="help-block">Define the value for the "WHERE" clause.</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Active</label>
+					<div class="col-sm-10">
+						<apex:inputField styleClass="form-control" value="{!config.Active__c}" />
+						<!-- <span class="help-block">TBC</span> -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Displayable</label>
+					<div class="col-sm-10">
+						<apex:inputField styleClass="form-control" value="{!config.Displayable__c}" />
+						<!-- <span class="help-block">TBC</span> -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">LayoutNeeded</label>
+					<div class="col-sm-10">
+						<apex:inputField styleClass="form-control" value="{!config.Layout_Needed__c}" />
+						<!-- <span class="help-block">TBC</span> -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Fieldset Name List</label>
+					<div class="col-sm-10">
+						<select multiple="multiple" class="form-control" id="fieldsetmultipicklist" style="height:130px;">
+							<!-- Dynamically generate from fieldsets via the controller, set selected="selected" for fieldsets that are contained inside config.Fieldset_Name_List__c value -->
+							<apex:repeat value="{!FSL}" var="fs">
+								<apex:outputPanel rendered="{!fs.selected}">
+									<option selected="selected">{!fs.apiName}</option>
+								</apex:outputPanel>
+								<apex:outputPanel rendered="{!NOT(fs.selected)}">
+									<option>{!fs.apiName}</option>
+								</apex:outputPanel>
+							</apex:repeat>
+						</select>
+
+						<button type="button" class="btn btn-primary btn-xs" >Add Fieldset</button>
+						<button type="button" class="btn btn-primary btn-xs" >Manage Fieldsets</button>
+
+						<!-- TODO: Hide inputfield in display:none div after dev/debug -->
+						<div style="display:none;">
+							<apex:inputField value="{!config.Fieldset_Name_List__c}" id="fieldsetnamelist" />
+						</div>
+					</div>
+				</div>
+
+				<apex:commandButton action="{!save}" styleClass="btn btn-success" value="Save" />
+				<button type="button" class="btn btn-danger" onclick="window.location.href = '/apex/TQMobileApp';">Cancel</button>
+
+			</apex:form>
+		</apex:outputPanel>
+		</div>
+
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="{!URLFOR($Resource.Bootstrap, 'dist/js/bootstrap.min.js')}"></script>
+
+		<script>
+
+		$('select[id$=fieldsetmultipicklist]').change(function(){
+			updateFieldSet();
+		});
+		$('select[id$=customindexmultipicklist]').change(function(){
+			updateCustomIndex();
+		});
+		$('select[id$=listheadermultipicklist]').change(function(){
+			updateListHeader();
+		});
+		//listheadermultipicklist
+
+		function updateFieldSet() {
+			var opts = $( 'select[id$=fieldsetmultipicklist]' ).val();
+			jQuery( 'input[id$=fieldsetnamelist]' ).val(opts.join(','));
+		}
+		function updateCustomIndex() {
+			var opts = $( 'select[id$=customindexmultipicklist]' ).val();
+			jQuery( 'input[id$=customindexlist]' ).val(opts.join(','));
+		}
+		function updateListHeader() {
+			var opts = $( 'select[id$=listheadermultipicklist]' ).val();
+			jQuery( 'textarea[id$=listheaderlist]' ).val(opts.join(','));
+		}
+			
+		</script>
+	</body>
+</html>
+</apex:page>

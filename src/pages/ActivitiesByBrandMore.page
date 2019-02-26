@@ -1,0 +1,228 @@
+<apex:page showHeader="true" sidebar="true" controller="ActivitiesByBrand_Controller" action="{!s_GetMoreRecords}">
+<apex:form >
+	<apex:pageblock title="{!Sobjecttype}s for {!SourceObjectType} : {!SourceRecordName}"> 
+
+
+		<!-- **********************************************************  -->
+		<!-- *************************** TASKS ************************  -->
+		<!-- **********************************************************  -->
+  		<apex:pageBlockTable value="{!moretasks}" var="item" rendered="{!SobjectType='Task'}" id="BigTable1">
+  			<apex:column headervalue="Action" width="80px"> 
+         			<apex:outputlink value="/{!item.id}/e" target="_blank">Edit</apex:outputlink>
+         			&nbsp;
+         			<apex:commandlink onclick="return confirm('Are you sure?')" value="Del" action="{!s_Delete}">
+         				<apex:param name="ActivityAction" value="{!item.id}"/>
+            			<apex:param name="ObjectType" value="Task"/>
+            			<apex:param name="SourceScreen" value="More"/>
+            		</apex:commandlink>
+            		&nbsp;
+            		<apex:outputlink value="/{!item.id}/e?close=1" rendered="{!item.status <> 'Completed'}" target="_blank">Cls</apex:outputlink>
+            	</apex:column>
+         	<apex:column >
+         		<apex:facet name="header">		
+         			<apex:commandlink action="{!ChangeSort}">
+         			<apex:outputtext value="Subject"/>&nbsp;
+         			<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='Subject'&&SortSeq='Asc'}"/>
+         			<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='Subject'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="Subject"/>
+         			</apex:commandlink>
+
+         		</apex:facet>
+         		<apex:outputLink value="/{!item.id}">{!item.subject}</apex:outputLink>
+         	</apex:column>
+         	<apex:column value="{!item.createddate}">
+         		<apex:facet name="header">
+         			<apex:commandlink action="{!ChangeSort}">
+         				<apex:outputtext value="Created Date"/>&nbsp;
+         				<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='CreatedDate'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='CreatedDate'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="CreatedDate"/>
+         			</apex:commandlink>
+         		</apex:facet>  
+         	</apex:column>
+           	<apex:column value="{!item.activitydate}">
+           		<apex:facet name="header">
+         			<apex:commandlink action="{!ChangeSort}">
+         				<apex:outputtext value="Due Date"/>&nbsp;
+         				<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='ActivityDate'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='ActivityDate'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="ActivityDate"/>
+         			</apex:commandlink>
+         		</apex:facet>  
+         	</apex:column>      	
+           	<apex:column value="{!item.status}">
+           		<apex:facet name="header">
+         			<apex:commandlink action="{!ChangeSort}">
+         				<apex:outputtext value="Status"/>&nbsp;
+         				<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='Status'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='Status'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="Status"/>
+         			</apex:commandlink>
+         		</apex:facet> 
+           	</apex:column>
+   
+    		<apex:column value="{!item.isclosed}" headervalue="Is Closed" /> 
+    		<apex:column value="{!item.Priority}" >
+    			<apex:facet name="header">
+         			<apex:commandlink action="{!ChangeSort}">
+         				<apex:outputtext value="Priority"/>&nbsp;
+         				<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='Priority'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='Priority'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="Priority"/>
+         			</apex:commandlink>
+         		</apex:facet> 
+         	</apex:column> 
+       		<apex:column >
+       			<apex:facet name="header">
+         			<apex:commandlink action="{!ChangeSort}">
+         				<apex:outputtext value="Owner"/>&nbsp;
+         				<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='Owner.Name'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='Owner.Name'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="Owner.Name"/>
+         			</apex:commandlink>
+         		</apex:facet>  
+         		<apex:outputLink value="/{!item.ownerid}">{!item.owner.name}</apex:outputLink>
+         	</apex:column>
+         	<apex:column value="{!item.Brands__c}" headervalue="Brands"/>
+         	<!--<apex:column value="{!posnCounter} of {!BigCounter}" headervalue="temp"/> 	
+         	<apex:column value="{!posnCounter} of {!BigCounter}" headervalue="temp"/> 	 -->
+        </apex:pageBlockTable> 
+
+		<!-- **********************************************************  -->
+		<!-- *************************** EVENTS ***********************  -->
+		<!-- **********************************************************  -->	
+ 		<apex:pageBlockTable value="{!moreevents}" var="item" rendered="{!SobjectType='Event'}" id="BigTable2">
+ 			<apex:column headervalue="Action" width="80px"> 
+     			<apex:outputlink value="/{!item.id}/e" target="_blank">Edit</apex:outputlink>
+     			&nbsp;
+     			<apex:commandlink onclick="return confirm('Are you sure?')" value="Del" action="{!s_Delete}">
+     				<apex:param name="ActivityAction" value="{!item.id}"/>
+        			<apex:param name="ObjectType" value="Event"/>
+        			<apex:param name="SourceScreen" value="More"/>
+        		</apex:commandlink>
+            </apex:column>
+ 		
+            
+         	<apex:column headervalue="Subject">
+         		<apex:facet name="header">
+         			<apex:commandlink action="{!ChangeSort}">
+         				<apex:outputtext value="Subject"/>&nbsp;
+         				<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='Subject'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='Subject'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="Subject"/>
+         			</apex:commandlink>
+         		</apex:facet>
+         		<apex:outputLink value="/{!item.id}">{!item.subject}</apex:outputLink>
+         	</apex:column>
+            <apex:column value="{!item.createddate}" >
+            	<apex:facet name="header">
+            		<apex:commandlink action="{!ChangeSort}">
+     					<apex:outputtext value="Created Date"/>&nbsp;
+     					<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='CreatedDate'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='CreatedDate'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="CreatedDate"/>
+         			</apex:commandlink>
+            	</apex:facet>
+            </apex:column> 
+           	<apex:column value="{!item.activitydate}">
+           		<apex:facet name="header">
+            		<apex:commandlink action="{!ChangeSort}">
+     					<apex:outputtext value="Due Date"/>&nbsp;
+     					<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='ActivityDate'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='ActivityDate'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="ActivityDate"/>
+         			</apex:commandlink>
+            	</apex:facet>
+           	</apex:column>      	
+       		<apex:column >
+       			<apex:facet name="header">
+            		<apex:commandlink action="{!ChangeSort}">
+     					<apex:outputtext value="Owner"/>&nbsp;
+     					<apex:image value="/img/sort_asc_arrow.gif" rendered="{!SortBy='Owner.Name'&&SortSeq='Asc'}"/>
+         				<apex:image value="/img/sort_desc_arrow.gif" rendered="{!SortBy='Owner.Name'&&SortSeq='Desc'}"/>
+         				<apex:param name="SortBy" value="Owner.Name"/>
+         			</apex:commandlink>
+            	</apex:facet>
+         		<apex:outputLink value="/{!item.ownerid}">{!item.owner.name}</apex:outputLink>
+         	</apex:column>
+         	<apex:column value="{!item.Brands__c}" headervalue="Brand(s)"/> 	 
+         	<!--<apex:column value="{!posnCounter} of {!BigCounter}" headervalue="temp"/> 	 -->
+        </apex:pageBlockTable> 
+
+        <!-- **********************************************************  -->
+		<!-- *************************** Notes       ******************  -->
+		<!-- **********************************************************  -->	
+ 		<apex:pageBlockTable value="{!MoreNoteAttachments}" var="item" rendered="{!SobjectType='Note'}" id="BigTable3">
+ 			<apex:column headervalue="Action" width="80px"> 
+         			<apex:commandlink onclick="return confirm('Are you sure?')" value="Del" action="{!s_Delete}">
+         				<apex:param name="ActivityAction" value="{!item.relatedid}"/>
+            			<apex:param name="ObjectType" value="Note"/>
+            			<apex:param name="SourceScreen" value="More"/>
+            		</apex:commandlink>
+            	</apex:column>
+         	<apex:column headervalue="Subject"> 
+         		<apex:outputLink value="/{!item.relatedid}">{!item.subject}</apex:outputLink>
+         	</apex:column>
+            <apex:column headervalue="Created Date"> 
+   		 		<apex:outputText value="{0,date,dd'/'MM'/'yyyy hh:mm:ss}">
+              	  <apex:param value="{!item.createddate}"  /> 
+                </apex:outputText> 
+            </apex:column>
+            <apex:column headervalue="Last Modified"> 
+   		 		<apex:outputText value="{0,date,dd'/'MM'/'yyyy hh:mm:ss}">
+              	  <apex:param value="{!item.lastmod}"  /> 
+                </apex:outputText> 
+            </apex:column> 
+       		<apex:column headervalue="Owner">
+         		<apex:outputLink value="/{!item.ownerid}">{!item.ownername}</apex:outputLink>
+         	</apex:column>
+         	<apex:column value="{!item.Brands}" headervalue="Brand(s)"/> 
+         	<!--<apex:column value="{!posnCounter} of {!BigCounter}" headervalue="temp"/> 	-->	
+        </apex:pageBlockTable>  
+
+        <!-- **********************************************************  -->
+		<!-- *************************** Attachments ******************  -->
+		<!-- **********************************************************  -->	
+ 		<apex:pageBlockTable value="{!MoreNoteAttachments}" var="item" rendered="{!SobjectType='Attachment'}" id="BigTable4">
+         		<apex:column headervalue="Action" width="80px"> 
+         			<apex:commandlink onclick="return confirm('Are you sure?')" value="Del" action="{!s_Delete}">
+         				<apex:param name="ActivityAction" value="{!item.relatedid}"/>
+            			<apex:param name="ObjectType" value="Attachment"/>
+            			<apex:param name="SourceScreen" value="More"/>
+            		</apex:commandlink>
+            	</apex:column>
+         		<apex:column headervalue="Subject"> 
+         		<apex:outputLink value="/servlet/servlet.FileDownload?file={!item.relatedid}">{!item.subject}</apex:outputLink>
+         	</apex:column>
+            <apex:column headervalue="Created Date"> 
+   		 		<apex:outputText value="{0,date,dd'/'MM'/'yyyy hh:mm:ss}">
+              	  <apex:param value="{!item.createddate}"  /> 
+                </apex:outputText> 
+            </apex:column>
+            <apex:column headervalue="Last Modified"> 
+   		 		<apex:outputText value="{0,date,dd'/'MM'/'yyyy hh:mm:ss}">
+              	  <apex:param value="{!item.lastmod}"  /> 
+                </apex:outputText> 
+            </apex:column> 
+       		<apex:column headervalue="Owner">
+         		<apex:outputLink value="/{!item.ownerid}">{!item.ownername}</apex:outputLink>
+         	</apex:column>
+         	<apex:column value="{!item.Brands}" headervalue="Brand(s)"/> 	 
+         	<!--<apex:column value="{!posnCounter} of {!BigCounter}" headervalue="temp"/> 	-->
+        </apex:pageBlockTable> 
+
+       
+        <!-- **********************************************************  -->
+		<!-- *************************** NAVIGATION *******************  -->
+		<!-- **********************************************************  -->
+        <apex:outputpanel id="myButtons">
+        	<apex:commandButton action="{!Beginning}" title="Beginning" value="<<" disabled="{!disablePrevious}" reRender="BigTable1,BigTable2,BigTable3,BigTable4,myButtons"/>
+        	<apex:commandButton action="{!Previous}" title="Previous" value="<" disabled="{!disablePrevious}" reRender="BigTable1,BigTable2,BigTable3,BigTable4,myButtons"/>        
+        	<apex:commandButton action="{!Next}" title="Next" value=">" disabled="{!disableNext}" reRender="BigTable1,BigTable2,BigTable3,BigTable4,myButtons"/>
+       	 	<apex:commandButton action="{!End}" title="End" value=">>" disabled="{!disableNext}" reRender="BigTable1,BigTable2,BigTable3,BigTable4,myButtons"/>   
+        </apex:outputPanel>
+ 
+
+	</apex:pageblock>
+</apex:form>
+</apex:page>

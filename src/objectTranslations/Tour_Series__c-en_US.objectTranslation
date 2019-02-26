@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Tour Series</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tour Series</value>
+    </caseValues>
+    <layouts>
+        <layout>Ops - Tour Series Layout</layout>
+        <sections>
+            <label><!-- Brand Message --></label>
+            <section>Brand Message</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Tour Series Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

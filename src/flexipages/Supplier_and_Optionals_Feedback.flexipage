@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>decorate</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;a href=&quot;https://travcorp.force.com/TTC/00O0O000009R9o6&quot; target=&quot;_self&quot;&gt;My Supplier Feedback&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://travcorp.force.com/TTC/00O0O00000Agces&quot; target=&quot;_self&quot;&gt;My Optionals Feedback&lt;/a&gt;&lt;br /&gt;
+&amp;nbsp;</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:richText</componentName>
+        </componentInstances>
+        <name>main</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Supplier and Optionals Feedback</masterLabel>
+    <template>
+        <name>flexipage:defaultAppHomeTemplate</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

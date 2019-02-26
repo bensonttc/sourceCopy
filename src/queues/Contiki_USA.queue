@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Contiki (USA)</name>
+    <queueMembers>
+        <roles>
+            <role>Contiki_USA_Reservations</role>
+            <role>Contiki_USA_Reservations_Team_Manager</role>
+            <role>Head_of_Reservations_USA</role>
+        </roles>
+        <users>
+            <user>anthony.nuzman@trafalgartours.com</user>
+            <user>julie.hanna@ttc.com</user>
+            <user>maggie.rosales@contiki.com</user>
+            <user>marco.echeverria@contiki.com</user>
+            <user>monica.romo@trafalgartours.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Read</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Insight (UK) Reservations</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Insight (UK) Reservations</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Trafalgar_Insight_Uniworld_UK_EUR_IRE_Reservations_Team_Manager</parentRole>
+</Role>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>AAT Kings (USA) OLD</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>AAT Kings (USA) OLD</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Head_of_Region_USA</parentRole>
+</Role>

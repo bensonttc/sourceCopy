@@ -1,0 +1,6 @@
+<apex:page showHeader="false" 
+  controller="TQAPIController" 
+  action="{!dispatch}" 
+  contentType="application/json" 
+  cache="false"
+>{!result}</apex:page>
